@@ -1,0 +1,118 @@
+{
+  "adamw_L64": {
+    "n": 10,
+    "n_emerged": 10,
+    "emergence_mean": 100.0,
+    "emergence_std": 0.0,
+    "emergence_min": 100.0,
+    "emergence_max": 100.0,
+    "slope_mean": 1.8332805934380076,
+    "width_mean": 0.0,
+    "icl_mean": 0.9198808385970745
+  },
+  "adamw_L128": {
+    "n": 10,
+    "n_emerged": 10,
+    "emergence_mean": 100.0,
+    "emergence_std": 0.0,
+    "emergence_min": 100.0,
+    "emergence_max": 100.0,
+    "slope_mean": 1.4876286279547513,
+    "width_mean": 0.0,
+    "icl_mean": 0.9481689453125
+  },
+  "adamw_L256": {
+    "n": 10,
+    "n_emerged": 10,
+    "emergence_mean": 260.0,
+    "emergence_std": 48.98979485566356,
+    "emergence_min": 200.0,
+    "emergence_max": 300.0,
+    "slope_mean": 17.33174979882185,
+    "width_mean": 0.17609125905568135,
+    "icl_mean": 0.9123734239508343
+  },
+  "muon_L64": {
+    "n": 10,
+    "n_emerged": 10,
+    "emergence_mean": 100.0,
+    "emergence_std": 0.0,
+    "emergence_min": 100.0,
+    "emergence_max": 100.0,
+    "slope_mean": 1.8461635522660138,
+    "width_mean": 0.0,
+    "icl_mean": 0.92099609375
+  },
+  "muon_L128": {
+    "n": 10,
+    "n_emerged": 10,
+    "emergence_mean": 100.0,
+    "emergence_std": 0.0,
+    "emergence_min": 100.0,
+    "emergence_max": 100.0,
+    "slope_mean": 1.4507612457071448,
+    "width_mean": 0.0,
+    "icl_mean": 0.9483560341282896
+  },
+  "muon_L256": {
+    "n": 10,
+    "n_emerged": 10,
+    "emergence_mean": 100.0,
+    "emergence_std": 0.0,
+    "emergence_min": 100.0,
+    "emergence_max": 100.0,
+    "slope_mean": 3.786793926281873,
+    "width_mean": 0.0,
+    "icl_mean": 0.9109761023396598
+  },
+  "sgdm_L64": {
+    "n": 10,
+    "n_emerged": 10,
+    "emergence_mean": 290.0,
+    "emergence_std": 30.0,
+    "emergence_min": 200.0,
+    "emergence_max": 300.0,
+    "slope_mean": 9.20084222835199,
+    "width_mean": 0.21357288003817132,
+    "icl_mean": 0.9204833984375
+  },
+  "sgdm_L128": {
+    "n": 10,
+    "n_emerged": 10,
+    "emergence_mean": 480.0,
+    "emergence_std": 74.83314773547883,
+    "emergence_min": 400.0,
+    "emergence_max": 600.0,
+    "slope_mean": 43.80392443477772,
+    "width_mean": 0.29188842541751725,
+    "icl_mean": 0.9457793225740131
+  },
+  "sgdm_L256": {
+    "n": 10,
+    "n_emerged": 10,
+    "emergence_mean": 480.0,
+    "emergence_std": 40.0,
+    "emergence_min": 400.0,
+    "emergence_max": 500.0,
+    "slope_mean": 51.62817761822065,
+    "width_mean": 0.1343916339905462,
+    "icl_mean": 0.9120951228116819
+  },
+  "_P3_exponents": {
+    "adamw": {
+      "exponent": 0.6754887502163459,
+      "stderr": 0.08305694098734934,
+      "n": 30
+    },
+    "sgdm": {
+      "exponent": 0.36553811263042446,
+      "stderr": 0.05674194192142204,
+      "n": 30
+    },
+    "muon": {
+      "exponent": -2.1240549065386933e-16,
+      "stderr": 1.854367986510856e-16,
+      "n": 30
+    }
+  }
+}

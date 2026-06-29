@@ -1,0 +1,21 @@
+{
+  "title": "Degree-staircase emergence is architecture-shaped, while optimizers shift only its timing",
+  "description": "Code and result logs showing the degree-staircase of sequential feature acquisition is owned by depth and attention. Code is MIT; result logs CC-BY-4.0. Figure/manuscript sources not included; large standard datasets not bundled.",
+  "upload_type": "dataset",
+  "access_right": "open",
+  "license": "MIT",
+  "creators": [
+    {
+      "name": "Fu, Zeyu",
+      "orcid": "0009-0001-8329-0108",
+      "affiliation": "Army Medical University, Chongqing, China"
+    }
+  ],
+  "keywords": [
+    "grokking",
+    "emergence",
+    "transformer architecture",
+    "attention",
+    "reproducibility"
+  ]
+}

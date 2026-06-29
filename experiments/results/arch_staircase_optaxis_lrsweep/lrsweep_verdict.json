@@ -1,0 +1,345 @@
+{
+  "rows": [
+    {
+      "path": "experiments/results/arch_staircase_optaxis_lrsweep/muon_l2_attn_lr0p01_s5.jsonl",
+      "muon_lr": 0.01,
+      "freeze": "attn",
+      "seed": 5,
+      "final_fit_corr": 0.9983234405517578,
+      "final_deg4": 0.5023809671401978,
+      "n_learned": 4
+    },
+    {
+      "path": "experiments/results/arch_staircase_optaxis_lrsweep/muon_l2_attn_lr0p01_s6.jsonl",
+      "muon_lr": 0.01,
+      "freeze": "attn",
+      "seed": 6,
+      "final_fit_corr": 0.999992847442627,
+      "final_deg4": 0.5151758193969727,
+      "n_learned": 4
+    },
+    {
+      "path": "experiments/results/arch_staircase_optaxis_lrsweep/muon_l2_attn_lr0p01_s7.jsonl",
+      "muon_lr": 0.01,
+      "freeze": "attn",
+      "seed": 7,
+      "final_fit_corr": 0.999972403049469,
+      "final_deg4": 0.4887811541557312,
+      "n_learned": 4
+    },
+    {
+      "path": "experiments/results/arch_staircase_optaxis_lrsweep/muon_l2_attn_lr0p02_s5.jsonl",
+      "muon_lr": 0.02,
+      "freeze": "attn",
+      "seed": 5,
+      "final_fit_corr": 0.9999784827232361,
+      "final_deg4": 0.5121068358421326,
+      "n_learned": 4
+    },
+    {
+      "path": "experiments/results/arch_staircase_optaxis_lrsweep/muon_l2_attn_lr0p02_s6.jsonl",
+      "muon_lr": 0.02,
+      "freeze": "attn",
+      "seed": 6,
+      "final_fit_corr": 0.999992847442627,
+      "final_deg4": 0.5149452090263367,
+      "n_learned": 4
+    },
+    {
+      "path": "experiments/results/arch_staircase_optaxis_lrsweep/muon_l2_attn_lr0p02_s7.jsonl",
+      "muon_lr": 0.02,
+      "freeze": "attn",
+      "seed": 7,
+      "final_fit_corr": 0.9997358322143555,
+      "final_deg4": 0.49132710695266724,
+      "n_learned": 4
+    },
+    {
+      "path": "experiments/results/arch_staircase_optaxis_lrsweep/muon_l2_attn_lr0p04_s5.jsonl",
+      "muon_lr": 0.04,
+      "freeze": "attn",
+      "seed": 5,
+      "final_fit_corr": 0.9999775290489197,
+      "final_deg4": 0.5114391446113586,
+      "n_learned": 4
+    },
+    {
+      "path": "experiments/results/arch_staircase_optaxis_lrsweep/muon_l2_attn_lr0p04_s6.jsonl",
+      "muon_lr": 0.04,
+      "freeze": "attn",
+      "seed": 6,
+      "final_fit_corr": 0.9999821782112122,
+      "final_deg4": 0.5163261294364929,
+      "n_learned": 4
+    },
+    {
+      "path": "experiments/results/arch_staircase_optaxis_lrsweep/muon_l2_attn_lr0p04_s7.jsonl",
+      "muon_lr": 0.04,
+      "freeze": "attn",
+      "seed": 7,
+      "final_fit_corr": 0.9999666213989258,
+      "final_deg4": 0.4892694652080536,
+      "n_learned": 4
+    },
+    {
+      "path": "experiments/results/arch_staircase_optaxis_lrsweep/muon_l2_none_lr0p01_s5.jsonl",
+      "muon_lr": 0.01,
+      "freeze": "none",
+      "seed": 5,
+      "final_fit_corr": 0.9999786019325256,
+      "final_deg4": 0.5105040073394775,
+      "n_learned": 4
+    },
+    {
+      "path": "experiments/results/arch_staircase_optaxis_lrsweep/muon_l2_none_lr0p01_s6.jsonl",
+      "muon_lr": 0.01,
+      "freeze": "none",
+      "seed": 6,
+      "final_fit_corr": 0.9999544620513916,
+      "final_deg4": 0.5149723887443542,
+      "n_learned": 4
+    },
+    {
+      "path": "experiments/results/arch_staircase_optaxis_lrsweep/muon_l2_none_lr0p01_s7.jsonl",
+      "muon_lr": 0.01,
+      "freeze": "none",
+      "seed": 7,
+      "final_fit_corr": 0.8708282709121704,
+      "final_deg4": 0.005468709859997034,
+      "n_learned": 4
+    },
+    {
+      "path": "experiments/results/arch_staircase_optaxis_lrsweep/muon_l2_none_lr0p02_s5.jsonl",
+      "muon_lr": 0.02,
+      "freeze": "none",
+      "seed": 5,
+      "final_fit_corr": 0.977863073348999,
+      "final_deg4": 0.5262678861618042,
+      "n_learned": 4
+    },
+    {
+      "path": "experiments/results/arch_staircase_optaxis_lrsweep/muon_l2_none_lr0p02_s6.jsonl",
+      "muon_lr": 0.02,
+      "freeze": "none",
+      "seed": 6,
+      "final_fit_corr": 0.9991759061813354,
+      "final_deg4": 0.5092734098434448,
+      "n_learned": 4
+    },
+    {
+      "path": "experiments/results/arch_staircase_optaxis_lrsweep/muon_l2_none_lr0p02_s7.jsonl",
+      "muon_lr": 0.02,
+      "freeze": "none",
+      "seed": 7,
+      "final_fit_corr": 0.8658663630485535,
+      "final_deg4": -0.01261118520051241,
+      "n_learned": 4
+    },
+    {
+      "path": "experiments/results/arch_staircase_optaxis_lrsweep/muon_l2_none_lr0p04_s5.jsonl",
+      "muon_lr": 0.04,
+      "freeze": "none",
+      "seed": 5,
+      "final_fit_corr": 0.9304561614990234,
+      "final_deg4": 0.4225214719772339,
+      "n_learned": 4
+    },
+    {
+      "path": "experiments/results/arch_staircase_optaxis_lrsweep/muon_l2_none_lr0p04_s6.jsonl",
+      "muon_lr": 0.04,
+      "freeze": "none",
+      "seed": 6,
+      "final_fit_corr": 0.8035503625869751,
+      "final_deg4": 0.6153271794319153,
+      "n_learned": 4
+    },
+    {
+      "path": "experiments/results/arch_staircase_optaxis_lrsweep/muon_l2_none_lr0p04_s7.jsonl",
+      "muon_lr": 0.04,
+      "freeze": "none",
+      "seed": 7,
+      "final_fit_corr": 0.865355908870697,
+      "final_deg4": 0.060017310082912445,
+      "n_learned": 4
+    }
+  ],
+  "by_lr": [
+    {
+      "muon_lr": 0.01,
+      "none": {
+        "median_deg4": 0.5105040073394775,
+        "mean_deg4": 0.34364836864794296,
+        "q25_deg4": 0.2579863585997373,
+        "q75_deg4": 0.5127381980419159,
+        "median_fit_corr": 0.9999544620513916,
+        "min_fit_corr": 0.8708282709121704,
+        "max_fit_corr": 0.9999786019325256,
+        "seeds": [
+          5,
+          6,
+          7
+        ],
+        "deg4_values": [
+          0.5105040073394775,
+          0.5149723887443542,
+          0.005468709859997034
+        ],
+        "fit_corr_values": [
+          0.9999786019325256,
+          0.9999544620513916,
+          0.8708282709121704
+        ]
+      },
+      "attn": {
+        "median_deg4": 0.5023809671401978,
+        "mean_deg4": 0.5021126468976339,
+        "q25_deg4": 0.4955810606479645,
+        "q75_deg4": 0.5087783932685852,
+        "median_fit_corr": 0.999972403049469,
+        "min_fit_corr": 0.9983234405517578,
+        "max_fit_corr": 0.999992847442627,
+        "seeds": [
+          5,
+          6,
+          7
+        ],
+        "deg4_values": [
+          0.5023809671401978,
+          0.5151758193969727,
+          0.4887811541557312
+        ],
+        "fit_corr_values": [
+          0.9983234405517578,
+          0.999992847442627,
+          0.999972403049469
+        ]
+      },
+      "delta_attn_minus_none_deg4": -0.008123040199279785,
+      "delta_attn_minus_none_fit": 1.7940998077392578e-05
+    },
+    {
+      "muon_lr": 0.02,
+      "none": {
+        "median_deg4": 0.5092734098434448,
+        "mean_deg4": 0.3409767036015789,
+        "q25_deg4": 0.2483311123214662,
+        "q75_deg4": 0.5177706480026245,
+        "median_fit_corr": 0.977863073348999,
+        "min_fit_corr": 0.8658663630485535,
+        "max_fit_corr": 0.9991759061813354,
+        "seeds": [
+          5,
+          6,
+          7
+        ],
+        "deg4_values": [
+          0.5262678861618042,
+          0.5092734098434448,
+          -0.01261118520051241
+        ],
+        "fit_corr_values": [
+          0.977863073348999,
+          0.9991759061813354,
+          0.8658663630485535
+        ]
+      },
+      "attn": {
+        "median_deg4": 0.5121068358421326,
+        "mean_deg4": 0.5061263839403788,
+        "q25_deg4": 0.5017169713973999,
+        "q75_deg4": 0.5135260224342346,
+        "median_fit_corr": 0.9999784827232361,
+        "min_fit_corr": 0.9997358322143555,
+        "max_fit_corr": 0.999992847442627,
+        "seeds": [
+          5,
+          6,
+          7
+        ],
+        "deg4_values": [
+          0.5121068358421326,
+          0.5149452090263367,
+          0.49132710695266724
+        ],
+        "fit_corr_values": [
+          0.9999784827232361,
+          0.999992847442627,
+          0.9997358322143555
+        ]
+      },
+      "delta_attn_minus_none_deg4": 0.002833425998687744,
+      "delta_attn_minus_none_fit": 0.02211540937423706
+    },
+    {
+      "muon_lr": 0.04,
+      "none": {
+        "median_deg4": 0.4225214719772339,
+        "mean_deg4": 0.36595532049735385,
+        "q25_deg4": 0.24126939103007317,
+        "q75_deg4": 0.5189243257045746,
+        "median_fit_corr": 0.865355908870697,
+        "min_fit_corr": 0.8035503625869751,
+        "max_fit_corr": 0.9304561614990234,
+        "seeds": [
+          5,
+          6,
+          7
+        ],
+        "deg4_values": [
+          0.4225214719772339,
+          0.6153271794319153,
+          0.060017310082912445
+        ],
+        "fit_corr_values": [
+          0.9304561614990234,
+          0.8035503625869751,
+          0.865355908870697
+        ]
+      },
+      "attn": {
+        "median_deg4": 0.5114391446113586,
+        "mean_deg4": 0.505678246418635,
+        "q25_deg4": 0.5003543049097061,
+        "q75_deg4": 0.5138826370239258,
+        "median_fit_corr": 0.9999775290489197,
+        "min_fit_corr": 0.9999666213989258,
+        "max_fit_corr": 0.9999821782112122,
+        "seeds": [
+          5,
+          6,
+          7
+        ],
+        "deg4_values": [
+          0.5114391446113586,
+          0.5163261294364929,
+          0.4892694652080536
+        ],
+        "fit_corr_values": [
+          0.9999775290489197,
+          0.9999821782112122,
+          0.9999666213989258
+        ]
+      },
+      "delta_attn_minus_none_deg4": 0.08891767263412476,
+      "delta_attn_minus_none_fit": 0.13462162017822266
+    }
+  ],
+  "overall": {
+    "n_cells": 18,
+    "lrs": [
+      0.01,
+      0.02,
+      0.04
+    ],
+    "seeds": [
+      5,
+      6,
+      7
+    ],
+    "max_abs_delta_deg4_by_lr": 0.08891767263412476,
+    "median_abs_delta_deg4_by_lr": 0.008123040199279785,
+    "attn_min_median_deg4": 0.5023809671401978,
+    "none_min_median_deg4": 0.4225214719772339,
+    "interpretation": "Muon attention-freeze does not reproduce the AdamW attention bottleneck. At lr 0.01 and 0.02 the median degree-4 delta is near zero; at lr 0.04, the unfrozen arm is less stable while the attention-frozen arm still learns degree 4."
+  }
+}

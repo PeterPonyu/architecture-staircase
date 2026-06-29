@@ -1,0 +1,155 @@
+{
+ "fit_gate": 0.85,
+ "staircase_order": {
+  "d128_l2_none": {
+   "adamw": {
+    "rank_index": 0.6666666666666666,
+    "rank_std": 0.5094659513211415,
+    "fit_med": 0.8983761668205261,
+    "n": 15,
+    "fit_gated_out": false,
+    "deg4_half_med": 1100.0
+   },
+   "muon": {
+    "rank_index": 0.5199999999999999,
+    "rank_std": 0.5878775382679627,
+    "fit_med": 0.9999542236328125,
+    "n": 5,
+    "fit_gated_out": false,
+    "deg4_half_med": 650.0
+   },
+   "sgdm": {
+    "rank_index": 0.32000000000000006,
+    "rank_std": 0.44899888641287294,
+    "fit_med": 0.8674397468566895,
+    "n": 5,
+    "fit_gated_out": false,
+    "deg4_half_med": 200.0
+   }
+  },
+  "d128_l4_none": {
+   "adamw": {
+    "rank_index": 0.5599999999999999,
+    "rank_std": 0.42708313008125254,
+    "fit_med": 0.8672928214073181,
+    "n": 5,
+    "fit_gated_out": false,
+    "deg4_half_med": 150.0
+   },
+   "muon": {
+    "rank_index": 0.96,
+    "rank_std": 0.07999999999999999,
+    "fit_med": 0.9999597668647766,
+    "n": 5,
+    "fit_gated_out": false,
+    "deg4_half_med": 550.0
+   },
+   "sgdm": {
+    "rank_index": 0.72,
+    "rank_std": 0.2712931993250107,
+    "fit_med": 0.8675475120544434,
+    "n": 5,
+    "fit_gated_out": false,
+    "deg4_half_med": 2700.0
+   }
+  },
+  "d128_l1_none": {
+   "adamw": {
+    "rank_index": 0.12000000000000002,
+    "rank_std": 0.46647615158762407,
+    "fit_med": 0.7067878842353821,
+    "n": 5,
+    "fit_gated_out": false,
+    "deg4_half_med": 50.0
+   },
+   "muon": {
+    "rank_index": 0.16,
+    "rank_std": 0.6621178142898739,
+    "fit_med": 0.7175202965736389,
+    "n": 5,
+    "fit_gated_out": false,
+    "deg4_half_med": 50.0
+   },
+   "sgdm": {
+    "rank_index": -0.24,
+    "rank_std": 0.38781438859330636,
+    "fit_med": 0.7112480998039246,
+    "n": 5,
+    "fit_gated_out": true,
+    "deg4_half_med": 0.0
+   }
+  }
+ },
+ "matched_pointwise_deg_corr": {
+  "target_fit": 0.8983761668205261,
+  "note": "deg_corr at first eval reaching AdamW median final fit",
+  "adamw": {
+   "deg_corr_med": [
+    0.5670838356018066,
+    0.5706647634506226,
+    0.53550124168396,
+    0.12948492169380188
+   ],
+   "step_med": 3850.0,
+   "n": 15,
+   "fit_gated_out": false
+  },
+  "muon": {
+   "deg_corr_med": [
+    0.5510249733924866,
+    0.5384387969970703,
+    0.5528361797332764,
+    0.20502682030200958
+   ],
+   "step_med": 850.0,
+   "n": 5,
+   "fit_gated_out": false
+  },
+  "sgdm": {
+   "deg_corr_med": [
+    0.5739537477493286,
+    0.5710911154747009,
+    0.5740993022918701,
+    0.022705381736159325
+   ],
+   "step_med": 4000.0,
+   "n": 5,
+   "fit_gated_out": false
+  }
+ },
+ "freeze_deltas_deg4": {
+  "adamw": {
+   "none_deg4": 0.1696902960538864,
+   "attn_deg4": -0.000275464728474617,
+   "mlp_deg4": 0.4609338641166687,
+   "none_fit": 0.8983761668205261,
+   "attn_fit": 0.8639214634895325,
+   "mlp_fit": 0.9843833446502686,
+   "delta_attn_minus_none": -0.16996576078236103,
+   "delta_mlp_minus_none": 0.2912435680627823,
+   "fit_gated_out": false
+  },
+  "muon": {
+   "none_deg4": 0.4991416037082672,
+   "attn_deg4": 0.5043562650680542,
+   "mlp_deg4": 0.48614588379859924,
+   "none_fit": 0.9999542236328125,
+   "attn_fit": 0.999977707862854,
+   "mlp_fit": 0.9962350726127625,
+   "delta_attn_minus_none": 0.005214661359786987,
+   "delta_mlp_minus_none": -0.012995719909667969,
+   "fit_gated_out": false
+  },
+  "sgdm": {
+   "none_deg4": 0.022705381736159325,
+   "attn_deg4": -0.0017271500546485186,
+   "mlp_deg4": 0.04226770997047424,
+   "none_fit": 0.8674397468566895,
+   "attn_fit": 0.8636625409126282,
+   "mlp_fit": 0.8750258684158325,
+   "delta_attn_minus_none": -0.024432531790807843,
+   "delta_mlp_minus_none": 0.01956232823431492,
+   "fit_gated_out": false
+  }
+ }
+}

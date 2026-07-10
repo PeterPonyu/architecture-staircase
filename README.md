@@ -14,5 +14,10 @@ scratch (GPU recommended): `python experiments/<study>/run_*.py`. Runs are seede
 numpy. All inputs are synthetic and fully specified in the code, except large
 standard datasets (MNIST / WikiText) which are not bundled.
 
+## Scale-hardening additions (v1.3, 2026-07)
+- `experiments/arch_staircase/run_20260708_scalegrid.py` + `experiments/results/arch_staircase_scale/`
+  (144 runs): the 24-configuration scale grid L {16,24,32} x d {256,512} x depth {2,4} x
+  {adamw,muon} (scalegrid, 96) and the 8-seed freeze-ownership audit at L=24/d=256 (freeze8, 48).
+
 ## License
 Code: MIT (`LICENSE`). Result logs: CC BY 4.0. See `CITATION.cff`.

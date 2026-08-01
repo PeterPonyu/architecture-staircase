@@ -1,0 +1,14 @@
+{
+ "pilot": "P1-CE1",
+ "block": "p1_e1b",
+ "block_idx": 4,
+ "blocks_total": 4,
+ "cell": "-",
+ "cell_idx": 12,
+ "cells_total": 12,
+ "done_overall": 88,
+ "total_overall": 88,
+ "status": "all_done",
+ "ts": "2026-07-17T15:34:01",
+ "unix_ts": 1784273641.8301914
+}

@@ -1,0 +1,13 @@
+[1/12] skip(claimed) med_low_U2M_E10_s20
+[2/12] med_low_U2M_E10_s21: val=0.4547 gap=0.2043 65s (worker A)
+[3/12] skip(claimed) med_low_U2M_E10_s22
+[4/12] med_low_U2M_E10_s23: val=0.4669 gap=0.1541 64s (worker A)
+[5/12] skip(claimed) med_low_U2M_E10_s24
+[6/12] med_low_U2M_E10_s25: val=0.4515 gap=0.1625 64s (worker A)
+[7/12] skip(claimed) med_low_U2M_E10_s26
+[8/12] med_low_U2M_E10_s27: val=0.4521 gap=0.2440 64s (worker A)
+[9/12] skip(claimed) med_low_U2M_E10_s28
+[10/12] med_low_U2M_E10_s29: val=0.4543 gap=0.1193 64s (worker A)
+[11/12] skip(claimed) med_low_U2M_E10_s30
+[12/12] med_low_U2M_E10_s31: val=0.4492 gap=0.1018 56s (worker A)
+P1_E1B DONE (worker A shard)

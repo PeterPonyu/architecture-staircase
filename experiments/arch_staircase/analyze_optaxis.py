@@ -1,7 +1,7 @@
 """C-KILL-1, 017 leg — is the degree-staircase GEOMETRY optimizer-invariant?
 
-Red-team (agent ac44b66b) corrected the verdict spec; this analyzer follows it
-verbatim (see .omc/plans/tier2-scaffolds-launch.md "Verdict logic"):
+The internal red-team audit corrected the verdict spec; this analyzer follows it
+verbatim:
 
   * Geometry ⊥ timing  ⇔  at MATCHED performance the degree-acquisition ORDER
     (Spearman rank of degree vs half-time) and the POINTWISE deg_corr agree across

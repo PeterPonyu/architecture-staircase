@@ -1,0 +1,31 @@
+[1/30] small_low_U3p33333M_E6_s20: val=0.4342 gap=0.0632 50s (worker A)
+[2/30] small_low_U3p33333M_E6_s21: val=0.4287 gap=0.1358 49s (worker A)
+[3/30] skip(claimed) small_low_U3p33333M_E6_s22
+[4/30] small_low_U2p5M_E8_s20: val=0.4487 gap=0.1382 53s (worker A)
+[5/30] skip(claimed) small_low_U2p5M_E8_s21
+[6/30] small_low_U2p5M_E8_s22: val=0.4388 gap=0.1270 52s (worker A)
+[7/30] skip(claimed) small_med_U3p33333M_E6_s20
+[8/30] small_med_U3p33333M_E6_s21: val=1.7868 gap=0.0426 52s (worker A)
+[9/30] skip(claimed) small_med_U3p33333M_E6_s22
+[10/30] small_med_U2p5M_E8_s20: val=1.7917 gap=0.0295 52s (worker A)
+[11/30] skip(claimed) small_med_U2p5M_E8_s21
+[12/30] small_med_U2p5M_E8_s22: val=1.7941 gap=0.0833 54s (worker A)
+[13/30] skip(claimed) med_low_U3p33333M_E6_s20
+[14/30] med_low_U3p33333M_E6_s21: val=0.4091 gap=0.0970 62s (worker A)
+[15/30] skip(claimed) med_low_U3p33333M_E6_s22
+[16/30] med_low_U2p5M_E8_s20: val=0.4445 gap=0.1457 63s (worker A)
+[17/30] skip(claimed) med_low_U2p5M_E8_s21
+[18/30] med_low_U2p5M_E8_s22: val=0.4297 gap=0.1374 63s (worker A)
+[19/30] skip(claimed) med_high_U3p33333M_E6_s20
+[20/30] med_high_U3p33333M_E6_s21: val=4.1528 gap=0.1220 63s (worker A)
+[21/30] skip(claimed) med_high_U3p33333M_E6_s22
+[22/30] med_high_U2p5M_E8_s20: val=4.2336 gap=0.4099 64s (worker A)
+[23/30] skip(claimed) med_high_U2p5M_E8_s21
+[24/30] med_high_U2p5M_E8_s22: val=4.2354 gap=0.3485 66s (worker A)
+[25/30] skip(claimed) large_med_U3p33333M_E6_s20
+[26/30] large_med_U3p33333M_E6_s21: val=1.8049 gap=0.1040 103s (worker A)
+[27/30] skip(claimed) large_med_U3p33333M_E6_s22
+[28/30] large_med_U2p5M_E8_s20: val=1.8608 gap=0.1362 105s (worker A)
+[29/30] skip(claimed) large_med_U2p5M_E8_s21
+[30/30] large_med_U2p5M_E8_s22: val=1.8688 gap=0.2306 99s (worker A)
+P1_E1A DONE (worker A shard)

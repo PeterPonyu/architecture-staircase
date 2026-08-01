@@ -1,0 +1,17 @@
+[1/16] d128_l2_h4_none_s100_adamw: fit=0.894 mse=0.8038 336s
+[2/16] d128_l2_h4_none_s101_adamw: fit=1.000 mse=0.0011 338s
+[3/16] d128_l2_h4_none_s102_adamw: fit=0.995 mse=0.0418 319s
+[4/16] d128_l2_h4_none_s103_adamw: fit=0.863 mse=1.0083 310s
+[5/16] d128_l2_h4_none_s104_adamw: fit=1.000 mse=0.0078 339s
+[6/16] d128_l2_h4_none_s105_adamw: fit=1.000 mse=0.0015 327s
+[7/16] d128_l2_h4_none_s106_adamw: fit=0.894 mse=0.7850 324s
+[8/16] d128_l2_h4_none_s107_adamw: fit=0.864 mse=1.0000 324s
+[9/16] d128_l2_h4_none_s100_muon: fit=0.966 mse=0.2662 320s
+[10/16] d128_l2_h4_none_s101_muon: fit=1.000 mse=0.0023 318s
+[11/16] d128_l2_h4_none_s102_muon: fit=1.000 mse=0.0018 317s
+[12/16] d128_l2_h4_none_s103_muon: fit=0.864 mse=1.0023 314s
+[13/16] d128_l2_h4_none_s104_muon: fit=0.868 mse=1.0039 313s
+[14/16] d128_l2_h4_none_s105_muon: fit=0.937 mse=0.5025 313s
+[15/16] d128_l2_h4_none_s106_muon: fit=0.941 mse=0.4437 317s
+[16/16] d128_l2_h4_none_s107_muon: fit=1.000 mse=0.0029 314s
+P1-C2 DONE

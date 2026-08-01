@@ -4,7 +4,7 @@ Closes the 010 leg of C-KILL-1 (geometry ⊥ timing measured under AdamW only).
 Adds Muon & SGDM (results/induction_subspace_optaxis) against the closed AdamW
 baseline (results/induction_subspace, repeat task).
 
-Verdict spec (.omc/plans/tier2-scaffolds-launch.md): geometry optimizer-invariant
+Verdict spec: geometry optimizer-invariant
 IFF, at MATCHED ICL, pca_dim and captured-fraction agree across AdamW vs Muon
 (SGDM only where it actually learns induction). Matched-performance = the first
 eval where each run reaches the AdamW median final ICL — removes the "Muon trains

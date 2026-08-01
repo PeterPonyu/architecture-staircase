@@ -1,0 +1,58 @@
+{
+ "adamw": {
+  "n_seeds": 8,
+  "n_resamples": 20000,
+  "attn_l1": {
+   "point": 0.2793,
+   "ci95": [
+    -0.2636,
+    0.3679
+   ],
+   "excludes_zero": false
+  },
+  "mlp_l1": {
+   "point": 0.3691,
+   "ci95": [
+    -0.0446,
+    0.415
+   ],
+   "excludes_zero": false
+  },
+  "mlp_minus_attn": {
+   "point": 0.0898,
+   "ci95": [
+    -0.1586,
+    0.3154
+   ],
+   "excludes_zero": false
+  }
+ },
+ "muon": {
+  "n_seeds": 8,
+  "n_resamples": 20000,
+  "attn_l1": {
+   "point": 0.2037,
+   "ci95": [
+    -0.1847,
+    0.3713
+   ],
+   "excludes_zero": false
+  },
+  "mlp_l1": {
+   "point": 0.3443,
+   "ci95": [
+    -0.0394,
+    0.5245
+   ],
+   "excludes_zero": false
+  },
+  "mlp_minus_attn": {
+   "point": 0.1406,
+   "ci95": [
+    0.0579,
+    0.2237
+   ],
+   "excludes_zero": true
+  }
+ }
+}

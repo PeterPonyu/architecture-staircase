@@ -11,7 +11,7 @@ import json
 import sys
 from pathlib import Path
 
-ROOT = Path('/home/zeyufu/Desktop/dl-research')
+ROOT = Path(__file__).resolve().parents[2]
 ARCH = ROOT / 'experiments' / 'arch_staircase'
 OUT = ROOT / 'experiments' / 'results' / 'arch_staircase_optaxis_lrsweep'
 if str(ARCH) in sys.path:

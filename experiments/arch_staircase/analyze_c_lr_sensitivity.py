@@ -9,7 +9,7 @@ from statistics import median, mean
 
 import matplotlib.pyplot as plt
 
-ROOT = Path('/home/zeyufu/Desktop/dl-research')
+ROOT = Path(__file__).resolve().parents[2]
 RESULTS = ROOT / 'experiments' / 'results' / 'arch_staircase_optaxis_lrsweep'
 FIGS = ROOT / 'papers' / 'figs'
 FIG = FIGS / 'C_ownership_lr_sensitivity.png'

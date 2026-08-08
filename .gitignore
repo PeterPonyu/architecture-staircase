@@ -9,3 +9,11 @@ __pycache__/
 .omx/
 .ruff_cache/
 .DS_Store
+
+# confidential / local artifacts
+*.tar.gz
+architecture-staircase-v*.tar.gz
+.env
+.env.*
+credentials*
+*.pem

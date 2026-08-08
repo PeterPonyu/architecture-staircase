@@ -18,6 +18,7 @@ P2 freeze arms are read WITHIN-arm only (per direction doc discipline).
 Writes results/figures-017/: arch_verdicts.json, fig_arch.png.
 """
 from __future__ import annotations
+from pathlib import Path
 
 import glob
 import json
@@ -25,7 +26,7 @@ import os
 from collections import defaultdict
 
 import sys as _sys
-_sys.path.insert(0, "/home/zeyufu/Desktop/dl-research/experiments")
+_sys.path.insert(0, str(Path(__file__).resolve().parents[2] / 'experiments'))
 import figstyle
 figstyle.apply()
 

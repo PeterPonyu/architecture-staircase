@@ -7,6 +7,7 @@ Writes to results/figures-010/:
   fig_subspace.png   captured fraction (P1) and PCA dim (P3) vs L, seed scatter
 """
 from __future__ import annotations
+from pathlib import Path
 
 import glob
 import json
@@ -14,7 +15,7 @@ import os
 from collections import defaultdict
 
 import sys as _sys
-_sys.path.insert(0, "/home/zeyufu/Desktop/dl-research/experiments")
+_sys.path.insert(0, str(Path(__file__).resolve().parents[2] / 'experiments'))
 import figstyle
 figstyle.apply()
 

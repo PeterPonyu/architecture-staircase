@@ -1,4 +1,4 @@
-# Phase-1 PILOT runbook — Papers C + E1 (BOX-2, 1x RTX 4090 D) — 2026-07-16
+# Phase-1 PILOT runbook — Papers C + E1 (BOX-2, 1x local GPU) — 2026-07-16
 
 88 runs, one sequential queue, order **C2 -> C1 -> E1a -> E1b** (checkpoint bank first).
 Source plan: `revision-plan-2026-0716.md` (P1-C1/C2/E1a/E1b); evidence notes

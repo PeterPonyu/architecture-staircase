@@ -1,4 +1,4 @@
-"""Shared publication figure style for all five papers (A/B/C/E1/E2).
+"""Shared publication figure style for this archive and related studies.
 
 Import at the top of every generator:
 

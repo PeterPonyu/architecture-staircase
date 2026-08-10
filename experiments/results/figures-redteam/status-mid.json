@@ -78,15 +78,15 @@
         "updatedAt": "2026-06-19T16:05:00.358Z"
       },
       {
-        "id": "G008-use-local-rtx-5090-and-remote-dl4080",
-        "title": "Use local RTX 5090 and remote dl4080 RTX 4080 where safe; commands mu...",
-        "objective": "Use local RTX 5090 and remote dl4080 RTX 4080 where safe; commands must be resumable and evidence-backed.",
+        "id": "G008-use-local-and-remote-gpu",
+        "title": "Use local GPU and remote GPU where safe; commands mu...",
+        "objective": "Use local GPU and remote GPU where safe; commands must be resumable and evidence-backed.",
         "status": "complete",
         "attempt": 0,
         "createdAt": "2026-06-19T16:05:00.358Z",
         "updatedAt": "2026-06-19T16:11:38.036Z",
         "completedAt": "2026-06-19T16:11:38.036Z",
-        "evidence": "Local RTX 5090 used for B bridge and A LMC; remote dl4080 RTX 4080 used for E1 real-text seeds and E2 positive rescue via tmux; logs under logs/ug_red_*.log."
+        "evidence": "local GPU used for B bridge and A LMC; remote GPU used for E1 real-text seeds and E2 positive rescue via tmux; logs under logs/ug_red_*.log."
       },
       {
         "id": "G009-avoid-inflated-claims-negative-parti",
@@ -168,7 +168,7 @@
         "createdAt": "2026-06-19T16:05:00.358Z",
         "updatedAt": "2026-06-19T16:28:50.248Z",
         "completedAt": "2026-06-19T16:28:50.248Z",
-        "evidence": "E1 real-text 10M seeds 2-3 completed on remote 4080 and pulled locally; together with fullattack seed1, all three 10M seeds have R_free=4 at 0.05; threshold sensitivity recorded at 0.02/0.05/0.1 in redteam_e1_manifest.json."
+        "evidence": "E1 real-text 10M seeds 2-3 completed on remote GPU and pulled locally; together with fullattack seed1, all three 10M seeds have R_free=4 at 0.05; threshold sensitivity recorded at 0.02/0.05/0.1 in redteam_e1_manifest.json."
       },
       {
         "id": "G017-e2-run-trainable-positive-rescue-wid",
@@ -179,7 +179,7 @@
         "createdAt": "2026-06-19T16:05:00.358Z",
         "updatedAt": "2026-06-19T16:28:50.366Z",
         "completedAt": "2026-06-19T16:28:50.366Z",
-        "evidence": "E2 wide trainable-positive rescue completed 3 cells on remote 4080 in redteam namespace; all sustain 0.7 but none sustain 0.8, best max 0.754, status positive_control_not_yet_passed; paper narrowed to oracle solved-reference plus absent trained positive."
+        "evidence": "E2 wide trainable-positive rescue completed 3 cells on remote GPU in redteam namespace; all sustain 0.7 but none sustain 0.8, best max 0.754, status positive_control_not_yet_passed; paper narrowed to oracle solved-reference plus absent trained positive."
       },
       {
         "id": "G018-c-no-mandatory-long-gpu-unless-resou",

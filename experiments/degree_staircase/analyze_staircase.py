@@ -24,7 +24,7 @@ import os
 from collections import defaultdict
 
 import sys as _sys
-_sys.path.insert(0, str(Path(__file__).resolve().parents[2] / 'experiments'))
+_sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 import figstyle  # noqa: E402
 figstyle.apply()
 

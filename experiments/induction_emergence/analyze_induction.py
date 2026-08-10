@@ -14,8 +14,10 @@ import json
 import os
 from collections import defaultdict
 
+from pathlib import Path
 import sys as _sys
-_sys.path.insert(0, "/home/zeyufu/Desktop/dl-research/experiments")
+# Repo-relative: published package vendors figstyle under experiments/
+_sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 import figstyle
 figstyle.apply()
 

@@ -119,4 +119,4 @@ format (C2/C1 via the mirrored train loop / TA.run; E1 via train_repeat.run verb
 Smoke gate before launch: one short GPU run per harness (C adamw+muon incl. one ckpt
 save; E1 small/low tiny budget), asserting finite losses + parseable jsonl.
 Retrieval: jsonls + ckpt manifest (NOT the .pt files) ->
-`~/Desktop/dl-research/experiments/revision2026/pilot-CE1/`.
+`experiments/revision2026/pilot-CE1/` (repo-relative).

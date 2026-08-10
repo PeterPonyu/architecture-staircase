@@ -1,0 +1,1 @@
+{"artifact":"C_smoke","layout":"balanced-2x2","panel_count":4,"panels":[{"id":"a","question":"q a","sources":["s.json"]},{"id":"b","question":"q b","sources":["s.json"]},{"id":"c","question":"q c","sources":["s.json"]},{"id":"d","question":"q d","sources":["s.json"]}],"exception_reason":null}

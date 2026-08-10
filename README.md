@@ -1,3 +1,5 @@
+<!-- Paper C claim map: see CLAIM-PATH-MAP.md. All paper-C tasks are synthetic (Boolean staircase + induction streams); no MNIST/WikiText. -->
+
 # Architecture-shaped degree-staircase emergence — code & data
 
 Reproducibility archive: **experiment code and per-run result logs only**.

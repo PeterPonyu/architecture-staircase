@@ -1,0 +1,38 @@
+{
+  "artifact": "C_pure3_speedup",
+  "layout": "balanced-2x2",
+  "panel_count": 4,
+  "panels": [
+    {
+      "id": "a",
+      "question": "How quickly does each optimizer acquire the isolated degree-three target?",
+      "sources": [
+        "experiments/results/degree_staircase/*_pure3_s*.jsonl"
+      ]
+    },
+    {
+      "id": "b",
+      "question": "What bootstrap interval supports the AdamW-to-Muon speed ratio?",
+      "sources": [
+        "experiments/results/degree_staircase/adamw_pure3_s*.jsonl",
+        "experiments/results/degree_staircase/muon_pure3_s*.jsonl"
+      ]
+    },
+    {
+      "id": "c",
+      "question": "Is the timing contrast confounded by final fit quality?",
+      "sources": [
+        "experiments/results/degree_staircase/*_pure3_s*.jsonl"
+      ]
+    },
+    {
+      "id": "d",
+      "question": "How are per-degree half-times ordered on the nested ladder?",
+      "sources": [
+        "experiments/results/degree_staircase/*_staircase_s*.jsonl"
+      ]
+    }
+  ],
+  "exception_reason": null,
+  "generated_from_manifest": "papers/figs/figure_manifest.yaml"
+}

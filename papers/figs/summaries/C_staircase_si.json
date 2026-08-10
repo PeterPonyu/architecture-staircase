@@ -1,0 +1,37 @@
+{
+  "artifact": "C_staircase_si",
+  "layout": "balanced-2x2",
+  "panel_count": 4,
+  "panels": [
+    {
+      "id": "a",
+      "question": "What is the raw per-seed staircase-index distribution?",
+      "sources": [
+        "experiments/results/figures-004/si_inference.json"
+      ]
+    },
+    {
+      "id": "b",
+      "question": "Does the pre-specified TOST establish equivalence?",
+      "sources": [
+        "experiments/results/figures-004/si_inference.json"
+      ]
+    },
+    {
+      "id": "c",
+      "question": "Do secondary point-null tests agree?",
+      "sources": [
+        "experiments/results/figures-004/si_inference.json"
+      ]
+    },
+    {
+      "id": "d",
+      "question": "How robust are staircase-index summaries to mean versus median aggregation?",
+      "sources": [
+        "experiments/results/figures-004/si_inference.json"
+      ]
+    }
+  ],
+  "exception_reason": null,
+  "generated_from_manifest": "papers/figs/figure_manifest.yaml"
+}

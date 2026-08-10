@@ -1,12 +1,12 @@
 cff-version: 1.2.0
-title: >-
+title: "Train the pathway, deposit the computation: a two-probe dissociation of component ownership in transformer emergence"
   Code and data for: Degree-staircase emergence is architecture-shaped, while optimizers shift only its timing
 message: If you use this code or data, please cite this archive and the manuscript.
 type: dataset
 authors:
   - given-names: Zeyu
     family-names: Fu
-    email: fuzeyu99@126.com
+    email: fuzeyu09@gmail.com
     orcid: 'https://orcid.org/0009-0001-8329-0108'
     affiliation: 'Army Medical University, Chongqing, China'
 abstract: >-
@@ -20,4 +20,4 @@ keywords:
 license: MIT
 version: 1.0.0
 date-released: '2026-06-29'
-doi: 10.5281/zenodo.21020349
+doi: 10.5281/zenodo.21020348

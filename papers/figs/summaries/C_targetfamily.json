@@ -1,0 +1,37 @@
+{
+  "artifact": "C_targetfamily",
+  "layout": "balanced-2x2",
+  "panel_count": 4,
+  "panels": [
+    {
+      "id": "a",
+      "question": "How does staircase rank vary by target family and optimizer?",
+      "sources": [
+        "experiments/results/ieee_gap_20260705/C/gapC_verdict.json"
+      ]
+    },
+    {
+      "id": "b",
+      "question": "Which target-family cells pass the fit gate?",
+      "sources": [
+        "experiments/results/ieee_gap_20260705/C/gapC_verdict.json"
+      ]
+    },
+    {
+      "id": "c",
+      "question": "How do per-degree onsets vary by target family?",
+      "sources": [
+        "experiments/results/ieee_gap_20260705/C/gapC_verdict.json"
+      ]
+    },
+    {
+      "id": "d",
+      "question": "Does staircase rank track final fit quality?",
+      "sources": [
+        "experiments/results/ieee_gap_20260705/C/gapC_verdict.json"
+      ]
+    }
+  ],
+  "exception_reason": null,
+  "generated_from_manifest": "papers/figs/figure_manifest.yaml"
+}

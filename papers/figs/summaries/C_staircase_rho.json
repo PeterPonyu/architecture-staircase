@@ -1,0 +1,39 @@
+{
+  "artifact": "C_staircase_rho",
+  "layout": "balanced-2x2",
+  "panel_count": 4,
+  "panels": [
+    {
+      "id": "a",
+      "question": "How are degrees acquired under AdamW?",
+      "sources": [
+        "experiments/results/degree_staircase/adamw_staircase_s*.jsonl"
+      ]
+    },
+    {
+      "id": "b",
+      "question": "How are degrees acquired under SGDM?",
+      "sources": [
+        "experiments/results/degree_staircase/sgdm_staircase_s*.jsonl"
+      ]
+    },
+    {
+      "id": "c",
+      "question": "How are degrees acquired under Muon?",
+      "sources": [
+        "experiments/results/degree_staircase/muon_staircase_s*.jsonl"
+      ]
+    },
+    {
+      "id": "d",
+      "question": "How are degree-onset distributions ordered across optimizers?",
+      "sources": [
+        "experiments/results/degree_staircase/adamw_staircase_s*.jsonl",
+        "experiments/results/degree_staircase/sgdm_staircase_s*.jsonl",
+        "experiments/results/degree_staircase/muon_staircase_s*.jsonl"
+      ]
+    }
+  ],
+  "exception_reason": null,
+  "generated_from_manifest": "papers/figs/figure_manifest.yaml"
+}

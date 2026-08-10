@@ -1,0 +1,37 @@
+{
+  "artifact": "C_ownership_localize",
+  "layout": "balanced-2x2",
+  "panel_count": 4,
+  "panels": [
+    {
+      "id": "a",
+      "question": "Which layer-localized freeze arms preserve degree-four acquisition?",
+      "sources": [
+        "experiments/results/ieee_gap_20260705/C/gapC_verdict.json"
+      ]
+    },
+    {
+      "id": "b",
+      "question": "How variable is degree-four acquisition across seeds and freeze arms?",
+      "sources": [
+        "experiments/results/ieee_gap_20260705/C/gapC_verdict.json"
+      ]
+    },
+    {
+      "id": "c",
+      "question": "Is overall fit preserved under every freeze arm?",
+      "sources": [
+        "experiments/results/ieee_gap_20260705/C/gapC_verdict.json"
+      ]
+    },
+    {
+      "id": "d",
+      "question": "What fraction of seeds exceeds the degree-four acquisition threshold?",
+      "sources": [
+        "experiments/results/ieee_gap_20260705/C/gapC_verdict.json"
+      ]
+    }
+  ],
+  "exception_reason": null,
+  "generated_from_manifest": "papers/figs/figure_manifest.yaml"
+}

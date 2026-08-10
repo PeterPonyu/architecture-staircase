@@ -1,0 +1,39 @@
+{
+  "artifact": "C_ladder_necessity",
+  "layout": "balanced-2x2",
+  "panel_count": 4,
+  "panels": [
+    {
+      "id": "a",
+      "question": "How does final fit differ between the isolated target and nested ladder?",
+      "sources": [
+        "experiments/results/degree_staircase/*_pure3_s*.jsonl",
+        "experiments/results/degree_staircase/*_staircase_s*.jsonl"
+      ]
+    },
+    {
+      "id": "b",
+      "question": "Which degrees does SGDM acquire on the nested ladder?",
+      "sources": [
+        "experiments/results/degree_staircase/sgdm_staircase_s*.jsonl"
+      ]
+    },
+    {
+      "id": "c",
+      "question": "How variable is final fit across seeds, targets, and optimizers?",
+      "sources": [
+        "experiments/results/degree_staircase/*_pure3_s*.jsonl",
+        "experiments/results/degree_staircase/*_staircase_s*.jsonl"
+      ]
+    },
+    {
+      "id": "d",
+      "question": "How do per-degree final correlations compare across optimizers?",
+      "sources": [
+        "experiments/results/degree_staircase/*_staircase_s*.jsonl"
+      ]
+    }
+  ],
+  "exception_reason": null,
+  "generated_from_manifest": "papers/figs/figure_manifest.yaml"
+}

@@ -1,0 +1,40 @@
+{
+  "artifact": "C_timing",
+  "layout": "balanced-2x2",
+  "panel_count": 4,
+  "panels": [
+    {
+      "id": "a",
+      "question": "How does ICL emergence time vary with context length and optimizer?",
+      "sources": [
+        "experiments/results/induction_fine/*.jsonl",
+        "experiments/results/induction_emergence/*.jsonl"
+      ]
+    },
+    {
+      "id": "b",
+      "question": "Does the optimizer timing contrast survive matched evaluation cadence?",
+      "sources": [
+        "experiments/results/induction_emergence/*.jsonl"
+      ]
+    },
+    {
+      "id": "c",
+      "question": "What bootstrap intervals support optimizer-to-Muon acceleration ratios?",
+      "sources": [
+        "experiments/results/induction_fine/*.jsonl",
+        "experiments/results/induction_emergence/*.jsonl"
+      ]
+    },
+    {
+      "id": "d",
+      "question": "How variable are emergence steps across seeds and context lengths?",
+      "sources": [
+        "experiments/results/induction_fine/*.jsonl",
+        "experiments/results/induction_emergence/*.jsonl"
+      ]
+    }
+  ],
+  "exception_reason": null,
+  "generated_from_manifest": "papers/figs/figure_manifest.yaml"
+}

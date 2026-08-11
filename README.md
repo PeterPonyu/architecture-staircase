@@ -22,14 +22,19 @@ standard datasets (MNIST / WikiText) which are not bundled.
   {adamw,muon} (scalegrid, 96) and the 8-seed freeze-ownership audit at L=24/d=256 (freeze8, 48).
 
 ## Which archive to use for review
-Use **tag `v1.5.3` or later**, or Zenodo concept DOI
+Use **tag `v1.5.4` or later**, or Zenodo concept DOI
 [`10.5281/zenodo.21020348`](https://doi.org/10.5281/zenodo.21020348)
 (always resolves to the latest published version).
 
-**Do not use tag `v1.5.2` or earlier** for review: older immutable snapshots retain
-internal series labels and/or pre-scrub process artifacts fixed in v1.5.3. Git history
-also retains older blobs; that is expected for open source and is not rewritten. Prefer the
-latest Zenodo version DOI listed on the concept page over any older version record.
+**Do not use tag `v1.5.3` or earlier** for review: the v1.5.3 Zenodo tarball shipped a
+nested `.omc` process cache (GitHub tag was clean); older tags also retain series-label /
+process artifacts fixed in v1.5.3+. Git history retains older blobs; that is expected for
+open source and is not rewritten. Prefer the latest Zenodo version DOI on the concept page.
+
+## v1.5.4 (2026-08-11) — clean Zenodo rebuild (no nested `.omc`)
+- Pack via `git archive` + hard excludes; fail-closed verification before upload.
+- Extends `.gitignore` for process/IDE caches. No scientific log changes.
+- Supersedes the dirty v1.5.3 Zenodo file for review.
 
 ## v1.5.3 (2026-08-11) — series-label / process-artifact scrub
 - Removed internal manuscript-series codenames from README / claim map / source comments.
@@ -40,7 +45,7 @@ latest Zenodo version DOI listed on the concept page over any older version reco
 
 ## v1.5.2 (2026-08-10) — residual infra-identity redaction
 - Redacted lab hostname / GPU inventory strings from redteam status JSON and pilot runbook.
-- Superseded for review by v1.5.3.
+- Superseded for review by v1.5.4.
 
 ## v1.5.1 (2026-08-10) — reviewer-safety scrub
 - Vendored `experiments/figstyle.py` so figure analyzers import without a private monorepo.

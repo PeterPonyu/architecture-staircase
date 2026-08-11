@@ -1,6 +1,6 @@
 {
-  "title": "Train the pathway, deposit the computation: a two-probe dissociation of component ownership in transformer emergence — code and data",
-  "description": "Reproducibility archive for the two-probe dissociation study of component ownership in transformer emergence (synthetic Boolean degree-staircase + induction logs). Experiment code and per-run result logs only; manuscript sources not included. Code: MIT; result logs: CC-BY-4.0. v1.5.3 removes internal manuscript-series / process-artifact labels from README, claim map, and source comments; redacts multi-paper redteam status JSON; scrubs sibling-series prose in the pilot runbook. Use v1.5.3 or later for review.",
+  "title": "Train the pathway, deposit the computation: a two-probe dissociation of component ownership in transformer emergence \u2014 code and data",
+  "description": "Reproducibility archive for the two-probe dissociation study of component ownership in transformer emergence (synthetic Boolean degree-staircase + induction logs). Experiment code and per-run result logs only; manuscript sources not included. Code: MIT; result logs: CC-BY-4.0. v1.5.4 rebuilds the public tarball via git archive with hard excludes so nested process/IDE cache dirs (e.g. .omc) cannot ship; continues the v1.5.3 series-label / process-artifact scrub. Use v1.5.4 or later for review.",
   "upload_type": "dataset",
   "access_right": "open",
   "license": "MIT",

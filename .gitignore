@@ -5,10 +5,22 @@
 *.npz
 __pycache__/
 *.pyc
+*.pyo
 .omc/
 .omx/
+.cursor/
+.claude/
+.codex/
+.venv/
+.tox/
+.mypy_cache/
+.pytest_cache/
 .ruff_cache/
+.ipynb_checkpoints/
+.idea/
+.vscode/
 .DS_Store
+hud-stdin-cache.json
 
 # confidential / local artifacts
 *.tar.gz

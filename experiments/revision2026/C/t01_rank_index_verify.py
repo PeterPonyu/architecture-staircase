@@ -1,6 +1,6 @@
 """C-T0-1 — verify the written rank-index definition reproduces published values.
 
-The Methods definition being added to papers/C/main.tex states:
+The Methods definition being added to the manuscript source states:
   - per-degree half-time t_k: first evaluation step at which |rho_k(t)| >= 0.5*|rho_k(T)|,
     provided 0.5*|rho_k(T)| > 1e-6; otherwise undefined (degree never learned).
   - per-seed rank r = Spearman rank correlation between (1,2,3,4) and (t_1..t_4),

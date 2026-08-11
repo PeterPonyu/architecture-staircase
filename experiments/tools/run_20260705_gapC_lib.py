@@ -1,4 +1,4 @@
-"""Shared machinery for the paper-C pre-submission gap battery (2026-07-05).
+"""Shared machinery for the pre-submission gap battery (2026-07-05).
 
 This module is NON-INVASIVE: it imports the closed staircase harnesses
 (degree_staircase/train_staircase.py, arch_staircase/train_arch.py,

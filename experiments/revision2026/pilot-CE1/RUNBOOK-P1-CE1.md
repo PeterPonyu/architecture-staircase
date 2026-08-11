@@ -1,8 +1,8 @@
-# Phase-1 PILOT runbook — Papers C + E1 (BOX-2, 1x local GPU) — 2026-07-16
+# Phase-1 PILOT runbook — local pilot blocks (ownership + repeated-data) (BOX-2, 1x local GPU) — 2026-07-16
 
 88 runs, one sequential queue, order **C2 -> C1 -> E1a -> E1b** (checkpoint bank first).
 Source plan: `revision-plan-2026-0716.md` (P1-C1/C2/E1a/E1b); evidence notes
-`revision-evidence-2026-07/{C,E1}.md`. Hard rules honored: only these four
+`revision-evidence notes (local)`. Hard rules honored: only these four
 blocks; new disk << 8G (ckpts ~0.31G measured-size-checked at launch, logs ~50MB);
 nohup queue + PROGRESS.json heartbeat + 2h deadman tarball; archived configs extracted
 verbatim from laptop results `_meta` headers; new runs differ ONLY in the stated factor
@@ -76,7 +76,7 @@ target_seed 2103: {1:[10], 2:[7,12], 3:[3,4,15],  4:[8,9,13,14]}
 
 ## Block P1-E1a (30 runs) — repeated-data fine grid {6,8}
 
-The 5 main-grid cells WITHOUT Sec-P4 fine-grid audits. Paper E1 Sec P4 fine grid
+The 5 main-grid cells WITHOUT Sec-P4 fine-grid audits. repeated-data Sec P4 fine grid
 (n in {6,8,12,16}) covers med/med, large/high, small/high, large/low
 (`results/repeated_data_finegrid/`); complement = **small/low, small/med, med/low,
 med/high, large/med** (matches the plan's "5 cells"). Caveat documented: small/low +

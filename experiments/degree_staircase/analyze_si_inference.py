@@ -1,4 +1,4 @@
-"""Inference layer for the staircase index (SI), Paper C Section 3.1.
+"""Inference layer for the staircase index (SI), manuscript Section 3.1.
 
 The published analyzer (analyze_staircase.py) computes SI per run and reports
 mean/SD plus pairwise TOST equivalence.  This script adds the inferential tests
@@ -49,7 +49,7 @@ OPT_LABEL = {"adamw": "AdamW", "muon": "Muon", "sgdm": "SGDM"}
 ALPHA = 0.05
 N_PAIRS = 3
 
-# Published values in papers/C/main.tex Section 3.1 / Table 1, for the
+# Published values in the manuscript Section 3.1 / Table 1, for the
 # regression check.  (mean, sd, median); the table's SD is the sample SD
 # (ddof=1), not analyze_staircase.py's np.std default.
 PUBLISHED_SI = {"adamw": (2.98, 1.39, 2.80), "muon": (3.53, 1.54, 3.18),

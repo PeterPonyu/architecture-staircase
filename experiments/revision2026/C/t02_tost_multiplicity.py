@@ -1,4 +1,4 @@
-"""C-T0-2 — TOST multiplicity correction + SESOI sensitivity for paper C Sec 3.1.
+"""C-T0-2 — TOST multiplicity correction + SESOI sensitivity for the manuscript Sec 3.1.
 
 Recomputes the three pairwise Welch TOSTs on the per-seed staircase index
 (SI = geometric mean of adjacent half-time ratios; EXACT 004 estimator, n=15
@@ -10,7 +10,7 @@ per optimizer) from the raw jsonls, then:
   3. runs a SESOI sensitivity sweep over margins {1.0, 1.5, 2.0} SI units
      (and the log-scale factor margins {1.25, 1.5, 2.0} as secondary).
 
-Published values being checked (paper C, Table 2 / Sec 3.1):
+Published values being checked (the manuscript, Table 2 / Sec 3.1):
   SI mean+-SD: AdamW 2.98+-1.39, SGDM 3.20+-1.61, Muon 3.53+-1.54
   muon-adamw: diff +0.55, 90% CI [-0.36,+1.46], p=0.044
   muon-sgdm : diff +0.33, 90% CI [-0.65,+1.31], p=0.026

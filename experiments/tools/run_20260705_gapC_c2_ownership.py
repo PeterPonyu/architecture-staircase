@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""C#2 -- Muon-side ownership localization (TIER-1, paper-C gap battery).
+"""C#2 -- Muon-side ownership localization (TIER-1, pre-submission gap battery).
 
 Context: under Muon, deg-4 is acquired in ALL single-freeze arms
 (none / attn-frozen / mlp-frozen ~= 0.49-0.50) -> redundancy; the manuscripts

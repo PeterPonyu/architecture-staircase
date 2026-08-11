@@ -1,5 +1,5 @@
 #!/usr/bin/env Rscript
-# make_C_figs_r.R — Professional R/ggplot2 renderer for all 10 Paper C figures.
+# make_C_figs_r.R — Professional R/ggplot2 renderer for all 10 manuscript figures.
 # Uses same data sources as the Python generators (verified; read from JSON verdicts
 # and raw .jsonl files). Outputs PNG to papers/figs/<name>.png and SVG to
 # papers/figs/evidence_r/<name>.svg.

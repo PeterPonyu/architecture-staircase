@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Analyzer for the paper-C pre-submission gap battery (2026-07-05).
+"""Analyzer for the pre-submission gap battery (2026-07-05).
 
 Reads the three C arms and emits one verdict JSON (+ console table). REFUSES
 marker-less / incomplete run files: a file counts only if its last non-empty

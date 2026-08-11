@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""C#5 -- frontier-degree freeze grid (TIER-2, paper-C gap battery).
+"""C#5 -- frontier-degree freeze grid (TIER-2, pre-submission gap battery).
 
 At D_degree=4 the finding is "attention owns the frontier degree (deg-4)".
 This asks whether that is really about the FRONTIER degree or specifically deg-4:

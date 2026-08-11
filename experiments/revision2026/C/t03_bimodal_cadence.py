@@ -5,7 +5,7 @@ Three parts, all recomputed from raw jsonls (CPU-only):
 (1) Scale-grid fit distribution (96 scalegrid runs): solved fraction
     (fit >= 0.999), plateau band (0.85-0.90), median/IQR of fit overall,
     at L=24, and per optimizer at L=24 — companions for the mean+-SD numbers
-    in paper C Sec 3.5 (published: 29 solved / 65 plateau / 2 between; mean
+    in the manuscript Sec 3.5 (published: 29 solved / 65 plateau / 2 between; mean
     fit at L24 dips to 0.859, mean rank to 0.263).
 
 (2) Freeze-grid mean-vs-median reconciliation for Table 3 (tab:ownershipopt)

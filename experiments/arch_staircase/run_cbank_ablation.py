@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """C-BANK -- extend the trained-model mean-ablation bank from n=8 to n=15 seeds.
 
-WHY. Paper C's abstract states the degree-4-selective carrier is the layer-1
+WHY. The manuscript abstract states the degree-4-selective carrier is the layer-1
 MLP under BOTH optimizers, but the seed-level bootstrap that backs it
 (revision2026/C/t07_selectivity_bootstrap.json, 8 seeds) does not put either
 absolute selectivity off zero:

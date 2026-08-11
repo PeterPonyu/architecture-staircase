@@ -1,4 +1,4 @@
-# Claim → path map (Paper C / architecture-staircase)
+# Claim → path map (architecture-staircase)
 
 Use this map to recompute headline numbers from the deposit without guessing paths.
 
@@ -13,8 +13,10 @@ Use this map to recompute headline numbers from the deposit without guessing pat
 | Mean-ablation / selectivity bootstrap | `revision2026/cg3-C/` + `revision2026/C/t05_*` / `t07_*` |
 | Timing ratios (1.6–12×) | `experiments/results/induction_emergence/` + `induction_fine/` |
 | Induction subspace PCA null | `experiments/results/induction_subspace/` (+ ideal/optaxis variants if present) |
-| Figure scripts (C only) | `papers/figs/make_C_*.R`, `make_gap20260705_C_figs_r.R`, `fig_pipeline.R` |
+| Figure scripts (this manuscript) | `papers/figs/make_C_*.R`, `make_gap20260705_C_figs_r.R`, `fig_pipeline.R` |
 
 **Synthetic only.** No third-party datasets. Checkpoints not shipped; ablation from `*.ablate.jsonl`.
 
 **Code deps for retrain (smoke):** `experiments/grokking/{model,muon}.py`, staircase/arch train scripts under `experiments/`.
+
+**Note on path stems:** directory and script names retaining a historical `C_` / `make_C_` prefix are file-path identifiers only; they are not a public manuscript-series label.

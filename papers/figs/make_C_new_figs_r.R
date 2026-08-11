@@ -1,5 +1,5 @@
 #!/usr/bin/env Rscript
-# make_C_new_figs_r.R — NEW standalone Paper C figures from already-measured data.
+# make_C_new_figs_r.R — NEW standalone manuscript figures from already-measured data.
 # All plot-only (no GPU). Numbers computed directly from raw .jsonl logs and the
 # figures-004 verdict JSON, cross-checked against findings-004/010/013/017.
 #
@@ -417,4 +417,4 @@ p_grid <- ggplot(emerge_summary, aes(L, m, colour = optf, group = optf)) +
   paper_theme(9)
 save_png(p_grid, 'C_matched_grid_timing', 5.0, 3.4)
 
-cat('\n=== All new Paper C figures written ===\n')
+cat('\n=== All new manuscript figures written ===\n')

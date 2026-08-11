@@ -1,4 +1,4 @@
-<!-- Paper C claim map: see CLAIM-PATH-MAP.md. All paper-C tasks are synthetic (Boolean staircase + induction streams); no MNIST/WikiText. -->
+<!-- Claim map: see CLAIM-PATH-MAP.md. All tasks in this archive are synthetic (Boolean staircase + induction streams); no MNIST/WikiText. -->
 
 # Architecture-shaped degree-staircase emergence — code & data
 
@@ -22,27 +22,30 @@ standard datasets (MNIST / WikiText) which are not bundled.
   {adamw,muon} (scalegrid, 96) and the 8-seed freeze-ownership audit at L=24/d=256 (freeze8, 48).
 
 ## Which archive to use for review
-Use **tag `v1.5.2` or later**, or Zenodo concept DOI
+Use **tag `v1.5.3` or later**, or Zenodo concept DOI
 [`10.5281/zenodo.21020348`](https://doi.org/10.5281/zenodo.21020348)
 (always resolves to the latest published version).
 
-**Do not use tag `v1.5.0`** for review: that immutable snapshot still contains
-pre-scrub machine-local absolute paths (fixed in v1.5.1). Git history also retains
-those blobs; that is expected for open source and is not rewritten. Prefer the
+**Do not use tag `v1.5.2` or earlier** for review: older immutable snapshots retain
+internal series labels and/or pre-scrub process artifacts fixed in v1.5.3. Git history
+also retains older blobs; that is expected for open source and is not rewritten. Prefer the
 latest Zenodo version DOI listed on the concept page over any older version record.
+
+## v1.5.3 (2026-08-11) — series-label / process-artifact scrub
+- Removed internal manuscript-series codenames from README / claim map / source comments.
+- Redacted multi-paper process status JSON and pilot runbook sibling-series language.
+- PeerJ AI-in-code disclosure pack lives with the journal submission materials, not in
+  this code-only archive. The PeerJ **BEFORE** zip uses `/REDACTED/...` path placeholders
+  as intentional AI-edit contrast — use **AFTER** / this archive for release code.
 
 ## v1.5.2 (2026-08-10) — residual infra-identity redaction
 - Redacted lab hostname / GPU inventory strings from redteam status JSON and pilot runbook.
-- README pin: reviewers should use **v1.5.2+** only.
+- Superseded for review by v1.5.3.
 
 ## v1.5.1 (2026-08-10) — reviewer-safety scrub
 - Vendored `experiments/figstyle.py` so figure analyzers import without a private monorepo.
 - Scrubbed remaining absolute/home paths (`analyze_induction.py`, `launch_ideal_arm.sh`).
-- PeerJ AI-in-code disclosure pack lives with the submission materials
-  (`papers/peerj-C/ai_code_disclosure/`), not in this code-only archive.
-  Historical tags (e.g. v1.5.0) and git history retain pre-scrub paths; the PeerJ
-  **BEFORE** zip is intentionally dirty as AI-edit evidence — use **AFTER** / this
-  archive for the release code.
+- Historical tags (e.g. v1.5.0) and git history retain pre-scrub paths; prefer latest tag.
 
 ## License
 Code: MIT (`LICENSE`). Result logs: CC BY 4.0. See `CITATION.cff`.

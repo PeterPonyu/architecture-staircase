@@ -1,5 +1,5 @@
 #!/usr/bin/env Rscript
-# make_gap20260705_C_figs_r.R — two Paper C gap-battery figures (2026-07-06).
+# make_gap20260705_C_figs_r.R — two manuscript gap-battery figures (2026-07-06).
 # Data source: experiments/results/ieee_gap_20260705/C/gapC_verdict.json (read here,
 # never hardcoded). Emits canonical PNG (papers/figs/<name>.png), SVG
 # (papers/figs/evidence_r/<name>.svg), and vector tikz (papers/figs/tex/<name>.tex)

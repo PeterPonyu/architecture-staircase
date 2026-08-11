@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """C-BANK verdict -- ablation selectivity at n=15, with an n=8 regression gate.
 
-The scalar is paper C's (Sec `ablation`, tab:ablation):
+The scalar is the manuscript's (Sec `ablation`, tab:ablation):
 
     selectivity(cond) = Delta_4 - mean(Delta_{1..3}),
     Delta_k = median_seeds deg_corr_k(none) - median_seeds deg_corr_k(cond)

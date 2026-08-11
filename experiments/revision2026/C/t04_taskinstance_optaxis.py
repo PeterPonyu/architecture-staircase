@@ -1,6 +1,6 @@
 """C1 task-instance generality — matched-fit analyze_optaxis adjudication (CPU).
 
-Applies paper C's own ordering conventions (Methods, "Ordering estimators and
+Applies the manuscript's own ordering conventions (Methods, "Ordering estimators and
 fit gate"; code truth analyze_optaxis.py / t01_rank_index_verify.py /
 t02_tost_multiplicity.py) to the 30 P1-C1 runs (3 fresh monomial draws
 t2101/t2102/t2103 x {adamw, muon} x seeds 100-104) and to the 16 P1-C2

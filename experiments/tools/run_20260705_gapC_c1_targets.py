@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""C#1 -- target-family generality (TIER-1, paper-C gap battery).
+"""C#1 -- target-family generality (TIER-1, pre-submission gap battery).
 
 Tests whether the low->high degree acquisition ORDER (the "staircase") is
 intrinsic to feature learning or an artifact of the equal-weight nested target.

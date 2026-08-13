@@ -1,0 +1,2245 @@
+%% Bundle C — master (canonical).
+%% Target venue (locked 2026-08-10): PeerJ Computer Science.
+%% Closed desk rejects: Machine Learning/Springer (2026-07-14); Neural Networks
+%%   NEUNET-D-26-06458 (2026-08-09). Not under review elsewhere.
+%% Ultragoal: paper-c-peerj-deep-20260810 (ablation-led + PeerJ packaging).
+%% Compile: lualatex; lualatex   (inline thebibliography, no bibtex pass needed).
+%% PeerJ upload package: papers/peerj-C/upload/ (pdflatex + wlpeerj).
+%% Figures in ../figs/, bibliography inline at end of file.
+\documentclass[11pt]{article}
+
+\usepackage[margin=1in]{geometry}
+\usepackage{graphicx}
+\usepackage{amsmath,amssymb}
+% defaultfeatures={Renderer=Node}: newtxtext forces Renderer=Basic under LuaTeX,
+% which drops the TeX ``/'' ligatures (quotes rendered as two single-quote glyphs);
+% the Node renderer restores them.
+\usepackage[defaultfeatures={Renderer=Node}]{newtxtext}
+\usepackage{newtxmath}
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{float}
+\usepackage{microtype}
+\usepackage[round]{natbib}
+\usepackage{hyperref}
+\usepackage{tablefootnote}
+\usepackage{orcidlink}
+\input{../figs/figpreamble.tex}
+% Muted colored links instead of hyperref's default boxed links.
+% xcolor is available via figpreamble's tikz load.
+\definecolor{clinkint}{RGB}{112,30,38}
+\definecolor{clinkcite}{RGB}{22,82,58}
+\definecolor{clinkurl}{RGB}{26,60,110}
+\hypersetup{
+colorlinks=true, linkcolor=clinkint, citecolor=clinkcite,
+            urlcolor=clinkurl, filecolor=clinkurl,
+  pdftitle={Train the pathway, deposit the computation: a two-probe dissociation of component ownership in transformer emergence},
+  pdfauthor={Zeyu Fu},
+  pdfsubject={Two-probe ownership dissociation and optimizer-invariant degree-staircase geometry},
+  pdfkeywords={component ownership, freeze vs ablation, degree staircase, orthogonalization, emergence geometry, transformers}
+}
+% Pack floats tighter (appendix has several tall figures; defaults leave
+% one-third-blank float pages)
+\renewcommand{\topfraction}{0.92}
+\renewcommand{\bottomfraction}{0.6}
+\renewcommand{\textfraction}{0.07}
+\renewcommand{\floatpagefraction}{0.7}
+
+% Tighter float placement to reduce whitespace
+\renewcommand{\topfraction}{0.9}
+\renewcommand{\bottomfraction}{0.9}
+\renewcommand{\textfraction}{0.07}
+\renewcommand{\floatpagefraction}{0.75}
+\setcounter{topnumber}{3}
+\setcounter{bottomnumber}{2}
+\setcounter{totalnumber}{5}
+
+% Top-pack float-only pages: with the default 1fil/1fil split, single-figure
+% appendix float pages (A2--A4) sink to mid/lower page leaving ~40% blank top.
+\makeatletter
+\setlength{\@fptop}{0pt}
+\setlength{\@fpsep}{8pt plus 1fil}
+\setlength{\@fpbot}{0pt plus 3fil}
+\makeatother
+
+\begin{document}
+
+\title{Train the pathway, deposit the computation: a two-probe dissociation of component ownership in transformer emergence}
+\author{Zeyu Fu\,\orcidlink{0009-0001-8329-0108}\\
+State Key Laboratory of Trauma and Chemical Poisoning, Institute of Combined Injury,\\
+Chongqing Engineering Research Center for Nanomedicine, College of Preventive Medicine,\\
+Army Medical University, Chongqing, China\\
+Corresponding author: \href{mailto:fuzeyu09@gmail.com}{fuzeyu09@gmail.com}}
+\date{}
+\maketitle
+
+\begin{abstract}
+\textbf{Background.}
+Which sub-network of a transformer must be \emph{trained} for a hard sub-function to
+be acquired, and which sub-network \emph{carries} that sub-function once training is
+done? Optimizer-centric accounts predict that orthogonalizing updates (e.g., Muon)
+should flatten sequential simplicity bias and reorganize acquisition order; fixed-ansatz
+accounts predict a low-dimensional, task-determined update subspace independent of the
+optimizer. Neither framing cleanly separates \emph{training necessity} from
+\emph{trained computation}, nor tests whether the acquisition geometry those probes act
+on is itself optimizer-set.
+
+\textbf{Methods.}
+We study controlled Boolean degree-staircase targets on tiny two-layer transformers
+(${\sim}400$k parameters), where Walsh-basis structure makes per-degree acquisition
+directly measurable, with a companion in-context induction task for timing and subspace
+probes. Across AdamW, Muon, and stochastic gradient descent with momentum (SGDM) we apply freeze probes
+(training-necessity; SGDM arms are fit-gated and treated as uninformative). Trained-model
+mean-ablation (trained computation) is run under AdamW and Muon only. Geometry uses an
+analysis-plan two-one-sided equivalence test (TOST) of the staircase index (SI) at the smallest effect size of interest (SESOI)
+$\Delta=1.5$ SI units (uncorrected and Holm-corrected), plus depth/width ablations, a
+24-configuration scale grid, and a principal-component analysis (PCA) subspace audit. The multiplicity-safe sensitivity
+margin $\pm2.0$ SI units is the smallest corrected bound at which all three pairs pass
+(Holm), not a second pre-specified primary. One-sample tests against $\mathrm{SI}=1$ are
+robustness checks only.
+
+\textbf{Results.}
+Freezing and ablation dissociate. Freezing (training-necessity) is scoped primarily to
+the AdamW--Muon contrast: attention must be trained for degree~4 under AdamW at
+$d{=}128$ (tightening to 8/8 seeds at $L{=}24$, $d{=}256$), while under Muon a
+layer-1 two-path \emph{training-time} redundancy under the freeze protocol leaves
+degree~4 intact at $d{=}128$ (both-frozen floor $+0.002$) and reverses at the larger
+audit; SGDM freeze arms are fit-gated and uninformative for this probe. Ablation
+(trained computation): layer-1 multilayer perceptron (MLP) ranks highest in degree-4 selectivity under both
+optimizers (point estimates $+0.37$ AdamW / $+0.34$ Muon, robust in sign), but absolute
+$95\%$ confidence intervals (CIs) include zero at $n{=}8$; the paired within-seed MLP-minus-attention contrast
+excludes zero only under Muon ($+0.141$, $95\%$ CI $[+0.058,+0.224]$; AdamW paired
+$+0.090$ $[-0.159,+0.315]$). The order those probes act on is not optimizer-set on the primary equal-weight
+staircase: pre-specified TOST at $\Delta=1.5$ passes uncorrected for all pairs
+(Muon pairs marginal under Holm); as sensitivity, all pairs are equivalent within
+$\pm2.0$ SI under Holm ($p\le0.006$). SI sits far above $\mathrm{SI}=1$
+(robustness $t(14)=5.50,6.34,5.28$). Depth $\geq2$ is required; optimizers move only
+timing (AdamW $1.6$--$3.7\times$ vs Muon on best-resolved cells; SGDM up to
+${\sim}12\times$ on mixed-cadence grids; matched-coarse bounds are lower). An
+induction-subspace probe returns a bounded null on idealized ansatz directions.
+
+\textbf{Conclusions.}
+Training necessity is optimizer-dependent (AdamW vs Muon, with explicit scope tags).
+The finished degree-4-selective locus ranks first at the layer-1 MLP under both
+optimizers in point estimate (absolute CIs include zero at $n{=}8$; paired MLP$>$attn
+interval support only under Muon). The primary-staircase acquisition order is not
+optimizer-set (with SGDM order/fit boundaries on some target families). No new
+learning-order mechanism is required: the optimizer is a clock, not a compass. The
+contribution is a controlled, multi-seed dissociation with full open logs, not a new
+architecture or leaderboard result.
+\end{abstract}
+
+% No hyphenation inside the keyword list (p1 rendered "dynam-ics" under lualatex)
+{\hyphenpenalty=10000\exhyphenpenalty=10000
+\vspace{4pt}\noindent\textbf{Keywords:} component ownership; freeze probe; mean ablation;
+degree staircase; orthogonalization; transformer emergence; reproducibility\par}
+
+% Highlights (Elsevier highlights go in a separate file at submission; PeerJ: N/A):
+% - freeze (training-necessity) is optimizer-dependent; ablation (trained computation) is not
+% - degree-4-selective carrier: layer-1 MLP under both AdamW and Muon (paired contrast under Muon)
+% - staircase index equivalent across optimizers within +-2.0 SI units, corrected (TOST, n=15)
+% - staircase needs depth>=2; optimizer advances emergence 1.6-12x at matched geometry
+% - induction emerges in ~3-D subspace; idealized ansatz directions not detected
+
+\section{Introduction}\label{sec:intro}
+
+A central question in understanding deep learning is what determines the shape
+of how a network learns: which sub-functions are acquired in which order, how
+low-dimensional the learning trajectory is, and which architectural component carries
+the hardest piece. Two influential framings answer this differently. The
+optimizer-centric view holds that the optimizer sets the acquisition order:
+transformers acquire low-degree token interactions before high-degree ones because stochastic gradient descent (SGD)
+and its variants have an implicit simplicity bias
+\citep{rende2024distributional,bhattamishra2023simplicity,vasudeva2025lowsensitivity},
+and that an idealized orthogonalizing update (Muon \citep{jordan2024muon}) should remove the sequential
+simplicity bias by spectrally flattening the gradient directions
+\citep{dragutinovic2026usemuon}. The fixed-ansatz view holds that emergence
+lives in a fixed, low-dimensional subspace of update directions that is determined by the
+task and independent of the optimizer \citep{musat2025inductionheads}. Both views
+attribute the shape of emergence to something other than the static architecture.
+
+The broader context is the grokking literature
+\citep{power2022grokking,nanda2023progress,liu2023omnigrok,kumar2024lazytorich}, in which generalization
+emerges long after overfitting and is accompanied by measurable circuit-level changes;
+recent in-venue work reconciles grokking with statistical learning theory through norm- and
+stability-based generalization bounds \citep{neucom2026grokking}, to which we add a
+complementary attribution of emergence geometry to architecture versus optimizer.
+Induction heads are the canonical circuit behind in-context learning
+\citep{olsson2022induction}; their abrupt, data-dependent emergence has been traced
+mechanistically \citep{reddy2024mechanistic} and characterised on Markov data as the
+formation of statistical induction heads \citep{edelman2024statinduction}. Phase transitions in Boolean function learning, where SGD
+shows hidden progress until a sudden phase transition, have been studied in parity tasks
+\citep{barak2022hidden,abbe2023leap}, and staircase / leap-complexity theory
+\citep{abbe2021staircase,abbe2023leap} formalizes how hierarchical structure guides
+sequential acquisition. Transformer depth and expressivity have been studied through
+depth-separation arguments \citep{sanford2023transformers}. The implicit bias of
+different optimizers, including the $\ell_\infty$ norm constraint of Adam with
+decoupled weight decay (AdamW)
+\citep{xie2024adamw}, the late-phase implicit bias that provably induces grokking
+\citep{lyu2024dichotomy}, and the large-deviation account of SGD's implicit bias
+\citep{neucom2026sgdbias}, shapes generalization independently of learning order.
+
+\paragraph{Our argument.} We argue for a two-probe dissociation. Asking which
+sub-network must be \emph{trained} for the hardest component to be acquired (a causal,
+training-necessity question) and asking which sub-network \emph{carries} that component
+in the finished network (a localization question about the trained computation) are
+different questions, and they have different answers: the first is optimizer-dependent
+(AdamW vs Muon, scoped), while the second is a point-estimate regularity across
+optimizers with interval support only where the paired contrast excludes zero. The natural objection is that either answer could be
+confounded with the acquisition geometry itself---that what looks like component
+ownership is just what a particular optimizer happens to learn first. We address this
+directly by holding the architecture fixed and varying the optimizer across three
+families with markedly different update geometry (AdamW, the orthogonalizing Muon, and
+SGD with momentum (SGDM)): an effect that is genuinely architecture- or computation-owned should survive
+this swap, while an optimizer-owned effect should not. The acquisition order itself
+survives it (pre-specified equivalence test); the training-necessity pattern does not;
+the trained-computation locus does. We are explicit about which legs are measured
+directly across optimizers and which are scoped to a single optimizer or remain a null.
+The cross-optimizer timing sweep enters as that timing control for the
+dissociation, not as a separate contribution.
+
+\paragraph{Contributions.} We group the results into the ownership dissociation, the
+geometry it sits on, the boundary conditions, and the supporting theory.
+\begin{enumerate}
+  \item \textbf{The two-probe ownership dissociation}
+    (Sections~\ref{sec:ownership},~\ref{sec:ablation}).
+    Freezing and ablation answer different questions and dissociate cleanly.
+    Freezing (training-necessity) is optimizer-dependent: training attention is
+    necessary for degree-4 acquisition under AdamW at $d=128$ (tightening to 8/8
+    seeds at the $L=24$, $d=256$ audit), while under Muon a verified layer-1
+    two-path \emph{training-time} redundancy leaves degree~4 intact at $d=128$
+    (both-frozen floor control at degree-4 correlation $+0.002$)---and the Muon
+    pattern itself is config-dependent, reversing at $L=24$, $d=256$ where
+    attention-freeze rescues degree~4 (rank index $+1.000$, 8/8 seeds); SGDM freeze
+    arms sit at a median degree-4 floor with only sparse seed-level acquisition
+    ($n{=}5$ per arm), so they are fit-gated and uninformative for the
+    training-necessity probe.
+    Ablation (trained computation): the degree-4-selective carrier ranks first at
+    the layer-1 multilayer perceptron (MLP) under both optimizers (point estimates
+    $+0.369$ AdamW / $+0.344$ Muon, largest selectivity of any arm under each;
+    95\% confidence intervals (CIs) include zero at $n=8$ because degree-4
+    acquisition is bimodal; the paired within-seed MLP-minus-attention contrast
+    excludes zero only under Muon ($+0.141$, 95\% CI $[+0.058$, $+0.224]$; AdamW
+    paired $+0.090$ $[-0.159$, $+0.315]$)), while trained layer-1 attention
+    supports degrees~2--4 collectively rather than degree-4-selectively. Read jointly:
+    under AdamW the attention pathway must be \emph{trained} for degree~4 to be
+    acquired at all, yet the degree-4-selective component of the finished function is
+    \emph{deposited} in the layer-1 MLP.
+  \item \textbf{The acquisition geometry is optimizer-equivalent (analysis-plan TOST)}
+    (Sections~\ref{sec:si},~\ref{sec:arch},~\ref{sec:timing}). The pre-specified
+    analysis is a two-one-sided equivalence test (TOST)
+    \citep{schuirmann1987tost,lakens2017equivalence} on the staircase index (SI): all
+    three optimizer pairs are equivalent within the analysis-plan smallest effect size of interest (SESOI) of $1.5$ SI
+    units at uncorrected $\alpha=0.05$ (Muon pairs marginal under Holm); as sensitivity,
+    all pairs are equivalent within $\pm2.0$ SI under Holm ($p\le0.006$).
+    Robustness point-null check: SI is above $\mathrm{SI}=1$ under every optimizer
+    ($n=15$ each; one-sample $t(14)=5.50$, $6.34$, $5.28$ for AdamW, Muon, SGDM).
+    The order reflects the target basis and requires depth $\geq2$. Separately, the
+    induction timing grid (Section~\ref{sec:timing}; not the SI TOST) shows the
+    optimizer advancing emergence without reorganizing that order (Muon
+    $1.6$--$3.7\times$ over AdamW on best-resolved cells; ${\sim}6.9$--$12\times$
+    over SGDM)---the timing control for the dissociation. Three fresh random draws
+    of the monomial sets confirm the order is not a single-task-instance artifact.
+  \item \textbf{Boundary conditions}
+    (Sections~\ref{sec:subspace},~\ref{sec:scale}). An induction-subspace probe
+    returns a bounded optimizer-invariant null (Appendix, with an explicit
+    mapping-validity caveat). A 24-configuration scale grid
+    ($L\in\{16,24,32\}\times d\in\{256,512\}\times\text{depth}\in\{2,4\}$, both
+    optimizers, 96 runs) shows the staircase order surviving scale (positive rank
+    index 24/24, AdamW/Muon sign agreement 12/12), with $L=24$ a high-variance
+    bimodal pocket reported as a bounded robustness check, not a scaling law.
+  \item \textbf{Theory} (Section~\ref{sec:arch}). Proposition~D1 (depth as
+    interaction-order efficiency separation) and Proposition~G1 (Walsh-basis
+    gradient correlation) supply efficiency arguments, not expressivity
+    impossibility theorems, for the depth threshold and the optimizer-invariant
+    order.
+\end{enumerate}
+
+\paragraph{Research questions and pre-specified analyses.}
+We state four questions and the analyses that answer them (analysis plan, not a
+prospectively registered deposit; Methods detail estimators and gates; Results report
+them in this order of scientific priority):
+\begin{enumerate}
+  \item[\textbf{RQ1}] Is training-necessity of the highest-degree component (freeze)
+    optimizer-dependent? \emph{Analysis:} attention vs.\ MLP freeze arms under AdamW,
+    Muon, and SGDM at matched architecture, with a scoped scale audit at
+    $L{=}24$, $d{=}256$.
+  \item[\textbf{RQ2}] Is the \emph{trained} degree-4 computation localized to the same
+    sub-network across optimizers (ablation)? \emph{Analysis:} trained-model mean-ablation
+    selectivity with seed-level bootstrap and a paired within-seed
+    MLP-minus-attention contrast.
+  \item[\textbf{RQ3}] Is the low-to-high acquisition order optimizer-invariant?
+    \emph{Primary analysis:} pre-specified TOST on SI across AdamW/Muon/SGDM at SESOI
+    $\Delta=1.5$ (report uncorrected and Holm-corrected $p$-values). \emph{Sensitivity:}
+    smallest multiplicity-corrected margin at which all pairs pass is $\pm2.0$ SI
+    (Holm $p\le0.006$); not a second pre-specified primary. \emph{Robustness:} one-sample
+    tests against $\mathrm{SI}=1$; depth$\geq2$; target-family/task-instance draws;
+    24-configuration scale grid (not a scaling law).
+  \item[\textbf{RQ4}] Does the optimizer reorganize geometry or only timing?
+    \emph{Analysis:} matched-geometry emergence-step ratios across optimizers; induction
+    subspace capture vs.\ a random baseline (bounded null).
+\end{enumerate}
+We report the analysis-plan TOST hierarchy as primary; secondary and post-hoc checks
+(e.g., one-sample $t$ vs.\ $\mathrm{SI}=1$, SESOI sweep, SI-composition sensitivity)
+are labeled as such. No external registry deposit is claimed.
+
+Section~\ref{sec:arch} makes the theoretical logic behind our two main geometry results
+explicit: Proposition~D1 (depth as interaction-order efficiency
+separation) explains the depth threshold via a composition argument on cross-position
+products; Proposition~G1 (Walsh-basis gradient correlation) explains the
+low-to-high acquisition order as reflecting a target-structure constraint that
+preconditioners cannot override. Both propositions are efficiency arguments, not expressivity impossibility
+theorems, and their scope is stated explicitly in context.
+The published literature establishes that feature acquisition is sequential and
+low-dimensional (Fig.~\ref{fig:landscape}; Table~\ref{tab:acq-landscape} lists the
+underlying studies), but leaves open whether an orthogonalizing
+optimizer can override that order, which sub-network owns the highest-degree step, and how
+tight the emergence subspace is---the questions this paper addresses with scoped,
+multi-seed probes.
+
+\begin{figure}[t]
+\centering
+\figtikz[0.86\linewidth]{C_landscape}
+\caption{Sequential low-to-high feature acquisition across
+studies. Hierarchical-target theory predicts ordered acquisition at any interaction
+order \citep{abbe2021staircase,abbe2023leap}; empirical work spans a single
+$k$-parity \citep{barak2022hidden} and natural-language interaction orders $3$, $9$,
+$33$ \citep{rende2024distributional}, while our Boolean degree staircase resolves the
+mechanism over degrees $1$--$4$. The induction-emergence subspace dimensionality we
+measure (${\approx}3$-D) coincides with the independent theoretical account of
+\citet{musat2025inductionheads} (3 of 19 dimensions).}
+\label{fig:landscape}
+\end{figure}
+
+\begin{table}[htbp]
+\centering
+\caption{Sequential-acquisition and emergence-geometry results across studies, the data
+behind Fig.~\ref{fig:landscape}.}
+\label{tab:acq-landscape}
+\small
+\begin{tabular}{@{}>{\raggedright\arraybackslash}p{0.26\linewidth}>{\raggedright\arraybackslash}p{0.40\linewidth}>{\raggedright\arraybackslash}p{0.20\linewidth}@{}}
+\toprule
+Study & Result & Order / dim \\
+\midrule
+\citet{abbe2021staircase,abbe2023leap} & staircase / leap-complexity theory & any order \\
+\citet{saxe2014exact} & sequential singular-value-decomposition (SVD) mode acquisition (linear nets) & full spectrum \\
+\citet{barak2022hidden} & single $k$-parity phase transition & one order \\
+\citet{rende2024distributional} & natural-language many-body acquisition & orders 3, 9, 33 \\
+\citet{varre2025ngrams} & in-context $n$-gram stage-wise learning & orders 1--3 \\
+\citet{musat2025inductionheads} & induction-emergence update subspace & 3 of 19 dims \\
+\citet{xu2026holographic} & grokking trajectory subspace & 2--6 dims \\
+\textbf{This work} & Boolean degree staircase; update subspace & degrees 1--4; ${\sim}3$-D \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\section{Methods}\label{sec:setup}
+
+We use two controlled emergence tasks on a two-layer transformer (${\sim}397$k
+parameters for the degree-staircase scalar-readout variant; ${\sim}427$k parameters for
+the in-context induction causal language-model (LM) variant). The
+first is a Boolean degree-staircase target $g = \sum_k \chi_{S_k}$, a sum of one
+monomial per degree $k = 1..4$ over $L = 16$ input bits $x\in\{\pm1\}^{L}$, where
+$\chi_{S}(x)=\prod_{i\in S}x_i$; trained online, per-degree Walsh
+correlations track which degree is acquired when. A degree's half-time $t_k$ is the step at
+which its Walsh correlation first reaches half of its final value
+(Eq.~\eqref{eq:halftime}), and the staircase index
+(SI; Eq.~\eqref{eq:si}; $\mathrm{SI} = 1$ means simultaneous
+learning, $\mathrm{SI} \gg 1$ a sharp staircase) summarizes the ordering. The second is an
+in-context induction/repeat stream; we record the emergence step, its cross-seed
+variance, and the effective dimension of the cumulative parameter-update ($\Delta\theta$)
+via principal-component analysis (PCA), together with the fraction of update variance captured by the idealized
+3-parameter ansatz directions (definitions below). Optimizers are AdamW, Muon, and SGDM; architectural
+manipulations are freeze arms (attention vs.\ the multilayer perceptron, MLP), width $\{64..512\}$, and depth
+$\{1, 2, 4\}$.
+
+\paragraph{Ordering estimators and fit gate.} All ordering quantities are computed from
+the per-evaluation Walsh-correlation log of each run (one evaluation every $50$ steps on a
+fixed held-out set of $8192$ inputs). Let $f_t$ denote the model's scalar output at step
+$t$ (the difference of the two class logits at the readout position), $\rho_k(t)$ the
+Pearson correlation between $f_t$ and the degree-$k$ monomial $\chi_{S_k}$ over the
+held-out set, and $T$ the final step. The fit correlation is the Pearson correlation
+between $f_t$ and the full target $g$ on the same held-out set. The half-time of degree
+$k$ is the first evaluation step at which the degree reaches half of its own final level,
+\begin{equation}
+  t_k \;=\; \min\bigl\{\,t \;:\; |\rho_k(t)| \geq \tfrac{1}{2}\,|\rho_k(T)|\,\bigr\},
+  \label{eq:halftime}
+\end{equation}
+defined only when $\tfrac12 |\rho_k(T)| > 10^{-6}$: a degree that is never learned has an
+undefined (censored) half-time rather than a spurious one, and where a near-zero final
+level makes $t_k$ formally defined but meaningless (a noise crossing at the first
+evaluation), we say so in context (the ``failed-to-learn floor''). The staircase index of
+a run is the geometric mean of adjacent half-time ratios over the consecutively defined
+degrees $k_1 < \dots < k_{m+1}$ with $t_{k_j} > 0$,
+\begin{equation}
+  \mathrm{SI}
+  \;=\;
+  \Bigl(\prod_{j=1}^{m} t_{k_{j+1}}/t_{k_j}\Bigr)^{1/m}.
+  \label{eq:si}
+\end{equation}
+The number of ratios $m$ therefore varies by run, and we report its distribution
+rather than leave it implicit. Across the 45 staircase runs $m=3$ in 22 (AdamW 8,
+Muon 7, SGDM 7), $m=2$ in 21 (6, 8, 7) and $m=1$ in 2 (one AdamW, one SGDM). A degree
+leaves the product when $t_k=0$, that is when its correlation at initialization already
+exceeds half its final value; no half-time is formally undefined anywhere in this
+dataset. This removes degree 1 in 15 of the 45 runs (5, 6 and 4 for AdamW, Muon and
+SGDM) and degree 4 in 10 (3, 2 and 5). The two cases have different causes. Degree 1 is
+an initialization lottery, since an untrained model occasionally starts with a
+degree-1 correlation of $0.25$--$0.41$ against a final value near $0.55$, and because
+seeds are shared across optimizers the affected runs largely coincide. Degree 4 leaves
+the product when it is never acquired, so its final level sits at the noise floor and
+half of it falls below the initialization value. The staircase rank
+index of a run is the Spearman rank correlation
+$r = \rho_{\mathrm{S}}\bigl((1,2,3,4),\,(t_1,\dots,t_4)\bigr) \in [-1,+1]$ ($+1$:
+half-times ascend with degree, the target's low-to-high order fully recovered; $0$: no
+ordering; negative: inverted), computed only for seeds whose four half-times are all
+defined; the rank index of a cell is the mean of $r$ over its included seeds. Because
+half-times are quantized to the $50$-step evaluation grid, ties occur (two degrees
+crossing within one evaluation interval). The $d=128$ analyses assign tied half-times
+distinct ordinal ranks (tie order left to the sort), while the scale-grid and $L=24$,
+$d=256$ freeze-audit analyses use average (mid-)ranks; the two conventions coincide
+without ties, and recomputing every reported cell under both changes no sign and no
+conclusion (largest cell-level shift $0.26$, on the depth-1 control where degrees~3--4
+are never learned and ties dominate; $0.17$ elsewhere). Finally, ordering comparisons are
+meaningful only for runs that fit the target, so cross-optimizer ordering comparisons
+exclude cells whose median final fit correlation is below $0.85$ (marked fit-gated where
+they occur). The gate value is anchored to the target's structure: the four components
+have equal weight, so a model that has fitted three of the four attains fit
+$\sqrt{3/4}\approx 0.866$, and $0.85$ sits just below this three-component plateau,
+excluding only cells that failed to fit even the low-degree scaffold. For binary
+acquisition tallies (tables, Fisher exact tests, and onset panels), a seed
+\emph{acquires} degree~$k$ when its final $|\rho_k(T)|\ge 0.3$; this is the primary
+threshold used throughout unless noted. The layer-resolved Muon localization
+(Fig.~\ref{fig:ownershiploc}) additionally marks residual acquisition above a looser
+$0.15$ floor, chosen only to sit above the both-frozen control ($+0.002$) rather than as
+a second primary criterion. Because the
+per-seed degree-4 correlation is bimodal in the freeze arms (seeds either acquire the
+component or fail near zero), wherever a mean-based Welch test carries a freeze-contrast
+claim we report a two-sided Fisher exact test on the corresponding
+acquisition/fail-count $2\times2$ table alongside it.
+
+\paragraph{Induction estimators (emergence step and update subspace).}
+On the induction/repeat stream the per-evaluation in-context-learning (ICL) score is
+$\mathrm{ICL}=\mathrm{acc}_{\mathrm{repeat}}-\mathrm{acc}_{\mathrm{first}}$ (next-token
+accuracy on repeat positions minus first-occurrence positions). The emergence step is the
+first evaluation step at which $\mathrm{ICL}\ge 0.5$ (or undefined if the run never
+crosses). The update-subspace audit forms the cumulative parameter update
+$\Delta\theta$ over training and reports (i)~the captured variance fraction
+$\lVert P_{\mathcal{A}}\Delta\theta\rVert^{2}/\lVert\Delta\theta\rVert^{2}$, the squared
+energy of $\Delta\theta$ in the span of three idealized induction-circuit ansatz
+directions $\mathcal{A}=\{D_1,D_2,D_3\}$ (prev-token query-key (QK), match QK, output-value (OV) copy; mapping
+caveat in Appendix~\ref{sec:subspace}), and (ii)~the PCA effective dimension: the number
+of principal components of the update trajectory needed for $90\%$ explained variance.
+The dashed ``random baseline'' $0.0061$ in Figs.~\ref{fig:dissoc}--\ref{fig:subspace} is
+the captured fraction of a synthetic random $\Delta$ under the same projector
+(self-test), not an analytic degrees-of-freedom formula.
+
+\paragraph{Protocol and reproducibility.} Unless noted, the staircase experiments use
+$d_{\mathrm{model}}=128$, two layers, four attention heads, and $L=16$ input bits, trained
+online for 4000 steps; each reported arm aggregates $n=15$ seeds for the staircase-index
+and AdamW freeze comparisons ($n=5$ for the Muon and SGDM ownership arms reported in
+Section~\ref{sec:ownership}, $n=15$ for the Muon layer-resolved localization arms, and
+$n=3$ for the Muon learning-rate sensitivity check), with seeds
+varying both initialization and the online data stream so that cross-seed spread reflects
+genuine run-to-run variability. The freeze arms hold the architecture and all
+hyperparameters fixed and zero the gradients of the named sub-network (attention or MLP),
+so any difference is attributable to that component rather than to a capacity or
+optimization-budget change. Complementary trained-model mean-ablations replace a named
+block's activation by its per-position held-out mean at fixed checkpoints
+(Section~\ref{sec:ablation}). Target-family robustness replaces the equal-weight ladder by
+$g=\sum_k a_k\chi_{S_k}$ with geometric decay $a_k=2^{-k}$, inverse weights $a_k=2^{k}$,
+or a gapped equal-weight support on degrees $\{1,3,4\}$ (Section~\ref{sec:arch}). The induction experiments use two grids. The subspace audit sweeps context length
+$L\in\{64,96,128,192,256\}$ at 9 seeds per cell (45 AdamW runs), augmented by an 18-run
+idealization-hardening arm ($L\in\{64,128,256\}$, two batch/learning-rate settings, 3 seeds;
+AdamW), giving the 63 runs reported in Appendix~\ref{sec:subspace}. The timing
+comparison uses a separate three-optimizer grid at $L\in\{64,128,256\}$ with 10 seeds
+per cell and evaluation every 100 steps, refined by a fine-grained arm
+(evaluation every 10 steps, 5 seeds) where the 100-step cadence floors the
+measurement (Section~\ref{sec:timing}).
+All quantities are computed from the
+same per-step Walsh-correlation and parameter-update logs used to produce the figures;
+code, logs, and figure artifacts are openly archived (see Data availability). Figure~\ref{fig:scheme} summarizes the dissociation: freeze$\perp$ablation (ownership) on a geometry$\perp$timing substrate (architecture sets order; optimizer sets the clock).
+
+\paragraph{Statistical analysis plan (summary).}
+Geometry claims rest on the pre-specified Welch TOST of SI at SESOI $\Delta=1.5$ SI units
+(Section~\ref{sec:si}), with Holm correction across the three optimizer pairs; freeze and
+ablation claims report per-arm acquisition rates, medians, and (where means are used)
+Fisher exact tests on acquisition/fail tables alongside Welch contrasts. Multiplicity:
+Holm correction across the three optimizer pairwise TOST tests for the primary
+equivalence claim. Fit gate, half-time censoring, SI composition ($m$), the
+$|\rho_k|\ge 0.3$ acquisition threshold, and the ICL emergence threshold $0.5$ are defined
+above and applied uniformly. Sample sizes are fixed by design ($n=15$ primary staircase
+and AdamW freeze; $n=8$ ablation and large-scale freeze audit; smaller $n$ for scoped
+Muon/SGDM ownership arms) and are not increased after interim peeks.
+
+\paragraph{Use of artificial intelligence.}
+The author used Claude (Anthropic; Claude~4 and Claude~5 series models, including
+Opus and Fable variants, accessed via the Claude Code environment) to assist with
+drafting and editing manuscript text, developing and reviewing analysis code, and
+preparing figures, as writing and engineering support under author supervision.
+The author reviewed and verified all AI-assisted content and takes full
+responsibility for the content of this article. No AI system generated scientific
+data or reported numerical results.
+
+\section{Results}\label{sec:results}
+
+We report results in scientific-priority order matching RQ1--RQ4: the two ownership
+probes first (Sections~\ref{sec:ownership}--\ref{sec:ablation}), then the
+optimizer-invariant acquisition geometry they act on
+(Sections~\ref{sec:si}--\ref{sec:arch}), then timing and scale robustness
+(Sections~\ref{sec:timing}--\ref{sec:scale}), and a synthesis
+(Section~\ref{sec:synthesis}).
+
+
+\subsection{Component ownership is optimizer- and configuration-dependent}\label{sec:ownership}
+
+We ask first which sub-network must be \emph{trained} for the highest-degree component
+to be acquired; the acquisition-order geometry that component participates in is
+established in Section~\ref{sec:si}. At identical architecture the necessity structure of
+the highest-degree component depends on the optimizer: training attention is necessary
+for degree~4 under AdamW, while under Muon either sub-network suffices at $d=128$,
+$L=16$: freezing attention or the MLP alike leaves degree-4 acquisition intact
+(Table~\ref{tab:ownershipopt}), a two-path redundancy we localize to layer~1 below.
+Only the training-necessity structure is optimizer-dependent, and, as we show below, the
+Muon pattern is itself config-dependent (the attention bypass at $d=128$ reverses to an
+attention rescue at $L=24$, $d=256$). Section~\ref{sec:ablation} complements these
+training-time freeze probes with trained-model ablations, which answer the different
+question of where the acquired computation resides (point-estimate agreement across
+optimizers; interval support scoped as in Section~\ref{sec:ablation}).
+
+\paragraph{Scope of the freeze probe.} The freeze arms zero the gradients of a
+sub-network at its random initialization, so they measure whether training that
+component is necessary for degree-4 acquisition, not whether the component participates
+in the learned computation: attention with frozen random weights can retain substantial
+function \citep{dong2025randomattention}, and a freeze also changes the optimization
+problem's initial conditions, which the Muon reversal below shows can matter as much as
+the architecture (the same freeze that is inert at $d=128$ rescues acquisition at
+$L=24$, $d=256$). Throughout, ``necessary'' therefore means necessary to train at the
+stated configuration. Table~\ref{tab:freeze-scope} summarizes every freeze outcome with
+its scoped reading before the detailed evidence.
+
+\begin{table}[htbp]
+\centering
+\caption{Freeze-probe outcomes and their scoped interpretation. ``Necessary'' means
+necessary to train from the run's initialization at the stated configuration; the
+detailed per-arm evidence is reported in the ownership and scale-specific freeze
+tables below.}
+\label{tab:freeze-scope}
+\small
+\setlength{\tabcolsep}{4pt}
+\begin{tabular}{@{}llll@{}}
+\toprule
+Configuration & Freeze & Degree-4 outcome & Scoped reading \\
+\midrule
+AdamW, $d{=}128$, $L{=}16$ ($n{=}15$) & attn & fails (14/15 ${<}0.1$) & training attention necessary \\
+AdamW, $d{=}128$, $L{=}16$ ($n{=}15$) & MLP & intact (median $0.461$) & training MLP not necessary \\
+AdamW, $d{=}256$, $L{=}24$ ($n{=}8$) & attn & floor (8/8 fail) & necessity tightens with scale \\
+Muon, $d{=}128$, $L{=}16$ ($n{=}5$) & attn or MLP & intact & two-path redundancy (layer 1) \\
+Muon, $d{=}256$, $L{=}24$ ($n{=}8$) & attn & rescued (0/8 fail) & initial-condition dependence \\
+SGDM, $d{=}128$, $L{=}16$ ($n{=}5$) & any & floor & fit-gated, uninformative \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+For the AdamW leg we take the degree-4 correlation at $n = 15$ (seed count increased
+from $n = 5$) as the primary evidence. The overall staircase-fit gap between attention-freeze
+and the unfrozen baseline is no longer significant at $n = 15$ (attn $0.841 \pm 0.076$ vs none
+$0.885 \pm 0.080$; difference $+0.044$, Welch $t = 1.49$, 95\% CI $[-0.014, +0.102]$
+includes 0; the $n = 5$ ``$0.80$ vs $0.92$, $p \approx 0.027$'' was a small-sample fluke
+and is dropped). The robust signal is high-degree acquisition: the attention-frozen model
+fails degree 4 (deg-4 final correlation, means over $n=15$: attn $+0.035$ vs none $+0.214$ / MLP $+0.309$;
+none-vs-attn gap $+0.180$, Welch $t = 2.98$, 95\% CI $[+0.055, +0.304]$ excludes 0;
+leave-one-out $|t|$ $2.67$--$4.16$, all $> 2$; 14/15 attention-frozen seeds fail degree 4
+(final correlation $<0.1$), versus 6/15 unfrozen and 5/15 MLP-frozen). Because a mean
+test on a bimodal per-seed distribution can mislead, we also report Fisher exact tests
+on these fractions: the attention-freeze fail excess is significant (14/15 vs.\ 6/15,
+two-sided $p=0.005$) while the MLP arm is not distinguishable from baseline (5/15 vs.\
+6/15, $p=1.0$); on the stricter acquisition criterion ($\geq0.3$,
+Table~\ref{tab:ownershipopt}) the same contrast is 1/15 vs.\ 6/15 ($p=0.080$). The per-seed
+degree-4 distribution is bimodal, with seeds either acquiring the component
+(${\approx}+0.43$ to $+0.52$) or failing near $0$, so Table~\ref{tab:ownershipopt}
+reports medians and acquisition fractions alongside these means (medians: attn $-0.000$,
+none $+0.170$, MLP $+0.461$; the none-vs-attn contrast is $-0.180$ as a difference of
+means and $-0.170$ as a difference of medians, and we label which is quoted at each
+use). The degree-4 half-time is 0 because degree 4
+is never learned, a failed-to-learn artifact, not ``learned instantly.'' MLP-freeze
+preserves or enhances degree 4 ($0.309$). So the asymmetry holds robustly at $n = 15$:
+training attention, not the MLP, is necessary for degree-4 \emph{acquisition} under
+AdamW at this configuration---a training-necessity claim, not a claim that the finished
+computation is deposited in attention (see Section~\ref{sec:ablation}); the overall-fit
+gap and the rank-index inversion are washed-out / noisy corroborators only.
+
+The ownership pattern is confirmed by re-running the freeze grid under Muon
+and SGDM: freezing attention does not block degree 4 under Muon ($\Delta_{\mathrm{attn}}
+= +0.005$; Muon reaches degree 4 $\approx 0.50$ and fit $1.0$ in every freeze arm),
+and SGDM keeps median degree~4 near the floor in all arms (fit-gated; sparse seed-level acquisition only, Table~\ref{tab:ownershipopt}). The attention bottleneck is therefore a property of
+the AdamW optimization regime; under Muon's orthogonalized updates the MLP-only
+sub-network already suffices at $d=128$, and this section's ownership claim is explicitly scoped to
+AdamW, not an optimizer-invariant architectural fact
+(Figs.~\ref{fig:arch}, \ref{fig:ownershipopt}, and~\ref{fig:ownershiplr};
+Tables~\ref{tab:ownershipopt} and~\ref{tab:ownershiplr}). A fresh Muon learning-rate
+sweep confirms that this bypass is not a single-lr artifact: at lr $0.01$ and $0.02$ the
+attention-minus-unfrozen degree-4 gap is near zero ($-0.008$ and $+0.003$), while at lr
+$0.04$ the unfrozen arm is less stable but the attention-frozen arm still reaches median
+degree-4 correlation $0.511$.
+
+\paragraph{The AdamW attention-necessity result tightens at larger scale.} A fresh $n=8$
+freeze grid at $L=24$, $d=256$ replicates and sharpens the AdamW ownership claim
+(Table~\ref{tab:scale-freeze-adamw}): the unfrozen and MLP-frozen arms leave degree 4
+partially learned ($0.234\pm0.229$ and $0.226\pm0.221$, 4/8 seeds failing each), while
+attention-freeze drives it to the floor in every seed ($-0.002\pm0.009$, 8/8 fail). The
+attention effect is now $\Delta_{\mathrm{attn}}=-0.237$, 95\% CI $[-0.397,-0.084]$
+(excludes 0), Cohen's $d=-1.37$, $p=0.029$, while the MLP effect stays at 0 (CI includes
+0), cleaner than the original $d=128$ estimate ($\Delta_{\mathrm{attn}}=-0.180$, a
+difference of arm means; the difference of medians in Table~\ref{tab:ownershipopt} is
+$-0.170$; 14/15 fail): the larger-scale replication strengthens, rather than qualifies,
+the AdamW attention-necessity claim. A Fisher exact test on the degree-4 fail fractions
+(attn 8/8 vs.\ none 4/8) gives two-sided $p=0.077$: the exact-count test is underpowered
+at $n=8$ per arm, so the interval evidence above carries the inference at this scale.
+
+\begin{table}[htbp]
+\centering
+\caption{Optimizer-axis ownership: median final degree-4 Walsh correlation, with the
+fraction of seeds acquiring degree 4 (final correlation $\geq 0.3$) in parentheses, on
+the $d=128$, two-layer freeze grid; $n=15$ seeds per arm for AdamW, $n=5$ for Muon and
+SGDM. Medians and acquisition fractions are the appropriate summaries because the
+per-seed degree-4 correlation is bimodal (acquire ${\approx}0.5$ or fail
+${\approx}0$); the AdamW arm means quoted in the text's significance tests are
+$0.214$/$0.035$/$0.309$ (none/attn/MLP), and the $\Delta$ column is the difference of
+arm medians. The attention-freeze bottleneck is
+large under AdamW (Fisher exact on the $<0.1$ fail fractions, attn vs.\ none:
+$p=0.005$), absent under Muon, and uninformative under SGDM's fit floor.}
+\label{tab:ownershipopt}
+\small
+\setlength{\tabcolsep}{4pt}
+\begin{tabular}{lccccc}
+\toprule
+Optimizer & $n$/arm & None & Attn frozen & MLP frozen & $\Delta_{\mathrm{attn}-\mathrm{none}}$ \\
+\midrule
+AdamW & 15 & 0.170 (6/15) & $-0.000$ (1/15) & 0.461 (9/15) & $-0.170$ \\
+Muon & 5 & 0.499 (3/5) & 0.504 (4/5) & 0.486 (4/5) & $+0.005$ \\
+SGDM & 5 & 0.023 (1/5) & $-0.002$ (0/5) & 0.042 (2/5) & $-0.025$ \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\paragraph{A reversal at larger scale: attention-freeze rescues, rather than bypasses,
+Muon's degree-4 acquisition.} The same $L=24$, $d=256$ audit revises, rather than merely
+extends, the Muon side of this section. At $d=128$, $L=16$ Muon's unfrozen baseline
+reliably reaches degree 4 ($\approx 0.50$, Table~\ref{tab:ownershipopt}) and freezing
+attention leaves it untouched ($\Delta_{\mathrm{attn}}=+0.005$), the ``bypass'' reading.
+At $L=24$, $d=256$ the unfrozen Muon baseline is itself weak and bimodal on degree 4
+($0.067\pm0.160$, 7/8 seeds failing; fit $0.869\pm0.062$; rank index $+0.109$), an
+instability cross-validated by the independent scale-grid cell at the same configuration
+(rank $+0.139$); freezing attention now rescues degree-4 acquisition rather than
+leaving it alone, reaching $0.499\pm0.010$ with 0/8 failures, fit $1.0000\pm0.0000$, and a
+fully recovered rank index of $+1.000$ in every seed (Table~\ref{tab:scale-freeze-muon}).
+The attention-freeze effect is $\Delta_{\mathrm{attn}}=+0.432$, 95\% CI
+$[+0.308,+0.501]$, Cohen's $d=+3.58$, $p=0.0002$, and the rescue is exact-test robust
+(Fisher exact on the fail fractions, 7/8 vs.\ 0/8: two-sided $p=0.001$); MLP-freeze is
+intermediate ($0.125\pm0.200$, fit $0.854$, rank $+0.435$). Muon's relationship to attention is
+therefore config- and initial-condition-dependent (bypass at $d=128$/$L=16$, rescue at
+$L=24$/$d=256$; see the scope note above), and this
+reversal is established only at this single configuration (depth 2); its generality across
+$L=16$ or $L=32$ is untested. Far from contradicting the two-path-redundancy reading
+above, the reversal strengthens it: it is further evidence that which path Muon uses is a
+property of the training dynamics at a given scale, not a fixed circuit.
+
+\begin{table}[htbp]
+\centering
+\caption{Muon learning-rate sensitivity of the ownership bypass. Values are medians over
+three fresh seeds per arm (seeds 5--7); $\Delta$ is attention-frozen minus unfrozen final
+degree-4 Walsh correlation.}
+\label{tab:ownershiplr}
+\small
+\setlength{\tabcolsep}{4pt}
+\begin{tabular}{lcccc}
+\toprule
+Muon lr & None deg-4 & Attn-frozen deg-4 & $\Delta$ & Fit (none/attn) \\
+\midrule
+0.01 & 0.511 & 0.502 & $-0.008$ & 1.000 / 1.000 \\
+0.02 & 0.509 & 0.512 & $+0.003$ & 0.978 / 1.000 \\
+0.04 & 0.423 & 0.511 & $+0.089$ & 0.865 / 1.000 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\paragraph{Localizing the Muon two-path redundancy to layer 1.} At $d=128$, $L=16$, that
+``either sub-network suffices'' under Muon is a genuine two-path property of the hidden
+network, not an incompletely frozen readout, and it is localized to the second layer. A floor control that
+freezes both sub-networks drives degree-4 acquisition to the floor (median final Walsh
+correlation $+0.002$, below the $0.15$ acquisition threshold; $n=15$), so when a single
+freeze leaves degree 4 intact the surviving path is real rather than a leaked signal through
+a partly-frozen component. Resolving the freeze by layer then localizes the carrier:
+freezing either layer-0 sub-network leaves degree 4 essentially unimpaired (layer-0
+attention $+0.499$, layer-0 MLP $+0.469$, both $\approx$ the unfrozen level), while freezing
+the layer-1 attention drives it to the floor ($+0.022$) and freezing the layer-1 MLP largely
+suppresses it ($+0.183$). Under Muon the highest-degree component is therefore carried in
+layer 1, with either layer-1 sub-network able to support it
+(Fig.~\ref{fig:ownershiploc}).
+
+This is a statement about the learned dynamics, not a static wiring diagram. Freezing the
+full attention stack leaves degree 4 alive (median $+0.504$, $n=5$;
+Table~\ref{tab:ownershipopt}), yet freezing only the
+layer-1 attention kills it: the two freezes disagree because they set different initial
+conditions: a full-attention freeze forces an MLP route from step~0, whereas the partial
+(layer-1-only) freeze lets the model first commit to an attention circuit it then cannot
+complete. Which of the two redundant paths carries degree 4 is thus training-path-dependent,
+so we report a verified two-path redundancy localized to layer~1 rather than a fixed
+component-to-degree assignment.\footnote{A frontier-degree extension of this freeze
+test, repeating the ownership ablation under a degree-5 target, was inconclusive: degree~5
+was not acquired even in the unfrozen control at the $4{,}000$-step budget (median degree-5
+Walsh correlation $\leq 0.01$ under both AdamW and Muon), so there was no acquired component
+to ablate at the frontier.}
+
+\begin{figure}[t]
+\centering
+\figtikz[0.95\linewidth]{C_ladder_necessity}
+\caption{Nested ladder bootstraps a degree the optimizer cannot reach in isolation
+($d=128$, two layers, $L=16$ bits).
+(a)~Final fit correlation by optimizer for the isolated single-degree-3 target
+(5 seeds) versus the nested degree-1--4 staircase (15 seeds); bars show mean $\pm$ standard deviation (SD).
+SGDM fails the isolated target (fit $\approx 0$) but reaches fit $0.85$ on the ladder,
+while AdamW and Muon fit both.
+(b)~SGDM per-degree final Walsh correlation on the ladder (15 seeds; per-seed points with
+mean crossbar): degrees 1--2 acquired ($\approx 0.59$), degree 3 partly acquired ($0.41$),
+degree 4 largely not ($0.10$). The lower degrees scaffold the higher ones, the bootstrap
+predicted by Proposition~G1.
+(c)~Per-seed fit by target: the isolated-target failure and the ladder rescue
+are both seed-consistent.
+(d)~Per-degree final correlations for all three optimizers on the ladder:
+degrees 1--3 are optimizer-shared; degree 4 splits the optimizers.
+Panel summaries: (a)~isolated-versus-ladder fit. (b)~SGDM degree acquisition. (c)~per-seed target fit. (d)~per-degree optimizer comparison.}
+\label{fig:ladder}
+\end{figure}
+
+\begin{figure}[htbp]
+\centering
+\figtikz[\linewidth]{C_targetfamily}
+\caption{Across AdamW and Muon, low-to-high acquisition order persists across the three alternative target families (staircase rank index; $1=$ fully ascending, $0=$ no recovered order; points show the per-cell estimate with $\pm1$ standard error over $n=15$ seeds). On the inverse-weighted target the ranks are $+0.61/+0.83$, on the gapped $\{1,3,4\}$ target $+0.77/+0.63$, and on geometric decay $+0.37/+0.25$ for AdamW/Muon. SGDM is a boundary rather than support for optimizer-wide invariance: its gapped and inverse-weighted cells are fit-gated (median fits $0.816$ and $0.114$), while its fit-passing geometric-decay cell is inverted (rank $-0.47$). Hollow points mark fit-gated cells (median fit $<0.85$).
+(a)~Target-family rank index by optimizer.
+(b)~Median fit per cell and the $0.85$ gate.
+(c)~Per-degree median half-times by family and optimizer, including censored/floor onsets in the SGDM boundary cells.
+(d)~Rank index versus median fit across all nine cells.
+Panel summaries: (a)~target-family rank. (b)~fit-gate check. (c)~family onsets. (d)~rank-versus-fit control.}
+\label{fig:targetfamily}
+\end{figure}
+
+\paragraph{Single-seed illustration.}\label{sec:case}
+A single representative AdamW run (seed 0, $d=128$, $D=2$) makes the routing concrete.
+Unfrozen, all four degrees are acquired in staircase order, with degree~4 reaching $+0.427$
+by step 4000. With attention frozen, degrees~1--3 still rise to comparable plateaus while
+degree~4 stays indistinguishable from zero throughout (final $-0.003$, no excursion above
+$+0.018$; Fig.~\ref{fig:case}): the freeze selectively removes the attention-owned top
+degree under AdamW while leaving the low-degree staircase intact.
+
+\begin{figure*}[htbp]
+\centering
+\includegraphics[width=\linewidth]{C_arch_depth.pdf}
+\caption{Width, depth, and freeze-arm architecture sweep under AdamW: width-axis $n=8/15/5/5$ at $d=64/128/256/512$, depth-axis $n=5/15/5$ at $D=1/2/4$, and freeze arms $n=15$/arm.
+(a)~Width axis ($D=2$, $d=64$--$512$): staircase rank index is flat across widths
+(no trend), confirming width alone does not drive the staircase.
+(b)~Depth axis ($d=128$, $D=1$--$4$): rank index rises from $D=1$ to $D=2$,
+establishing the depth-threshold requirement.
+(c)~Freeze arms (none/attn/MLP, $d=128$, $D=2$): median fit and staircase rank by freeze arm; attention freeze leaves median fit $0.864$ but reduces the rank index to $0$, versus rank $0.667$ unfrozen and $0.800$ with the MLP frozen. An AdamW-specific bottleneck that Muon bypasses at this $d=128$ scale (itself config-dependent, reversed at $L=24$, $d=256$; Section~\ref{sec:ownership}).
+(d)~Fit versus depth: median fit is $0.707$, $0.898$, and $0.867$ at $D=1,2,4$, respectively; the ordering collapse therefore co-occurs with lower overall fit at one layer.
+Panel summaries: (a)~width axis. (b)~depth axis. (c)~freeze comparison. (d)~fit-versus-depth control.}
+\label{fig:arch}
+\end{figure*}
+
+\begin{table}[H]
+\centering
+\caption{AdamW attention-necessity replication at $L=24$, $d=256$ ($n=8$ seeds/arm).
+Degree-4 fail is the fraction of seeds with final degree-4 correlation $<0.1$.}
+\label{tab:scale-freeze-adamw}
+\begin{tabular}{lccc}
+\toprule
+Freeze & deg-4 mean $\pm$ SD & Fail ($<0.1$) & $\Delta$ vs.\ none \\
+\midrule
+None & $0.234\pm0.229$ & 4/8 & --- \\
+Attn & $-0.002\pm0.009$ & 8/8 & $-0.237$ \\
+MLP & $0.226\pm0.221$ & 4/8 & $\approx 0$ \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{figure}[htbp]
+\centering
+\figtikz[\linewidth]{C_ownership_optaxis}
+\caption{(a)~Optimizer-axis freeze comparison (Table~\ref{tab:ownershipopt}): median final
+degree-4 Walsh correlation by optimizer (AdamW/Muon/SGDM) and freeze arm
+(none/attn/MLP); $d=128$, $D=2$; 15 seeds/arm for AdamW, 5 seeds/arm for Muon and SGDM.
+Attention freeze suppresses degree 4 under AdamW ($\Delta_{\mathrm{attn}}=-0.170$, difference
+of arm medians; the difference of arm means is $-0.180$)
+but not under Muon ($\Delta_{\mathrm{attn}}=+0.005$, medians); SGDM is a low-fit floor.
+This bounds the component-ownership claim to AdamW.
+(b)~Per-seed degree-4 correlations ($n=15$ AdamW; $n=5$ Muon/SGDM): the AdamW collapse and
+the Muon bypass are seed-consistent; SGDM (shown for completeness) is a median floor
+with sparse acquisition only ($1/5$ unfrozen, $2/5$ MLP-frozen; Table~\ref{tab:ownershipopt}).
+(c)~Paired per-seed freeze-minus-unfrozen contrast: $\Delta_{\mathrm{attn}}$
+is large-negative only under AdamW.
+(d)~Matched-fit control at the AdamW median-fit point: degrees 1--3 stay
+acquired under every optimizer (median correlations $\approx0.55$), so the
+freeze dissociation is not a fit failure.
+Panel summaries: (a)~median freeze effect. (b)~per-seed distributions. (c)~paired attention-freeze delta. (d)~matched-fit degree control.}
+\label{fig:ownershipopt}
+\end{figure}
+
+\begin{table}[H]
+\centering
+\caption{Muon attention-freeze reversal at $L=24$, $d=256$ ($n=8$ seeds/arm): freezing
+attention rescues, rather than bypasses, degree-4 acquisition (contrast
+Table~\ref{tab:scale-freeze-adamw}).}
+\label{tab:scale-freeze-muon}
+\begin{tabular}{lcccc}
+\toprule
+Freeze & deg-4 mean $\pm$ SD & Fit & Rank index & $\Delta$ vs.\ none \\
+\midrule
+None & $0.067\pm0.160$ (7/8 fail) & $0.869\pm0.062$ & $+0.109$ & --- \\
+Attn & $0.499\pm0.010$ (0/8 fail) & $1.0000\pm0.0000$ & $+1.000$ (8/8) & $+0.432$ \\
+MLP & $0.125\pm0.200$ & $0.854$ & $+0.435$ & $+0.06$ \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{figure}[htbp]
+\centering
+\figtikz[0.92\linewidth]{C_ownership_lr_sensitivity}
+\caption{Muon learning-rate sweep for the attn-freeze ownership claim
+(3 seeds/arm, $d=128$, $D=2$, 4000 steps; seeds 5--7).
+(a)~Median $\pm$ interquartile range (IQR) of final degree-4 Walsh correlation for unfrozen vs.\ attn-frozen
+arms at Muon lr $\in\{0.01,0.02,0.04\}$; $\Delta$ labels give attn-minus-unfrozen.
+Attention freeze does not recreate the AdamW bottleneck at lr $0.01$
+($\Delta=-0.008$) or $0.02$ ($\Delta=+0.003$), and remains learned at lr $0.04$
+even when the unfrozen arm shows seed instability.
+(b)~Per-seed degree-4 values by learning rate (3 seeds per arm).
+(c)~Freeze-minus-unfrozen delta per learning rate (median of seeds; line).
+(d)~Signed $\Delta$ at each learning rate (bar of the same signed deltas as (c)):
+$\Delta\approx-0.008$ at lr $0.01$, $\approx+0.003$ at $0.02$, and large positive
+at $0.04$. Two-path redundancy is not a single-learning-rate artifact, but the
+sign is not uniformly positive.}
+\label{fig:ownershiplr}
+\end{figure}
+
+
+
+\subsection{Trained-model ablations rank the degree-4-selective locus at the layer-1 MLP}\label{sec:ablation}
+
+The freeze probes of Section~\ref{sec:ownership} measure whether training a component is
+necessary (the scope note above); they are silent on the complementary question of which
+component carries the learned degree-4 computation in the trained network. A
+trained-model ablation experiment answers that question directly. Where freeze probes
+are optimizer-dependent, ablation returns a point-estimate regularity: the
+degree-4-selective carrier ranks first at the layer-1 MLP under both optimizers (point
+estimates $+0.37$ AdamW / $+0.34$ Muon, robust in sign, with 95\% CIs that include zero
+at $n=8$), an ordering that excludes zero as a paired within-seed MLP-minus-attention
+contrast only under Muon ($+0.141$, 95\% CI $[+0.058, +0.224]$; AdamW paired $+0.090$
+$[-0.159, +0.315]$).
+Sixteen fresh runs of the published $d=128$, two-layer configuration (8 seeds
+$\times$ \{AdamW, Muon\}; the same fresh-seed bank whose unablated medians reproduce the
+published cell values, Section~\ref{sec:arch}) were checkpointed at 12 steps spanning
+training. At each checkpoint we mean-ablate a sub-network, replacing the output of the
+named attention or MLP blocks by its per-position mean over the held-out evaluation set
+(recomputed per checkpoint), and re-measure fit and per-degree Walsh correlations under
+seven conditions: unablated, full attention, full MLP, and the four layer-resolved arms
+(Table~\ref{tab:ablation}).
+
+Two arms are structurally degenerate by the architecture's wiring and are reported as a
+design note rather than as evidence about the trained computation: input reaches the
+readout position only through the attention pathway, in practice through layer-0
+attention. Full-attention ablation accordingly returns identically zero fit and
+per-degree correlations at every checkpoint in all 16 models, and layer-0-attention
+ablation returns fit near zero (largest $|$fit$|$ $0.32$, driven by a weakly inverted
+degree-1 response in 2/8 seeds per optimizer). The informative attention arm is
+therefore layer 1, and the MLP arms are unaffected by this degeneracy.
+
+Both informative results agree in direction under AdamW and Muon (with the interval
+caveats below). First, ablating trained layer-1 attention
+degrades degrees 2--4 collectively, gradedly under Muon and near-uniformly under AdamW,
+rather than degree-4-selectively: under AdamW the median per-degree correlations fall
+from $0.534/0.512/0.492$ (degrees 2/3/4, unablated) to $0.016/0.006/0.003$, and under
+Muon from $0.516/0.519/0.361$ to $0.345/0.018/0.004$, while degree 1 survives (medians
+$0.917$ and $0.717$). Second, the degree-4-selective carrier localizes to the layer-1
+MLP: ablating it leaves degrees 1--3 largely intact (AdamW $0.530/0.484/0.363$; Muon
+$0.587/0.507/0.436$) while removing degree 4 ($0.492\to0.059$ under AdamW,
+$0.361\to0.013$ under Muon). Defining selectivity as the degree-4 median drop minus the
+mean degree-1--3 median drop, the layer-1 MLP arm scores $+0.369$ under AdamW and
+$+0.344$ under Muon, the largest selectivity of any arm under both optimizers and
+differing by only $0.025$ in point estimate; every attention arm's selectivity is smaller
+(full attention $-0.030$/$-0.153$, layer-1 attention $+0.279$/$+0.204$). A seed-level
+percentile bootstrap (resampling the 8 seeds with replacement, $20{,}000$ resamples,
+recomputing the median-based selectivity per resample) quantifies the uncertainty of
+this scalar: the layer-1 MLP selectivity is $+0.369$, 95\% CI $[-0.045, +0.415]$ under
+AdamW and $+0.344$ $[-0.039, +0.525]$ under Muon; the intervals reach marginally below
+zero because the seed bank's degree-4 acquisition is itself bimodal, so resampled
+medians occasionally land on non-acquiring seed subsets. The paired MLP-minus-attention
+(layer-1) selectivity difference excludes zero under Muon ($+0.141$, 95\% CI
+$[+0.058, +0.224]$) but not under AdamW ($+0.090$ $[-0.159, +0.315]$): the
+MLP-over-attention selectivity ordering is interval-supported under Muon and a
+point-estimate regularity under AdamW.
+
+The two probes therefore dissociate cleanly. Freezing, a training-necessity probe, is
+optimizer-dependent: attention must be trained under AdamW at this configuration but not
+under Muon (Table~\ref{tab:ownershipopt}); SGDM is uninformative on freeze. Ablation, a
+trained-computation probe, is a point-estimate regularity: in the trained model the
+degree-4-selective locus ranks first at the layer-1 MLP under both optimizers (absolute
+CIs include zero at $n{=}8$; interval support for MLP$>$attn only under Muon), and trained
+attention supports degrees 2--4 collectively rather than degree 4 specifically. The disagreement is not a contradiction but the content of
+the scope note in Section~\ref{sec:ownership}: a freeze tests whether training a
+component lies on the causal path to acquiring degree 4, an ablation tests where the
+acquired computation resides. Read jointly: under AdamW the attention pathway must be
+trained for degree 4 to be acquired at all, yet the degree-4-selective component of the
+finished function is deposited in the layer-1 MLP, the same layer-1 locus the Muon freeze
+localization identified (freezing Muon's layer-1 MLP suppresses degree 4 to $+0.183$,
+Section~\ref{sec:ownership}). The ownership claim is accordingly sharpened into a
+two-probe statement: which sub-network must be trained to acquire the top degree
+is optimizer-dependent; where the degree-4-selective computation ranks in the trained
+model is a point-estimate regularity (absolute CIs include zero at $n{=}8$; paired
+MLP$>$attn interval support only under Muon).
+
+\begin{table}[htbp]
+\centering
+\caption{Trained-model mean-ablation at the final checkpoint (step 4000): median fit and
+per-degree Walsh correlations over $n=8$ seeds per optimizer, with the degree-4 drop
+$\Delta_4$ (unablated minus ablated) and the selectivity $\Delta_4 -
+\overline{\Delta}_{1\text{--}3}$. Full-attention and layer-0-attention ablation are
+structurally degenerate (input reaches the readout only through layer-0 attention) and
+are shown for completeness. The layer-1 MLP arm carries the largest selectivity under both
+optimizers; the bootstrap intervals on these point estimates are in the text.}
+\label{tab:ablation}
+\small
+\setlength{\tabcolsep}{4pt}
+\begin{tabular}{@{}llccccccc@{}}
+\toprule
+Optimizer & Ablation & Fit & Deg 1 & Deg 2 & Deg 3 & Deg 4 & $\Delta_4$ & Selectivity \\
+\midrule
+AdamW & none & $0.944$ & $0.522$ & $0.534$ & $0.512$ & $0.492$ & --- & --- \\
+AdamW & attn (all) & $0.000$ & $0.000$ & $0.000$ & $0.000$ & $0.000$ & $0.492$ & $-0.030$ (degen.) \\
+AdamW & attn L0 & $-0.002$ & $0.000$ & $-0.001$ & $-0.004$ & $0.005$ & $0.488$ & $-0.036$ (degen.) \\
+AdamW & attn L1 & $0.498$ & $0.917$ & $0.016$ & $0.006$ & $0.003$ & $0.489$ & $+0.279$ \\
+AdamW & MLP (all) & $0.508$ & $0.565$ & $0.296$ & $0.124$ & $0.042$ & $0.450$ & $+0.256$ \\
+AdamW & MLP L0 & $0.537$ & $0.517$ & $0.313$ & $0.177$ & $0.025$ & $0.468$ & $+0.281$ \\
+AdamW & MLP L1 & $0.748$ & $0.530$ & $0.484$ & $0.363$ & $0.059$ & $0.433$ & $+0.369$ \\
+\midrule
+Muon & none & $0.954$ & $0.507$ & $0.516$ & $0.519$ & $0.361$ & --- & --- \\
+Muon & attn (all) & $0.000$ & $0.000$ & $0.000$ & $0.000$ & $0.000$ & $0.361$ & $-0.153$ (degen.) \\
+Muon & attn L0 & $-0.006$ & $0.002$ & $0.002$ & $-0.007$ & $0.003$ & $0.358$ & $-0.156$ (degen.) \\
+Muon & attn L1 & $0.515$ & $0.717$ & $0.345$ & $0.018$ & $0.004$ & $0.358$ & $+0.204$ \\
+Muon & MLP (all) & $0.547$ & $0.574$ & $0.417$ & $0.142$ & $0.005$ & $0.356$ & $+0.220$ \\
+Muon & MLP L0 & $0.608$ & $0.505$ & $0.494$ & $0.201$ & $0.081$ & $0.280$ & $+0.166$ \\
+Muon & MLP L1 & $0.806$ & $0.587$ & $0.507$ & $0.436$ & $0.013$ & $0.348$ & $+0.344$ \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{Geometry: the staircase survives orthogonalization, and the three optimizers agree}\label{sec:si}
+
+Sections~\ref{sec:ownership} and~\ref{sec:ablation} localized \emph{where} the degree-4
+computation lives; this section establishes the \emph{order} in which the degrees are
+acquired, and shows the optimizer does not set it.
+
+Muon does not flatten the degree staircase. At $n = 15$ per optimizer the staircase index
+SI (Eq.~\eqref{eq:si}) is $2.98 \pm 1.39$ (AdamW), $3.53 \pm 1.54$ (Muon) and $3.20 \pm 1.61$ (SGDM). The
+pre-specified analysis of these values asks whether the optimizers agree, not whether they
+differ, so it is a two-one-sided equivalence test
+\citep{schuirmann1987tost,lakens2017equivalence}
+(TOST, Welch; null $|\mu_i-\mu_j|\ge\Delta$ rejected only if both one-sided tests pass;
+analysis-plan SESOI $\Delta = 1.5$ SI units, chosen \emph{a priori} so that
+a between-optimizer difference smaller than $1.5$ still leaves both optimizers on the
+staircase side of the competing simultaneous-learning / spectral-flattening prediction
+$\mathrm{SI}\approx 1$ \citep{dragutinovic2026usemuon}, rather than near the flat-learning
+null) concludes equivalence for all three pairs at uncorrected
+$\alpha=0.05$: for Muon against AdamW the difference is $+0.55$ SI, 90\% CI
+$[-0.36, +1.46] \subset (-1.5, +1.5)$, $p_{\mathrm{TOST}} = 0.044$, and the SGDM pairs
+give $p_{\mathrm{TOST}} = 0.014$ (vs.\ AdamW) and $0.026$ (vs.\ Muon) at the same margin
+(Table~\ref{tab:tost-si}). The three tests form a family, and under Holm multiplicity
+correction the $\pm1.5$ verdict holds for AdamW vs.\ SGDM only, while equivalence within
+a $\pm2.0$ margin survives the corrected level for all three pairs
+($p \leq 0.006$). We therefore treat the analysis-plan $\pm1.5$ margin as primary
+(uncorrected pass; Holm partial) and $\pm2.0$ as a multiplicity-safe \emph{sensitivity}
+bound (smallest corrected margin at which all pairs pass), with the full correction and
+margin analysis below. An independent $4\times$
+Muon-learning-rate sweep holds SI in $2.36$--$3.26$, never moving toward
+$\mathrm{SI} \approx 1$, so the predicted flattening is absent across seeds and learning
+rate.
+
+The equivalence test compares the optimizers with each other and does not directly test
+the value the competing account predicts, so we add a complementary point-null check
+against that value. A one-sample $t$-test against $\mathrm{SI} = 1$ rejects for
+all three: $t(14) = 5.50$, $6.34$ and $5.28$ respectively, with $p = 7.9\times10^{-5}$,
+$1.8\times10^{-5}$ and $1.2\times10^{-4}$. All three survive Holm correction over the
+family of three tests with more than two orders of magnitude to spare, the $95\%$
+confidence intervals on the mean ($[2.21, 3.75]$, $[2.67, 4.38]$, $[2.30, 4.09]$) place
+the lower endpoint at more than twice the predicted value, and only 2 of the 45 runs fall
+below $\mathrm{SI} = 1$ at all. Because SI is a ratio statistic we also ran the
+nonparametric Wilcoxon signed-rank test, which agrees ($p = 1.8\times10^{-4}$,
+$6.1\times10^{-5}$, $1.2\times10^{-4}$); Shapiro--Wilk does not reject normality for any
+optimizer ($p = 0.49$, $0.12$, $0.058$), so we lead with the $t$-test and treat the
+Wilcoxon as confirmation. The inferential hierarchy is explicit: the pre-specified
+analysis is the equivalence test of the preceding paragraph, and these one-sample tests
+are a complementary point-null check reported for completeness, ruling out the value
+$\mathrm{SI} = 1$ that a TOST does not itself address. The point-null result has the
+further property of not depending on any between-optimizer comparison.
+
+\paragraph{Multiplicity and margin sensitivity.} The corrected verdicts summarized above
+are reported in full here (Table~\ref{tab:tost-sens}). Under Holm correction
+at family level $\alpha = 0.05$, only AdamW vs.\ SGDM remains equivalent at the $\pm1.5$
+margin ($p = 0.014 \leq 0.017$); Muon vs.\ SGDM ($p = 0.026$ against threshold $0.025$)
+and Muon vs.\ AdamW ($p = 0.044$) do not, and the Bonferroni-level TOST interval for Muon
+vs.\ AdamW ($96.7\%$ CI $[-0.65, +1.75]$) exceeds the margin. Equivalence at the
+pre-specified $\pm1.5$ margin is therefore a sensitivity result for the Muon pairs,
+holding at the uncorrected level only. A SESOI
+sensitivity sweep locates the decision boundary: at margin $\pm1.0$ SI no pair is
+equivalent even uncorrected ($p = 0.08$--$0.20$), at $\pm1.5$ all three pairs pass
+uncorrected, and at $\pm2.0$ all three pass at the Bonferroni-corrected level
+($p \leq 0.006$), which is the margin at which we state the headline equivalence. Since a pre-specified margin that sits close to the smallest margin the
+data would support invites the objection that it was chosen after the fact, we state that
+minimum: writing it as $|\hat\Delta| + t_{1-\alpha,\nu}\,\mathrm{SE}$ (standard error) and taking the
+worst pair, the family becomes equivalent at any margin above $1.464$ uncorrected and
+above $1.752$ under Bonferroni. The pre-specified $1.5$ therefore clears the uncorrected
+requirement by $0.036$ units and falls $0.252$ units short of the corrected one, which is
+the same marginality the corrected $p$-values report, seen on the margin scale. The corrected-level
+conclusion is thus equivalence within $\pm2$ SI units for all three pairs, with every
+point estimate sitting at $3.0$--$3.5$, two units above the flattening prediction, so
+flattening to $\mathrm{SI} \approx 1$ is ruled out decisively; the sharper
+claim of a between-optimizer difference below $1.5$ SI units is supported at the
+uncorrected level only, and we scope every downstream use of the equivalence accordingly.
+
+On the stricter multiplicative scale, a log-SI TOST
+(factor-$1.5$ margin) is inconclusive (Muon's SI is ${\sim}24\%$ higher as a point
+estimate, with the 90\% CI reaching a factor ${\sim}1.7$), so we claim equivalence on the
+absolute-SI margin and report the log-scale test as inconclusive rather
+than overclaiming a factor-level invariance. Orthogonalization (spectral flattening) thus
+shows no sign of extrapolating from deep-linear singular modes to function-space Fourier
+degrees (Fig.~\ref{fig:si}).
+
+\paragraph{Sensitivity to the composition of the SI estimator.} Because $m$ varies by run
+(Section~\ref{sec:setup}), we report two sensitivity analyses alongside the primary
+full-sample result. The first is a complete-case analysis restricted to the 22 runs in
+which all four degrees have positive half-times (AdamW 8, Muon 7, SGDM 7). It narrows the
+Muon--AdamW difference from $+0.55$ to $+0.14$ and lowers $p_{\mathrm{TOST}}$ from
+$0.044$ to $0.0144$, which would clear the Holm threshold of $0.0167$ and so would
+upgrade the Muon--AdamW pair at the $\pm1.5$ margin from uncorrected-only to
+corrected-level equivalent. We do not use it
+that way. Complete-case membership is conditioned on degree 4 having a positive
+half-time, which is itself an outcome: degree 4 is never acquired in 7 of 15 AdamW runs
+against 2 of 15 for Muon (Fisher $p = 0.11$), so the subset is not missing at random with
+respect to the quantity being compared. The exclusion is also milder than that gap
+suggests, since degree 4 actually leaves the SI product in 3 AdamW and 2 Muon runs
+(Fisher $p = 1.00$), and under the same restriction the other two pairs move the opposite
+way ($p = 0.037$ for AdamW vs.\ SGDM and $0.039$ for Muon vs.\ SGDM, neither clearing
+Holm). The refutation of $\mathrm{SI} = 1$ holds within this subset as well
+($t = 4.23$, $6.10$, $3.45$; $p = 3.9\times10^{-3}$, $8.8\times10^{-4}$,
+$1.4\times10^{-2}$). The second analysis recomputes SI over degrees that were actually
+acquired, dropping any degree whose final $|\rho_k|$ is below $0.1$, which removes the
+runs where an unacquired degree entered the product with a half-time set by noise (4 of
+15 AdamW runs, 6 of 15 SGDM, none for Muon). This raises the point estimates to $4.02$
+(AdamW), $3.53$ (Muon) and $4.18$ (SGDM) and strengthens the refutation
+($t = 7.04$, $6.34$, $8.00$; $p \leq 1.8\times10^{-5}$), but it reverses the sign of the
+Muon--AdamW difference to $-0.49$ and leaves Muon vs.\ SGDM outside the $1.5$-unit margin
+($p = 0.073$; family minimum margin $1.615$). The pattern across all three definitions is
+consistent: the refutation of the flattening prediction is insensitive to how partially
+acquired degrees are handled, while the between-optimizer comparison is sensitive to it
+and has no stable sign. This is why we rest the geometry claim on the former and scope
+the latter as marginal.
+
+\begin{figure}[t]
+\centering
+\figtikz[\linewidth]{C_scheme}
+\caption{Study design and headline finding. Lead dissociation: freeze (training-necessity) and mean-ablation (trained computation) answer different questions---necessity is optimizer- and config-dependent (AdamW vs Muon), while the finished degree-4-selective locus ranks at the layer-1 MLP in point estimate under both. Substrate: a Boolean degree-staircase makes acquisition order measurable; depth $\geq2$ gates the high-degree step; order and SI are TOST-equivalent across AdamW/SGDM/Muon ($n{=}15$; pre-specified $\Delta=1.5$ uncorrected; corrected headline $\pm2$) and extend unchanged to a degree-5 target; attention training is necessary for degree~4 under AdamW, while Muon shows config-dependent training-time redundancy (not a claim that attention is the trained carrier). The optimizer owns only the clock (Muon $1.6$--$3.7\times$ over AdamW and ${\sim}6.9$--$12\times$ over SGDM at matched acquisition geometry).}
+\label{fig:scheme}
+\end{figure}
+
+\begin{table}[htbp]
+\centering
+\caption{Staircase-index (SI) summary and TOST equivalence results ($n=15$ per
+optimizer). SI is the geometric mean of adjacent degree half-time ratios
+($\mathrm{SI}=1$: simultaneous, $\mathrm{SI}\gg1$: sharp staircase; median SI:
+AdamW $2.80$, SGDM $3.42$, Muon $3.17$).
+The pre-specified analysis is the pairwise TOST: all three pairs conclude equivalence at
+the pre-specified margin $\Delta=1.5$ SI units at uncorrected $\alpha=0.05$ (Welch), and
+all three at $\Delta=2.0$ under multiplicity correction; corrected and margin-sensitivity
+verdicts are in Table~\ref{tab:tost-sens}.
+As a secondary point-null check, a one-sample $t$-test against the predicted
+$\mathrm{SI}=1$ rejects for every optimizer
+($t(14)=5.50$, $5.28$, $6.34$ for AdamW, SGDM and Muon; $p \leq 1.2\times10^{-4}$, all
+surviving Holm correction).}
+\label{tab:tost-si}
+\begin{tabular}{lcc}
+\toprule
+Optimizer & SI mean $\pm$ SD & $n$ \\
+\midrule
+AdamW & $2.98 \pm 1.39$ & 15 \\
+SGDM  & $3.20 \pm 1.61$ & 15 \\
+Muon  & $3.53 \pm 1.54$ & 15 \\
+\midrule
+\multicolumn{3}{l}{\textit{Pairwise TOST (margin $\Delta=1.5$, Welch, 90\% CI):}} \\
+\midrule
+Muon vs.\ AdamW & diff $+0.55$, 90\% CI $[-0.36,+1.46]$ & $p=0.044$, equiv.\ \checkmark\ (uncorr.) \\
+Muon vs.\ SGDM  & diff $+0.33$, 90\% CI $[-0.65,+1.31]$ & $p=0.026$, equiv.\ \checkmark\ (uncorr.) \\
+AdamW vs.\ SGDM & diff $-0.22$, 90\% CI $[-1.15,+0.72]$ & $p=0.014$, equiv.\ \checkmark\checkmark \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{table}[htbp]
+\centering
+\caption{SESOI sensitivity and multiplicity for the pairwise SI TOSTs:
+$p_{\mathrm{TOST}}$ at margins $\Delta\in\{1.0,1.5,2.0\}$ SI units. \checkmark\ =
+equivalent at uncorrected $\alpha=0.05$; \checkmark\checkmark\ = also at the
+Holm/Bonferroni-corrected family level ($\alpha=0.05/3$); --- = not equivalent. The
+log-scale (multiplicative) TOST at factor $1.5$ remains inconclusive for the Muon pairs
+(see text). The smallest margin at which the whole family is equivalent is $1.464$
+uncorrected and $1.752$ under Bonferroni, so the pre-specified $1.5$ sits just above the
+former and below the latter.}
+\label{tab:tost-sens}
+\begin{tabular}{lccc}
+\toprule
+Pair & $\Delta=1.0$ & $\Delta=1.5$ & $\Delta=2.0$ \\
+\midrule
+Muon vs.\ AdamW & $0.205$ (---) & $0.044$ (\checkmark) & $0.006$ (\checkmark\checkmark) \\
+Muon vs.\ SGDM  & $0.128$ (---) & $0.026$ (\checkmark) & $0.004$ (\checkmark\checkmark) \\
+AdamW vs.\ SGDM & $0.083$ (---) & $0.014$ (\checkmark\checkmark) & $0.002$ (\checkmark\checkmark) \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Figure~\ref{fig:rho} is the signed companion to the staircase-index statistic: the
+preserved staircase is an ordering phenomenon, not only a scale choice in the SI
+definition.
+
+\paragraph{A degree-5 extension and an isolated-parity control.} Two anchor cells test
+whether the ordering geometry is a $D=4$ accident. Extending the target to a degree-5
+staircase (one monomial per degree $1$--$5$, same $L=16$ testbed, 5 seeds per optimizer,
+4{,}000-step budget), all three optimizers reproduce the same acquisition geometry one
+degree up: degrees $1$--$3$ are learned to the familiar per-degree level (medians
+$0.47$--$0.62$) while degrees $4$ and $5$ remain at the frontier (medians $\leq0.15$), so
+the overall fit sits at the three-of-five-components value $\sqrt{3/5}\approx0.775$
+(measured medians $0.740$--$0.780$). The frontier's location is set by the budget, but
+the acquisition order is again optimizer-invariant, and now also target-depth-invariant.
+An isolated degree-5 parity (the same top monomial without its staircase, the
+sparse-parity setting of \citealp{barak2022hidden}) behaves qualitatively differently:
+acquisition is all-or-nothing and run-to-run bistable, with $3/5$ seeds learning it
+outright under Muon (fits $0.80$--$1.00$) and under AdamW ($0.74$--$0.90$) while the
+remaining seeds stay at zero, and SGDM never learns it ($0/5$). The contrast cuts both
+ways: inside the staircase the budget is spent on the low-degree components first and
+degree~5 is starved, while in isolation the same monomial is sometimes learned
+whole, direct evidence that staircase acquisition is sequential rather than the top
+degree being unlearnable, consistent with the leap/sequential-learning picture
+\citep{abbe2023leap}.
+
+\begin{figure*}[htbp]
+\centering
+\figtikz[\linewidth]{C_staircase_si}
+\caption{The staircase-index equivalence, pre-specified test and robustness checks
+($n=15$ per optimizer, staircase task).
+(a)~Strip chart of per-seed SI values (jittered) with mean crossbar; dashed line at SI$=1$
+marks simultaneous learning. AdamW mean $2.98$, SGDM mean $3.20$, Muon mean $3.53$.
+(b)~The pre-specified analysis: pairwise TOST differences with 90\% CIs against the
+$\pm 1.5$ (dashed) and $\pm 2.0$ (dotted) margins; equivalence holds between Muon and AdamW
+at the $1.5$-SI margin at uncorrected $\alpha=0.05$ and at the $2.0$-SI margin under
+multiplicity correction
+(Table~\ref{tab:tost-si}; corrected-level and
+margin-sensitivity verdicts in Table~\ref{tab:tost-sens}).
+(c)~Secondary point-null check: per-optimizer mean $\pm$ SD with one-sample $t$-tests
+against SI$=1$ ($p \leq 1.2\times10^{-4}$, Holm-corrected).
+(d)~Mean vs.\ median per optimizer; the Muon SI$=7.35$ outlier is flagged (the mean is
+reported alongside the median throughout). An orthogonalizing
+optimizer does not flatten the staircase.
+Panel summaries: (a)~per-seed index. (b)~primary TOST. (c)~point-null robustness. (d)~mean-median robustness.}
+\label{fig:si}
+\end{figure*}
+
+\subsection{Geometry: depth \texorpdfstring{$\geq 2$}{>= 2} sets the high-degree staircase step}\label{sec:arch}
+
+The staircase is width-flat but depth-thresholded. The staircase rank index (defined
+formally in Section~\ref{sec:setup}: per-seed Spearman correlation between degree and
+half-time, averaged over seeds; $+1$ = the low-to-high ordering is fully recovered, $0$ =
+no ordering, negative = inverted) holds at ${\sim}0.5$--$1.0$ across $d = 64$--$512$ with
+no trend. A single layer fails to learn the high degrees
+(degree-3/4 final correlation $\approx 0$, fit $0.71$), while two layers learn them (fit
+$0.91$). This is a capacity threshold, not a ``learned-immediately'' ordering; the
+single-layer degree-4 half-time of $50$ is the failed-to-learn floor, not instant
+acquisition.
+
+\paragraph{Proposition D1 (depth as interaction-order efficiency separation).}
+The depth threshold relates to a known interaction-order argument in approximation theory.
+The target is a sum of degree-$k$ Walsh monomials, $k$-wise multiplicative interactions
+across $k$ distinct positions of the Boolean input
+(Eq.~\eqref{eq:target}),
+\begin{equation}
+  g(x) \;=\; \sum_{k=1}^{4} \chi_{S_k}(x), \qquad
+  \chi_{S}(x) \;=\; \prod_{i\in S} x_i, \quad x\in\{\pm1\}^{L},
+  \label{eq:target}
+\end{equation}
+so the degree-4 term $\chi_{S_4}=\prod_{i\in S_4}x_i$ is a four-way product.
+A single transformer block provides one cross-position mixing stage (via self-attention)
+followed by position-wise nonlinearity, realizing interactions of order $\lesssim 2$
+efficiently; composing stages combines sub-products to raise the achievable interaction
+order, so reaching a four-way product efficiently calls for depth $\geq 2$
+(Eq.~\eqref{eq:order}):
+\begin{equation}
+  \underbrace{\text{order} \lesssim 2}_{\text{one mixing stage}}
+  \;<\; 4 \;\leq\;
+  \underbrace{\text{order achievable}}_{\text{two mixing stages}} .
+  \label{eq:order}
+\end{equation}
+This ``composition doubles achievable interaction order'' intuition is consistent with
+depth-separation results for transformers \citep{sanford2023transformers}, which establish
+that some sequence functions require additional depth or width that grows with the
+interaction complexity.  Because softmax attention and Gaussian Error Linear Unit (GELU) are
+universal approximators at finite width, the argument is an efficiency
+separation, not a representability impossibility: a one-layer model can in principle
+express degree 4 at sufficiently large $d$, but our $d = 64$--$512$ sweep is
+width-flat, indicating that width alone does not resolve the gap.
+The observed scale sensitivity (the two-layer recovery is a high-variance, bimodal pocket
+specifically at $L=24$, while the surrounding 24-configuration scale grid shows the
+staircase order present at every configuration; Section~\ref{sec:scale}) is consistent
+with this reading: a constants-limited efficiency gap is expected to close gradually and
+unevenly as capacity grows, rather than producing a sharp phase boundary.
+\emph{Scope}: this framing applies only to the depth threshold; we explicitly do not
+extend it to the component-ownership result of Section~\ref{sec:ownership}, which is AdamW-specific and is
+contradicted by the Muon arm as an optimizer-invariant representability claim.
+
+\paragraph{Proposition G1 (staircase order from Walsh-basis gradient correlation).}
+The low-to-high degree acquisition order (Section~\ref{sec:si}) is accounted for by a
+gradient seeding argument on the orthonormal Walsh basis.
+At small initialization the population gradient of the mean squared error (MSE) loss on the degree-$k$ component
+is non-negligible only once lower-degree structure has been partially fitted,
+because $\chi_{S_k}$ (a $k$-wise product) is reachable in the network's function space
+only after the composing sub-products exist
+(Eq.~\eqref{eq:gradseed}):
+\begin{equation}
+  \left.\frac{\partial \mathcal{L}}{\partial \theta}\right|_{\deg\,k}
+  \;\propto\; \big\langle \chi_{S_k},\, r_\theta \big\rangle, \qquad
+  r_\theta \;=\; g - f_\theta \ \ (\text{residual}),
+  \label{eq:gradseed}
+\end{equation}
+which stays ${\approx}0$ for high $k$ until the lower-degree residual is reduced.
+This hierarchical gradient seeding (low degree seeds high degree) predicts a low-to-high
+acquisition order that reflects the target's monomial structure and the
+orthonormality of the Walsh basis \citep{abbe2021staircase,abbe2023leap}, not of the
+optimizer's preconditioner.
+A diagonal or spectral preconditioner can rescale how fast each degree advances
+(timing) but cannot manufacture gradient signal along a direction where the reachable
+gradient is zero.
+The TOST equivalence in Section~\ref{sec:si} is precisely this prediction: the staircase
+order reflects the target's basis geometry and is invariant across the optimizers tested,
+while timing is optimizer-dependent.
+
+\paragraph{Corollary 1 (timing--geometry separation).}
+Under the Walsh-basis gradient seeding of Proposition~G1, let $P$ be any positive-definite
+preconditioner applied to the gradient (diagonal for AdamW-type, spectral for Muon-type).
+Then, under the two assumptions stated below, $P$ rescales the per-degree advancement rate
+(timing) but does not alter the reachable
+acquisition order, because $P$ cannot produce a nonzero update component along a Walsh
+direction $\chi_{S_k}$ whose reachable gradient $\langle \chi_{S_k}, r_\theta \rangle$ is
+zero. Hence acquisition order is preconditioner-invariant while acquisition time is
+preconditioner-dependent; the optimizer is a clock, not a compass. Two assumptions enter:
+(i)~the small-initialization regime under which the residual-seeding argument of
+Proposition~G1 holds (already assumed there); and (ii)~that $P$ maps the zero-gradient
+Walsh subspace to itself.
+Step~(ii) is empirically supported by Section~\ref{sec:si}; a formal proof for
+orthogonalized updates is left open.
+
+\paragraph{Empirical confirmation of the bootstrap (ladder necessity).} Proposition~G1's
+gradient-seeding logic predicts that a degree-$k$ component is reachable only once the
+lower-degree structure has been fitted, so the nested ladder should be able to bootstrap an
+optimizer into a degree it cannot reach in isolation. SGDM exhibits exactly this. On the
+isolated single-degree-3 target it fails completely (final fit $\approx 0$, all five seeds;
+shown later in Fig.~\ref{fig:pure3}), yet on the nested staircase it reaches a high overall fit
+($0.85$) by acquiring the scaffolding degrees: degrees 1--2 are learned (final Walsh
+correlation $\approx 0.59$), degree 3 is partly learned (mean $0.41$, 10/15 seeds above
+$0.3$), while degree 4 remains largely unlearned (mean $0.10$, 2/15 above $0.3$;
+Fig.~\ref{fig:ladder}). AdamW and Muon fit both the isolated target and the ladder. The
+ladder is thus necessary for SGDM's degree-3 acquisition (the lower degrees seed
+the gradient signal for the higher one, as Proposition~G1 requires), and the same
+acquisition order holds across optimizers.
+
+\paragraph{Target-family generality of the acquisition order.} Proposition~G1 attributes
+the low-to-high order to the target's monomial structure, not to the particular equal-weight
+staircase used above. Two alternative target families test this directly, replacing
+$g=\sum_k\chi_{S_k}$ by $g=\sum_k a_k\chi_{S_k}$ (Section~\ref{sec:setup}). On the
+inverse-weighted family $a_k=2^{k}$ (high-degree monomials dominate the loss), acquisition
+still ascends from low to high degree (rank index $+0.61$
+under AdamW, $+0.83$ under Muon; $n=15$); on the gapped equal-weight support
+$\{1,3,4\}$ it likewise ascends ($+0.77$/$+0.63$); and on geometric decay $a_k=2^{-k}$ it is
+noisier but non-inverting
+($+0.37$/$+0.25$, the large seed spread coming from the tiny high-degree amplitudes). The
+low-to-high order is thus a property of the monomial ladder rather than the equal-weight
+construction, as Proposition~G1 predicts. The claim is scoped to AdamW and Muon: SGDM does
+not fit the inverse-weighted target (median fit $0.11$) and is therefore fit-gated out of
+its ordering comparison (Fig.~\ref{fig:targetfamily}).
+
+\paragraph{Task-instance generality of the acquisition order.} The staircase cells above
+share one fixed random draw of the monomial sets (which bit subsets $S_k$ carry each
+degree). To rule out a single-instance artifact, three fresh random draws of the monomial
+sets (same $L=16$, one monomial per degree $1$--$4$, equal weights) were each trained
+under AdamW and Muon ($n=5$ seeds per cell, 30 runs) and analyzed with exactly the
+estimators and fit gate of Section~\ref{sec:setup} (ordinal ties); an accompanying $n=8$
+fresh-seed re-run of the original draw under both optimizers reproduces the published
+cell values through the same pipeline (median fit $0.944$/$0.954$, rank index
+$+0.73$/$+0.90$ for AdamW/Muon, against $+0.67$/$+0.52$ at the original seed counts),
+anchoring the comparison. All six draw$\times$optimizer cells are learnable and clear the
+$0.85$ fit gate (median final fit $0.865$--$1.000$), and five of the six show a clearly
+positive rank index: $+0.84\pm0.08$ (AdamW) and $+0.88\pm0.10$ (Muon) on the second draw,
+$+0.96\pm0.08$ and $+0.52\pm0.59$ on the third, and $+0.72\pm0.27$ for Muon on the first.
+The sixth cell (first draw, AdamW) is reported in full because it is an informative
+failure mode rather than a counterexample: it clears the gate exactly at the
+three-of-four-components plateau (median fit $0.865$; per-seed fits
+$0.704/0.865/0.865/0.865/1.000$), because degree 4 is acquired within the $4{,}000$-step
+budget in only $1/5$ seeds on this draw (Muon: $2/5$), and the censored-at-noise degree-4
+half-times of the non-acquiring seeds drag the all-seed rank index to $+0.04\pm0.61$.
+Where the ordering is adjudicable it is preserved: the one acquiring AdamW seed shows the
+full ascending staircase (half-times $50/150/250/650$, rank $+1.0$), and restricted to
+degree-4-acquiring seeds every one of the six cells has rank index $+0.84$ to $+1.00$.
+The matched-fit comparison makes the geometry--timing reading explicit on fresh
+instances: at each draw's AdamW-median target fit, the pointwise per-degree correlation
+vectors of AdamW and Muon agree to within $0.04$ per degree, including degree 4 on the
+hard draw, where both sit at ${\approx}0$, while the median step to reach that fit
+differs by $3.3$--$5.7\times$ (AdamW $2{,}950$--$4{,}000$ vs.\ Muon $700$--$1{,}050$).
+Per-cell SI stays on the staircase side throughout (cell means $2.1$--$3.3$). Neither
+the order nor the index is therefore a property of the particular published monomial
+draw; what varies across instances is whether the top degree is reached within budget,
+not the order in which degrees arrive.
+
+\begin{figure*}[htbp]
+\centering
+\figtikz[0.95\linewidth]{C_staircase_rho}
+\caption{Panels (a)--(c) show seed-mean per-degree absolute Walsh-correlation trajectories for AdamW, SGDM, and Muon, respectively ($n=15$/optimizer; $d=128$, $D=2$); linetype denotes degree. Across optimizers
+the per-degree acquisition order is preserved rather than flattened, supporting
+the staircase-geometry equivalence result of Fig.~\ref{fig:si}.
+(d)~Per-seed first threshold-crossing steps (|$\mathrm{corr}$| $\geq 0.3$) among runs that cross the threshold; non-acquiring runs are omitted. Observed crossings occur earlier for lower degrees, while optimizer-dependent timing and top-degree acquisition fractions differ.
+Panel summaries: (a)~AdamW acquisition. (b)~SGDM acquisition. (c)~Muon acquisition. (d)~onset distributions.}
+\label{fig:rho}
+\end{figure*}
+
+\begin{figure}[htbp]
+\centering
+\figtikz[0.82\linewidth]{C_pure3_speedup}
+\caption{Time to acquire a single isolated degree-3 monomial target
+($d=128$, two layers, $L=16$ bits, 5 seeds per optimizer).
+(a)~Strip chart of per-seed acquisition half-times with mean crossbar. AdamW and Muon both reach final fit correlation
+$\approx 1.0$, but Muon acquires the target in $100 \pm 0$ steps versus AdamW's mean
+$660$ steps ($6.6\times$ slower). SGDM fails to learn the isolated target
+(final fit $\approx 0$ for all seeds), so it is shown as a failure marker rather than a
+half-time. The optimizer sets the acquisition time while the single-component geometry is
+held fixed.
+(b)~Bootstrap distribution of the AdamW/Muon half-time ratio ($20{,}000$
+resamples): the speedup interval excludes $1$ comfortably.
+(c)~Matched-fit control: AdamW and Muon both fit the isolated target
+($\approx 1.0$), so the timing contrast is not a fit-quality confound; SGDM is
+the failure floor.
+(d)~Per-degree reported half-times on the nested ladder by optimizer; stored zero/floor values are retained, and SGDM does not show a monotone degree-3-to-degree-4 median.
+Panel summaries: (a)~isolated-target timing. (b)~bootstrap speed ratio. (c)~matched-fit control. (d)~ladder half-times.}
+\label{fig:pure3}
+\end{figure}
+
+\subsection{Timing: the optimizer sets when emergence happens}\label{sec:timing}
+
+Muon advances induction-head emergence by $1.6$--$3.7\times$ over AdamW (growing with context length) and ${\sim}6.9$--$12\times$ over SGDM
+(Table~\ref{tab:timing}). This optimizer-driven acceleration is the topical counterpart of
+recent work on accelerating grokking \citep{park2025kagrokking}, here isolated to timing at
+fixed acquisition geometry. A ``zero cross-seed variance'' signature is reported with a caveat: Muon emergence steps are $30$--$70$ and AdamW $48$--$90$ on a fine 10-step
+evaluation grid; AdamW is also zero-variance at $L=128$ ($90 \pm 0$),
+so zero-variance is partly grid coarseness, not a Muon-exclusive phenomenon; the
+timing advance itself is robust (Fig.~\ref{fig:timing}). A matched-cadence robustness
+check that evaluates all three optimizers on the same coarse 100-step grid
+(Appendix~\ref{app:robustness}) confirms the optimizer
+ordering (SGDM slowest at every $L$, AdamW separating from Muon at $L=256$), without
+relying on different evaluation cadences for different optimizers; the matched-cadence
+ratios are AdamW/Muon $1.0$/$1.0$/$2.6\times$ and SGDM/Muon $2.9$/$4.8$/$4.8\times$ at
+$L=64$/$128$/$256$, floored lower bounds because Muon sits at that grid's 100-step
+first-evaluation floor everywhere (Table~\ref{tab:timing} marks each cell's cadence).
+
+Combined with Section~\ref{sec:si}, this gives the dissociation directly for the staircase
+geometry: the per-degree order/difficulty geometry is optimizer-invariant at matched fit
+(degrees 1--3 $\approx 0.55$, degree 4 lags, under all optimizers) while the time to reach
+that geometry differs ${\sim}4.5\times$.
+
+The cleanest isolation of the timing mechanism is on a single-degree target.
+Trained directly on one degree-3 monomial (rather than the nested ladder), AdamW and Muon
+both fit it to near-perfect correlation ($\approx 1.0$), but Muon acquires it in
+$100 \pm 0$ steps versus AdamW's mean $660$ steps, a $6.6\times$ timing advance with the
+geometry held trivially fixed (one degree, one component; Fig.~\ref{fig:pure3}). SGDM never
+learns the isolated target (final fit $\approx 0$ across all five seeds), so its half-time
+is a failed-to-learn floor, not a fast acquisition. This single-degree control confirms
+that the optimizer moves when a component is acquired, not what is acquired.
+
+\begin{figure}[htbp]
+\centering
+\figtikz[\linewidth]{C_ownership_localize}
+\caption{Layer-resolved Muon freeze responses ($d=128$, $D=2$, $n=15$/arm).
+(a)~The both-frozen control has median degree-4 correlation $+0.002$, excluding a leaked-readout explanation. Layer-0 attention and MLP freezes preserve degree 4 ($+0.499$/$+0.469$); layer-1 attention and MLP freezes reduce it to $+0.022$/$+0.183$. The sensitivity therefore localizes to layer 1, with seed-heterogeneous residual acquisition rather than evidence that either layer-1 sub-network alone reliably carries degree 4.
+(b)~Per-seed degree-4 distributions; $7/15$ layer-1-attention-frozen and $8/15$ layer-1-MLP-frozen seeds exceed the $0.15$ threshold.
+(c)~Median fit by arm: single layer-resolved freezes retain fit $0.869$--$1.000$, while the both-frozen floor drops to $0.710$.
+(d)~Fraction of seeds above the acquisition threshold.
+Panel summaries: (a)~freeze-arm medians. (b)~per-seed distributions. (c)~fit control. (d)~acquisition fractions.}
+\label{fig:ownershiploc}
+\end{figure}
+
+\begin{figure}[htbp]
+\centering
+\figtikz[\linewidth]{C_case}
+\caption{Per-degree Walsh-correlation trajectories for a single seed
+(seed 0, $d=128$, $D=2$, 4 heads, AdamW, 4000 steps), each color one degree (1--4).
+(a)~Unfrozen trajectories: all four degrees are acquired in staircase order, with
+degree~4 reaching $+0.427$.
+(b)~Attention-frozen trajectories: degrees~1--3 still rise to comparable plateaus, but
+degree~4 is held at zero throughout (final $-0.003$, no excursion above $+0.018$), making
+the attention pathway the training-necessity locus for the top degree under AdamW. This
+seed is representative of the population: 14/15 attention-frozen seeds finish with
+degree-4 correlation below $+0.1$ versus 6/15 for the unfrozen arm (mean $+0.214$).
+Contrast with the optimizer-aggregated per-degree spread in Fig.~\ref{fig:rho}, which does
+not show the freeze.
+(c)~Degree-4 zoom: the frozen arm's degree-4 trace stays pinned near zero while the
+unfrozen arm's rises.
+(d)~Per-seed final correlations across all 15 seeds: the freeze block on degree~4 is
+seed-consistent, and degrees 1--3 are matched across arms.}
+\label{fig:case}
+\end{figure}
+
+\begin{table}[htbp]
+\centering
+\caption{In-context-learning (ICL) emergence step by context length and optimizer. Ratios are relative to Muon (fastest).
+Values are cell means. Superscripts mark each cell's evaluation cadence:
+$^{\mathrm{f}}$ = fine grid (eval\_every=10, $n=5$), $^{\mathrm{c}}$ = coarse main grid
+(eval\_every=100, $n=10$); a ratio whose two cells carry different marks mixes cadences
+(each cell uses its best-resolved grid). On the fully matched coarse grid
+(Fig.~\ref{fig:timing}b) the ratios are AdamW/Muon $1.0$/$1.0$/$2.6\times$ and
+SGDM/Muon $2.9$/$4.8$/$4.8\times$ at $L=64$/$128$/$256$, lower bounds because Muon (and
+AdamW at $L\leq128$) sits at that grid's first-evaluation floor of $100$ steps.
+AdamW is $1.6$--$3.7\times$ slower than Muon, growing with $L$;
+SGDM is ${\sim}6.9$--$12\times$ slower.}
+\label{tab:timing}
+\resizebox{\linewidth}{!}{%
+\begin{tabular}{lcccccc}
+\toprule
+$L$ & Muon (steps) & AdamW (steps) & AdamW/Muon & SGDM (steps) & SGDM/Muon \\
+\midrule
+64  & $30 \pm 0$\,$^{\mathrm{f}}$ & $48 \pm 4$\,$^{\mathrm{f}}$   & $1.6\times$ & $290 \pm 30$\,$^{\mathrm{c}}$ & $9.7\times$ \\
+128 & $40 \pm 0$\,$^{\mathrm{f}}$ & $90 \pm 0$\,$^{\mathrm{f}}$   & $2.3\times$ & $480 \pm 75$\,$^{\mathrm{c}}$ & $12\times$  \\
+256 & $70 \pm 0$\,$^{\mathrm{f}}$ & $260 \pm 49$\,$^{\mathrm{c}}$ & $3.7\times$ & $480 \pm 40$\,$^{\mathrm{c}}$ & $6.9\times$ \\
+\bottomrule
+\end{tabular}%
+}
+\end{table}
+
+\subsection{Scale: the staircase order survives a 24-configuration grid; \texorpdfstring{$L=24$}{L=24} remains a sensitive point}\label{sec:scale}
+
+A 24-configuration grid crossing $L\in\{16,24,32\}$, $d\in\{256,512\}$,
+depth $\in\{2,4\}$ and both optimizers (96 runs; 5 seeds per $d=256$ cell, 3 seeds per
+$d=512$ cell) tests whether the acquisition order is present away from the $d=128$,
+$L=16$ default. It is: the mean rank index is positive in every configuration (24/24,
+range $+0.035$ to $+1.000$) and the AdamW/Muon acquisition order agrees in sign in 12/12
+configurations (mean $|\Delta\text{rank}|=0.265$, signed $-0.099$, within seed noise), so
+the optimizer-invariant order of Section~\ref{sec:si} is also present at $1.5$--$2\times$
+this paper's default width and input length, with depth flat across the grid (mean rank
+$0.460$ at depth 2 vs $0.461$ at depth 4) and width showing only a slight, likely
+sub-noise decline ($0.505$ at $d=256$ vs $0.417$ at $d=512$). One point is disclosed as
+sensitive rather than smoothed over: $L=24$ is the hardest and noisiest cell (mean of the
+per-cell median fit $0.859$, run-level median $0.866$, $2/32$ runs solved, mean rank
+$0.263$; at $n=5$ per optimizer the rank-index 95\% CIs there include 0 for both AdamW
+$[-0.08,+0.88]$ and Muon $[-0.21,+0.58]$), it is non-monotone in $L$, and its per-seed fit
+is bimodal, clustering at the three-of-four-components value $\sqrt{3/4}\approx0.866$ and
+at $1.0$. It is the same point flagged by the small-sample two- and four-seed audits that
+motivated this grid (Fig.~\ref{fig:cscale} and Appendix~\ref{app:robustness}) and by the
+freeze reversal of Section~\ref{sec:ownership}, and the grid establishes it as a genuine
+high-variance pocket rather than an undersampling artifact. Because the grid samples a
+$1.5$--$2\times$ window in width and input length and resolves no trend in either, we
+report it as a bounded robustness check on the presence of the order across scale, not as
+a scaling law; the corresponding row of Table~\ref{tab:evidence-ledger} carries that scope
+tag.
+
+\begin{figure}[htbp]
+\centering
+\figtikz[\linewidth]{C_timing}
+\caption{(a)~In-context-learning (ICL) emergence step vs.\ context length on a log-log scale
+(fine-grid 5 seeds for Muon/AdamW at $L\in\{64,128\}$; 10 seeds per cell otherwise; AdamW, Muon, SGDM).
+Mean $\pm$ std shown with per-seed scatter (jittered). Muon is consistently fastest across
+$L\in\{64,128,256\}$; SGDM is ${\sim}6.9$--$12\times$ slower and AdamW $1.6$--$3.7\times$ slower
+than Muon, with the AdamW gap growing with context length. The optimizer sets the timing while the
+emergence geometry remains invariant.
+(b)~Matched-cadence control (every run evaluated every 100 steps, 10 seeds per
+cell): on the shared grid SGDM is unambiguously slowest and AdamW separates
+from Muon at $L=256$; Muon and AdamW are grid-floored equal at $L\leq128$, the
+reason the fine grid resolves those cells in (a).
+(c)~Acceleration ratios with 95\% bootstrap CIs: AdamW/Muon $1.6$--$3.7\times$
+growing with $L$; SGDM/Muon ${\sim}6.9$--$12\times$.
+(d)~Per-seed emergence steps across the plotted cells: fine-grid values for Muon and AdamW where available, and main-grid values for AdamW at $L=256$ and SGDM at all context lengths. The separation is visible in the underlying seed distributions.
+Panel summaries: (a)~emergence-versus-length. (b)~matched-cadence control. (c)~acceleration intervals. (d)~per-seed emergence.}
+\label{fig:timing}
+\end{figure}
+
+\subsection{Synthesis: two probes, and the geometry that lets them be compared}\label{sec:synthesis}
+
+The paper's lead result is the two-probe ownership dissociation: training-necessity
+(freezing; Section~\ref{sec:ownership}) is optimizer- and config-dependent (AdamW vs
+Muon; SGDM uninformative on freeze), while the trained computation (mean-ablation;
+Section~\ref{sec:ablation}) ranks the degree-4-selective carrier first at the layer-1 MLP
+in point estimate under both optimizers (absolute CIs include zero at $n{=}8$; paired
+interval support only under Muon). That dissociation is
+readable only because the acquisition geometry underneath is optimizer-invariant: the
+staircase index is equivalence-tested across optimizers (Section~\ref{sec:si}), the
+depth threshold and low-to-high order are architecture- and target-owned
+(Section~\ref{sec:arch}), and only emergence time moves with the optimizer
+(Section~\ref{sec:timing}, $1.6$--$12\times$). At matched fit the per-degree geometry is
+invariant while the time to reach it differs. The freeze leg is scoped honestly (AdamW
+attention-necessity at $d=128$ tightens at $L=24$, $d=256$; Muon two-path redundancy at
+$d=128$ reverses to an attention rescue at that larger audit), and the
+${\sim}3$-D induction subspace (Appendix~\ref{sec:subspace}) remains a bounded
+optimizer-invariant null. As measured, the claim bounds the optimizer-flattening
+account (no flattening of the staircase) and the fixed-ansatz account (dimension yes,
+directions not detected under any optimizer). The closing metaphor is unchanged: the
+optimizer is a clock, not a compass---it sets timing, not the order of acquisition, and
+not (in the ablation sense) where the finished computation is deposited.
+
+Table~\ref{tab:evidence-ledger} summarizes these eight claims with their evidence grades and scope boundaries. Figure~\ref{fig:dissoc} collects the four dissociation measurements.
+Panel~(A) shows the SI strip-chart with the TOST result; panel~(B) the per-freeze-arm
+degree-4 final correlations (attention freeze mean $+0.035$ vs unfrozen $+0.214$ vs
+MLP-freeze $+0.309$); panel~(C) emergence steps by context length and optimizer
+(Muon fastest, SGDM ${\sim}6.9$--$12\times$ slower, AdamW $1.6$--$3.7\times$ slower); and
+panel~(D) ansatz capture vs the random baseline ($0.0061$), below which 62 of 63 runs
+fall. In panel~(A) the per-optimizer mean SI sits well above $\mathrm{SI} = 1$ for all
+three optimizers (means ${\approx}3$, with only isolated single seeds near
+$\mathrm{SI} = 1$); no optimizer's distribution approaches the simultaneous-learning
+($\mathrm{SI} = 1$) regime that the spectral-flattening account predicts.
+
+\begin{table}[htbp]
+\centering
+\caption{Evidence ledger. The lead row is the freeze$\perp$ablation ownership
+dissociation (RQ1--RQ2); subsequent rows are the geometry, timing, and robustness legs
+that make the dissociation interpretable. Rows identify equivalence claims, scoped
+positives, or bounded nulls.}
+\label{tab:evidence-ledger}
+\small
+\begin{tabular}{@{}>{\raggedright\arraybackslash}p{0.22\linewidth}>{\raggedright\arraybackslash}p{0.25\linewidth}>{\raggedright\arraybackslash}p{0.17\linewidth}>{\raggedright\arraybackslash}p{0.26\linewidth}@{}}
+\toprule
+Claim & Diagnostic & Evidence & Boundary \\
+\midrule
+\textbf{Lead:} freeze $\perp$ ablation ownership dissociation & Freeze arms + trained mean-ablation + paired bootstrap & Freeze $n=15$/$5$/$8$ by arm; ablation $n=8\times2$ optimizers & Freeze is optimizer- and config-dependent (Muon reverses at $L{=}24$, $d{=}256$); ablation MLP L1 selectivity CIs include 0 at $n{=}8$, Muon paired contrast excludes 0 \\
+\addlinespace[4pt]
+Staircase geometry is optimizer-equivalent (RQ3 primary) & Staircase index TOST & $n=15$ per optimizer & Analysis-plan $\pm1.5$ SESOI: uncorrected pass, Holm partial for Muon pairs; $\pm2.0$ is multiplicity-safe sensitivity (all pairs Holm $p\le0.006$), not a second pre-specified primary \\
+\addlinespace[4pt]
+Depth $\geq2$ required for high-degree acquisition (geometry) & Depth/width sweep degree-4 correlations & AdamW depth$\times$width cells & Efficiency threshold, not expressivity impossibility; width does not substitute for depth \\
+\addlinespace[4pt]
+AdamW attention training-necessity (RQ1 freeze) & Attention vs MLP freeze degree-4 outcomes & AdamW $n=15$ ($d=128$) $+$ $n=8$ ($L=24$, $d=256$) & Scoped to AdamW; tightens with scale (8/8 fail under attn-freeze at large audit) \\
+\addlinespace[4pt]
+Muon degree-4 training-time two-path redundancy, config-dependent & Layer-resolved freeze grid + both-frozen floor ($d=128$) $+$ freeze at $L=24$, $d=256$ & Muon $n=15$/arm ($d=128$) and $n=8$/arm (large audit) & Floor $+0.002$ at $d=128$; protocol/path-dependent, not a static circuit; reverses at larger audit; SGDM freeze uninformative \\
+\addlinespace[4pt]
+Optimizers mostly move timing (RQ4) & Emergence-step comparisons at matched targets & Context-length timing grid & Timing ratios are task/testbed local \\
+\addlinespace[4pt]
+Induction ansatz directions are not detected & PCA-capture vs random baseline & 63-run subspace audit & Bounded null; PCA dimension remains optimizer-dependent \\
+\addlinespace[4pt]
+Staircase order survives scale (robustness, not a law) & 24-configuration grid & 96 runs; positive rank index 24/24, sign agreement 12/12 & $L=24$ high-variance/bimodal pocket (rank CIs include 0 at $n=5$) \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{figure}[htbp]
+\centering
+\figtikz[\linewidth]{C_scale}
+\caption{Scale robustness of the depth threshold.
+(a)~Depth threshold at $L=24$, $d=256$: median final Walsh correlation by
+optimizer and depth (Degree~3 grey, Degree~4 orange). Degree~4 emerges only
+with two layers; the two-layer AdamW median is driven by one seed, while both
+one-layer arms keep Degree~4 near zero.
+(b)~Per-seed Walsh correlations behind the (a) medians: the two-layer AdamW
+recovery is seed-sensitive, not a robust acquisition.
+(c)~Scale-grid medians (Degree~4 correlation per
+$L{\times}d{\times}$depth${\times}$optimizer configuration). The staircase order
+survives scale; $L=24$ remains a high-variance pocket rather than a monotone
+trend.
+(d)~Attention-freeze audit at $L=24$ (8~seeds/optimizer; dashed line at
+threshold~$0.3$): freeze suppresses Degree~4 under AdamW (8/8 below) but
+rescues it under Muon (8/8 above), so the Muon ownership pattern is itself
+config-dependent.}
+\label{fig:cscale}
+\end{figure}
+
+\section{Related work}\label{sec:related}
+\begin{figure*}[htbp]
+\centering
+\figtikz[0.92\linewidth]{C_dissoc}
+\caption{Two-probe ownership plus geometry$\perp$timing summary
+($n=15$ per arm unless noted).
+(a)~SI strip (Muon vs.\ AdamW, $n=15$ each): annotated $\Delta=+0.55$
+($p_{\mathrm{TOST}}=0.044$), $90\%$ CI $[-0.36,1.46]$; TOST equivalence within
+$\pm2$ SI under multiplicity correction, and at the pre-specified $\pm1.5$ margin
+at uncorrected $\alpha$ (Tables~\ref{tab:tost-si} and~\ref{tab:tost-sens}); dashed
+line at SI$=1$ (simultaneous learning).
+(b)~Degree-4 final Walsh correlation by freeze arm ($d=128$, $D=2$, AdamW,
+$n=15$)---training-necessity leg; attention freeze suppresses high-degree
+acquisition (mean $+0.035$, 14/15 seeds fail) while MLP-freeze does not
+($+0.309$). Complementary ablation: Table~\ref{tab:ablation}.
+(c)~ICL emergence step (cell means) by $L\in\{64,128,256\}$: Muon $30/40/70$ and
+AdamW $48/90$ from the fine grid; AdamW $260$ at $L=256$ and SGDM
+$290/480/480$ from the 100-step main grid ($n=10$); AdamW $1.6$--$3.7\times$
+slower than Muon, SGDM ${\sim}6.9$--$12\times$ slower (Table~\ref{tab:timing}).
+(d)~Mean ansatz-direction capture vs.\ random baseline $0.0061$ (red dashed);
+$62/63$ runs in the audit fall below baseline.
+Panel summaries: (a)~SI equivalence. (b)~freeze (RQ1). (c)~emergence timing.
+(d)~capture null.
+}
+\label{fig:dissoc}
+\end{figure*}
+
+
+\paragraph{Component attribution: freeze vs.\ ablation.}
+Causal interventions during training (gradient freezes, path patching) and interventions
+on trained networks (activation ablation, mean ablation) are often treated as
+interchangeable readouts of ``which component does the work.'' The present results show
+they need not agree: freezing measures training necessity along a path, while ablation
+measures where the finished computation is deposited. We therefore cite sub-network
+ablation methodology \citep{nanda2023progress} as the trained-computation probe and keep
+freeze arms as a separate training-necessity probe (Section~\ref{sec:ownership}), rather
+than as a single undifferentiated attribution toolkit.
+
+\paragraph{Grokking and mechanistic interpretability.}
+The grokking phenomenon, delayed generalization after prolonged overfitting on small
+algorithmic datasets, was identified by \citet{power2022grokking}. Mechanistic
+interpretability of grokking was pioneered by \citet{nanda2023progress}, who
+reverse-engineered the Fourier-rotation algorithm learned on modular addition and identified three
+training phases (memorization, circuit formation, cleanup); our work studies an analogous
+phase structure on the Boolean degree-staircase. Generalization dynamics beyond standard
+algorithmic tasks are surveyed in \citet{liu2023omnigrok}.
+
+\paragraph{Emergence geometry and simplicity bias.}
+\citet{rende2024distributional} establish a distributional simplicity bias: transformers
+acquire low-degree token interactions first. Sections~\ref{sec:si}/\ref{sec:arch} study
+the same phenomenon mechanistically; the leap-complexity account \citep{abbe2023leap} is a
+distinct line.
+Simplicity bias in transformers on Boolean functions has been studied from a circuit
+perspective by \citet{bhattamishra2023simplicity} and characterized as a low-sensitivity
+inductive bias by \citet{vasudeva2025lowsensitivity}; our staircase-equivalence result
+(Section~\ref{sec:si}) shows this bias is preserved by orthogonalizing updates.
+Hidden phase transitions in Boolean parity learning, where SGD makes invisible progress
+until a sudden transition, are the setting for \citet{barak2022hidden}, providing a
+Boolean-function-learning analogue to our staircase emergence. Our degree-staircase
+extends the single-parity phase-transition picture of \citet{barak2022hidden} to a
+multi-degree sequential staircase: rather than one hidden-progress episode
+culminating in a single parity transition, the network undergoes a cascade of $k=1\to4$
+acquisition events whose ordering is fixed by the target's monomial structure.
+
+\paragraph{Staircase / leap complexity theory.}
+The theoretical backbone for sequential degree acquisition is the staircase property of
+\citet{abbe2021staircase} and the leap-complexity theory of \citet{abbe2023leap}, which
+formalize how hierarchical target structure forces sequential acquisition under gradient
+descent. Proposition~G1 (Section~\ref{sec:arch}) instantiates this logic for the
+Walsh-basis gradient-correlation argument; Section~\ref{sec:discussion} details how our
+TOST result confirms the prediction and empirically extends it to an orthogonalizing
+optimizer (Muon) outside the gradient-descent family the original framework assumed.
+
+\paragraph{Induction heads and in-context learning.}
+Induction heads as the mechanistic substrate of in-context learning were identified by
+\citet{olsson2022induction}, who provided six lines of evidence, including causal
+intervention experiments, that induction heads are the primary source of in-context
+learning in attention-only transformers. The formal theoretical account of
+\citet{musat2025inductionheads} argues that induction-head
+emergence is confined to $3$ of a $19$-dimensional update subspace and that the
+emergence time grows quadratically in the input context length;
+Appendix~\ref{sec:subspace} tests
+and bounds the dimensional claim (ansatz-direction capture below baseline in 62/63 runs;
+mapping-validity caveat stated), while our emergence-step measurements (Section~\ref{sec:timing})
+grow monotonically with context length in the same direction, though at an
+optimizer-dependent rate rather than a single quadratic exponent.
+
+\paragraph{Transformer depth and expressivity.}
+Depth-separation results for transformers are established by \citet{sanford2023transformers},
+who show that some sequence functions require additional depth or width growing with
+interaction complexity. Proposition~D1 (Section~\ref{sec:arch}) invokes this composition
+argument: a one-mixing-stage block achieves interactions of order $\lesssim 2$, so
+degree-4 products require $D\geq 2$. Our empirical depth threshold ($D\geq 2$ for degree 4,
+width-flat across $d=64$--$512$) is consistent with the efficiency-separation
+framing of \citet{sanford2023transformers}: the boundary is not an expressivity
+impossibility (a sufficiently wide single layer can in principle represent degree 4), but
+an efficiency gap that our width sweep does not close. We position Proposition~D1 as an
+efficiency argument of the same family, not a new depth-separation theorem.
+
+\paragraph{Optimizer implicit bias.}
+The spectral / idealized-Muon account \citep{dragutinovic2026usemuon} predicts removal of
+the sequential simplicity bias; Section~\ref{sec:si} bounds it (no flattening,
+equivalence-tested). AdamW's implicit bias is an $\ell_\infty$ norm constraint
+\citep{xie2024adamw}, with a large-deviation analysis characterizing SGD's implicit bias
+more broadly \citep{neucom2026sgdbias}, distinct from the Nesterov-momentum / spectral
+dynamics of Muon \citep{beneventano2026spectraldynamics,bernstein2024anthology}; the AdamW-specific
+attention-ownership result
+(Section~\ref{sec:ownership}) is consistent with these optimizers solving the task via
+genuinely different internal routes while arriving at the same acquisition geometry.
+
+\paragraph{Sub-network ablation methodology.}
+The freeze-component / sub-network-ablation methodology follows
+\citet{dong2025randomattention}. Grokking has also been analyzed through the lens of
+norm- and stability-based generalization bounds \citep{neucom2026grokking}.
+
+\section{Discussion}\label{sec:discussion}
+
+\paragraph{Component ownership is a two-probe story: training-necessity is
+optimizer-dependent; trained-computation localization is a scoped point-estimate
+regularity.}
+The lead claim is a dissociation between two probes of component ownership
+(Sections~\ref{sec:ownership},~\ref{sec:ablation}). Training-necessity depends on the
+optimizer: attention must be trained under AdamW at $d=128$ (tightening at
+$L=24$, $d=256$), while under Muon a layer-1 training-time two-path redundancy leaves
+degree~4 intact at $d=128$ on the same architecture---and that Muon pattern itself
+reverses at the $L=24$, $d=256$ audit, where attention-freeze rescues rather than
+bypasses degree-4 acquisition. Trained-model ablation shows the optimizer dependence
+is of the training path, not of the finished function: the degree-4-selective carrier
+ranks first at the layer-1 MLP under both AdamW and Muon (selectivity $+0.369$/$+0.344$,
+robust in sign; absolute CIs include zero at $n{=}8$; paired MLP-minus-attention
+support only under Muon), and ablating trained attention degrades degrees 2--4
+collectively rather than selectively. The two probes answer different questions---whether
+training a component lies on the interventional path to acquiring degree~4 versus where
+the acquired computation resides---and only the freeze answer is clearly
+optimizer-dependent here. That split does not contradict the depth threshold
+(Proposition~D1): depth $\geq 2$ is required for degree-4 acquisition under both
+optimizers, but which sub-network must be \emph{trained} to acquire it is
+optimizer- and, under Muon, config-dependent. The freeze reversal likewise leaves the
+acquisition-\emph{order} reading intact (primary-cell SI TOST; positive rank index in
+24/24 scale-grid configurations). The optimizer-conditioned effect is confined to which
+sub-network must be trained to complete the top degree and whether the unfrozen circuit
+completes it at this difficulty pocket---a boundary condition on ownership, not on order
+geometry. This is consistent with evidence that different optimizers can follow
+qualitatively different training paths while reaching comparable task performance
+\citep{nanda2023progress,xie2024adamw}; here those paths nonetheless deposit the
+degree-4-selective computation at the same layer-1 MLP locus in point estimate (with the
+$n{=}8$ interval scope above). Scope tags for both probes are collected in
+Table~\ref{tab:evidence-ledger}.
+
+\paragraph{Acquisition geometry is optimizer-equivalent (TOST); timing is not.}
+The ownership dissociation is readable only because the acquisition geometry underneath
+is optimizer-equivalent under the analysis-plan TOST. The staircase-index TOST (Section~\ref{sec:si}) is the cleanest
+evidence: across AdamW, Muon, and SGDM, the per-degree order is equivalent within the
+pre-specified $1.5$-SI SESOI for all three pairs at uncorrected $\alpha=0.05$
+(Muon--AdamW $p_{\mathrm{TOST}}=0.044$, the marginal pair; Holm holds only for
+AdamW--SGDM at this margin), and within a $\pm 2.0$ multiplicity-safe sensitivity margin
+for all three pairs under Holm ($p\leq 0.006$). That ordering is what Proposition~G1
+predicts: low-to-high acquisition reflects the Walsh-basis gradient-correlation structure
+of the target, and no preconditioner can invent gradient signal along a direction where
+the reachable gradient is zero. Separately, the induction timing grid
+(Section~\ref{sec:timing}) shows Muon advancing emergence by $1.6$--$3.7\times$ over
+AdamW and ${\sim}6.9$--$12\times$ over SGDM without reorganizing the staircase order
+established above---orthogonalization as clock, not compass---consistent with
+\citet{beneventano2026spectraldynamics} and with reports that optimizer or architecture
+choice can accelerate grokking \citep{park2025kagrokking,lee2024grokfast}.
+
+\paragraph{The subspace null and its limits.}
+The induction-subspace result (Appendix~\ref{sec:subspace}) is the weakest leg. The
+${\sim}3$-D effective update dimension is a robust positive under AdamW
+(architecture-stable across context lengths; the PCA dimension itself is
+optimizer-dependent, Appendix~\ref{sec:subspace}); it is consistent with the circuit-level
+simplicity highlighted by \citet{olsson2022induction}. The ``directions not detected''
+reading, however, requires the mapping from the disentangled ansatz of
+\citet{musat2025inductionheads} into this architecture's parameter basis to be
+correctly specified. The planted-direction self-test validates projector arithmetic but
+not this mapping. We therefore report the result as ``we could not detect the ansatz
+directions (mapping unvalidated)'' rather than ``the ansatz is wrong''; upgrading to a
+strong claim would require planting the ansatz in a model that should exhibit it and
+verifying recovery ($\text{capture} \approx 1$).
+
+\paragraph{Relation to staircase / leap-complexity theory and prior work.}
+The staircase property \citep{abbe2021staircase} and leap-complexity theory
+\citep{abbe2023leap} predict that hierarchical target structure forces sequential
+acquisition under gradient descent. Our results relate to this picture in four moves,
+each marked as confirmation, extension, or only-consistent.
+
+\emph{Confirmation.} The TOST equivalence (Section~\ref{sec:si}) confirms that
+orthogonalizing updates (Muon) do not override the hierarchical gradient-seeding
+mechanism described by Proposition~G1: the staircase is architecture-and-target--imposed,
+not optimizer-imposed. The observed low-to-high degree order ($1\to4$) and cross-optimizer
+SI equivalence (pre-specified $\pm1.5$ uncorrected for all pairs; $\pm2.0$ under
+multiplicity correction) are a direct empirical confirmation that the acquisition order
+is a property of the target's basis geometry, exactly the qualitative prediction of
+\citet{abbe2021staircase,abbe2023leap}. We do not claim a formal theorem; the theory's
+conditions are stated for gradient-descent-family optimizers, and we confirm empirically
+that the prediction holds when those conditions are extended to Muon.
+
+\emph{Extension.} The staircase / leap-complexity framework was not developed for
+orthogonalizing optimizers. Our finding that Muon, an optimizer outside the gradient-descent
+family assumed by the theory, preserves the sequential acquisition order is an empirical
+extension: it suggests the hierarchical gradient-seeding mechanism is robust to
+spectral preconditioners, not merely a gradient-descent artifact. This is consistent with
+Proposition~G1's argument that the gradient signal along high-degree directions is
+structurally zero until lower degrees are fitted, independent of the preconditioner.
+
+\emph{Generalization of the Barak et al.\ picture.} \citet{barak2022hidden} study a
+single-parity phase transition, one hidden-progress episode followed by a single
+threshold crossing. Our degree-staircase generalizes this to a multi-degree sequential
+staircase: $k=1\to4$ acquisition events whose ordering is fixed by target monomial
+structure. The phase-transition intuition of \citet{barak2022hidden} is thus only-consistent
+with our picture (both involve hidden progress until a threshold), while the sequential
+multi-degree structure itself goes beyond their single-parity setting; we do not claim to
+subsume their theory.
+
+\emph{Depth threshold (only-consistent).} The depth-threshold (Proposition~D1) connects
+to the interaction-order framing: the staircase's highest step (degree 4) requires the
+composition of two mixing stages, which is an efficiency argument of the same family as
+the results in \citet{sanford2023transformers}. This is an only-consistent positioning:
+our empirical threshold is consistent with their depth-separation framing, but we observe
+it as an efficiency gap rather than proving a new separation theorem.
+
+\paragraph{Limitations.}
+\label{sec:limitations}
+
+The study is toy-scale (${\sim}400$k parameters, two layers; Boolean staircase + induction)
+and is offered as a controlled, multi-seed dissociation with open logs---the contribution
+PeerJ CS is asked to evaluate---not as a universal law of transformers or a new training
+algorithm. The lead freeze$\perp$ablation dissociation is scoped: freeze outcomes are
+optimizer- and configuration-dependent (AdamW attention-necessity at $d=128$ tightens at
+$L=24$, $d=256$; Muon two-path redundancy at $d=128$ reverses to an attention rescue at
+that audit; SGDM freeze arms are fit-gated and uninformative), and ablation MLP L1
+selectivity has wide CIs at $n=8$ (include zero in absolute terms; the Muon paired
+contrast excludes zero). The geometry leg that makes the dissociation interpretable
+(SI TOST and depth$\geq2$ on the staircase; induction timing ratios as a separate clock
+probe) is established under three optimizers; the induction subspace is a bounded null,
+not a positive dissociation pillar. The Section~\ref{sec:ownership} degree-4
+``half-time $\to 0$'' under attention-freeze is a failed-to-learn artifact (degree-4
+correlation $\approx 0$), so the result is a component-necessity (not ordering)
+statement; the overall fit gap is not significant at $n = 15$. The
+Appendix~\ref{sec:subspace} ansatz mapping construction could itself be the failure
+point (the self-test rules out mechanical bugs, not a construction mismatch), so we say
+``directions not detected'', not ``directions wrong''. Cell sizes are $n = 3$--$15$
+depending on the arm. A 24-configuration grid ($L\in\{16,24,32\}\times
+d\in\{256,512\}\times\text{depth}\in\{2,4\}$, both optimizers, 96 runs; 5 seeds per
+$d=256$ cell, 3 seeds per $d=512$ cell) shows the staircase order surviving that scale
+window: a positive mean rank index in 24/24 configurations ($+0.035$ to $+1.000$) and
+AdamW/Muon rank-index sign agreement in 12/12 configurations (mean
+$|\Delta\text{rank}|=0.265$, within seed noise)---a bounded robustness check, not a
+scaling law. $L=24$ remains a genuine high-variance, bimodal-fit pocket rather than a
+monotone scaling trend (mean of the per-cell median fit dips to $0.859$, with run-level
+median $0.866$ and $2/32$ runs solved; mean rank dips to $0.263$; at $n=5$ per
+optimizer the rank-index 95\% CIs still include 0 for both AdamW $[-0.08,+0.88]$ and
+Muon $[-0.21,+0.58]$), so the bounded-robustness framing for that point stands
+(Appendix~\ref{app:robustness}). Deeper or more complex tasks, where architecture depth,
+width, and optimizer choice may interact non-trivially, remain future work. The work is
+framed as emergence geometry rather than mechanistic interpretability: we attribute
+where and when components are acquired, without reverse-engineering the learned
+circuits themselves.
+
+\section*{Funding}
+This research received no external funding.
+
+\section*{Declaration of competing interest}
+The author declares no competing financial or personal interests.
+
+\section*{CRediT author statement}
+Zeyu Fu: Conceptualization, Methodology, Software, Investigation, Formal analysis,
+Writing -- original draft, Writing -- review \& editing.
+
+\section*{Data availability}
+All experiments are synthetic (Boolean degree-staircase and in-context induction streams)
+and fully specified in Section~\ref{sec:setup}. Training, probe, and analysis code, per-cell
+logs for the reported arms, and figure-generation scripts are openly available under open
+licenses (code: MIT; data and figures: CC~BY~4.0):
+\begin{itemize}
+  \item GitHub repository: \url{https://github.com/PeterPonyu/architecture-staircase}
+    (release tag \texttt{v1.5.4})
+  \item Zenodo archive (concept DOI):
+    \href{https://doi.org/10.5281/zenodo.21020348}{\nolinkurl{10.5281/zenodo.21020348}};
+    manuscript-matching version DOI (\texttt{v1.5.4}):
+    \href{https://doi.org/10.5281/zenodo.21882597}{\nolinkurl{10.5281/zenodo.21882597}}
+    (do not use older tags such as \texttt{v1.5.3} or earlier).
+\end{itemize}
+No third-party or restricted data are used. Checkpoints are not shipped; ablation results
+are archived as per-checkpoint mean-ablation logs.
+
+\appendix
+\setcounter{figure}{0}\renewcommand{\thefigure}{A\arabic{figure}}
+\setcounter{table}{0}\renewcommand{\thetable}{A\arabic{table}}
+% Keep hyperref anchors unique after the counter reset (avoids duplicate-destination warnings)
+\renewcommand{\theHfigure}{A\arabic{figure}}
+\renewcommand{\theHtable}{A\arabic{table}}
+
+\section{Supplementary robustness figures}\label{app:robustness}
+
+The small-sample scale-audit seeds and the matched-cadence timing check that
+previously appeared here as separate figures now live as panels of the main-body
+composites: the matched-cadence timing check is Fig.~\ref{fig:timing}(b), and the
+extended per-seed scale checks are Fig.~\ref{fig:cscale}(b) and~(d). The remaining
+appendix content is the induction-subspace audit (Fig.~\ref{fig:subspace}).
+
+\subsection{Induction-subspace bounded null}\label{sec:subspace}
+
+For completeness we report the program's weakest leg, a bounded null that does not bear on
+the geometry--timing dissociation. Estimators are those of Section~\ref{sec:setup}:
+captured fraction $\lVert P_{\mathcal{A}}\Delta\theta\rVert^{2}/\lVert\Delta\theta\rVert^{2}$
+onto the three idealized induction directions
+$\mathcal{A}=\{D_1,D_2,D_3\}$, and PCA effective dimension at $90\%$ variance. The
+induction-emergence update is single-digit
+dimensional at every context length (effective dimension ${\sim}3$, $L$-invariant and
+architecture-stable), a robust positive. The variance captured along the idealized
+3-parameter ansatz directions, however, is below the random-direction baseline ($0.0061$;
+the captured fraction of a synthetic isotropic $\Delta$ under the same projector)
+in 62 of 63 AdamW runs (45 main-grid $+$ 18 idealization-arm; median $0.00046$;
+Fig.~\ref{fig:subspace}). The planted-direction self-test ($=1.0$) validates the projector
+arithmetic but not the transport of the ansatz into this architecture's basis; if the
+mapping is mis-specified, capture $\approx 0$ is the trivial expected outcome. We therefore
+report this leg as ``we could not detect the ansatz directions (mapping unvalidated)'', not
+a proven ``emergence lives elsewhere''. Across optimizers the result is an
+optimizer-invariant null (AdamW, Muon, and SGDM alike, so it is not an AdamW artifact),
+not a positive subspace dissociation: the repeat task saturates in-context learning at the
+first evaluation (PCA dimension 1 at the point of solution for every optimizer), and the
+Markov task, which shows genuine emergence, has no AdamW baseline and gives an
+optimizer-dependent PCA dimension (Muon $\approx 5$ vs SGDM $\approx 2$ at matched
+in-context learning). Upgrading this leg to a positive would require recovering the ansatz
+from a planted-circuit model (capture $\approx 1$) first.
+
+\begin{figure}[htbp]
+\centering
+\figtikz[\linewidth]{C_subspace}
+\caption{Induction-head update subspace across context lengths $L\in\{64,96,128,192,256\}$
+(9 seeds per cell; AdamW; the 45 main-grid runs are plotted).
+(a)~Ansatz-direction capture (log scale): captured variance fraction for each seed
+(jittered); dashed line at the random baseline $0.0061$; 62 of the 63 audited runs
+(45 main-grid $+$ 18 idealization-arm) fall below,
+a bounded optimizer-invariant null (mapping-validity caveat retained).
+(b)~Effective update dimension (PCA, 90\% variance): per-seed values cluster near 3--4
+across all context lengths, confirming a ${\sim}3$-dimensional and architecture-stable
+emergence subspace.
+(c)~Ansatz-direction capture under all three optimizers (optaxis arm): capture
+stays at the random baseline under every optimizer, so the bounded null is
+optimizer-invariant.
+(d)~Captured variance vs surrogate effective dimension per run: the low
+capture is not an artifact of a high-dimensional surrogate (the
+mapping-validity caveat).}
+\label{fig:subspace}
+\end{figure}
+
+\bibliographystyle{plainnat}
+\clearpage
+\section*{Declaration of generative AI and AI-assisted technologies}
+
+During the preparation of this work the author used Claude (Anthropic; Claude~4
+and Claude~5 series models, including Opus and Fable variants) to assist with
+drafting and editing manuscript text, developing and reviewing analysis code,
+and preparing figures. After using this tool, the author reviewed and edited the
+content as needed and takes full responsibility for the content of the published
+article. No AI system generated scientific data or reported numerical results.
+
+\begin{thebibliography}{23}
+\expandafter\ifx\csname natexlab\endcsname\relax\def\natexlab#1{#1}\fi
+\providecommand{\url}[1]{\texttt{#1}}
+\providecommand{\href}[2]{#2}
+\providecommand{\path}[1]{#1}
+\providecommand{\DOIprefix}{doi:}
+\providecommand{\ArXivprefix}{arXiv:}
+\providecommand{\URLprefix}{URL: }
+\providecommand{\Pubmedprefix}{pmid:}
+\providecommand{\doi}[1]{\href{https://doi.org/#1}{\path{doi:#1}}}
+\providecommand{\Pubmed}[1]{\href{pmid:#1}{\path{#1}}}
+\providecommand{\bibinfo}[2]{#2}
+\ifx\xfnm\relax \def\xfnm[#1]{\unskip,\space#1}\fi
+\bibitem[{Abbe et~al.(2021)Abbe, Boix-Adser{\`a}, Brennan, Bresler and
+  Nagaraj}]{abbe2021staircase}
+\bibinfo{author}{Abbe, E.}, \bibinfo{author}{Boix-Adser{\`a}, E.},
+  \bibinfo{author}{Brennan, M.}, \bibinfo{author}{Bresler, G.},
+  \bibinfo{author}{Nagaraj, D.}, \bibinfo{year}{2021}.
+\newblock \bibinfo{title}{The staircase property: How hierarchical structure
+  can guide deep learning}, in: \bibinfo{booktitle}{Advances in Neural
+  Information Processing Systems (NeurIPS)}.
+\newblock \bibinfo{note}{arXiv:2108.10573}.
+%Type = Inproceedings
+\newblock \doi{10.48550/arXiv.2108.10573}
+\bibitem[{Abbe et~al.(2023)Abbe, Boix-Adsera and Misiakiewicz}]{abbe2023leap}
+\bibinfo{author}{Abbe, E.}, \bibinfo{author}{Boix-Adsera, E.},
+  \bibinfo{author}{Misiakiewicz, T.}, \bibinfo{year}{2023}.
+\newblock \bibinfo{title}{{SGD} learning on neural networks: Leap complexity
+  and saddle-to-saddle dynamics}, in: \bibinfo{booktitle}{Conference on
+  Learning Theory (COLT)}, pp. \bibinfo{pages}{2552--2623}.
+\newblock \bibinfo{note}{arXiv:2302.11055}.
+%Type = Inproceedings
+\newblock \doi{10.48550/arXiv.2302.11055}
+\bibitem[{Barak et~al.(2022)Barak, Edelman, Goel, Kakade, Malach and
+  Zhang}]{barak2022hidden}
+\bibinfo{author}{Barak, B.}, \bibinfo{author}{Edelman, B.L.},
+  \bibinfo{author}{Goel, S.}, \bibinfo{author}{Kakade, S.},
+  \bibinfo{author}{Malach, E.}, \bibinfo{author}{Zhang, C.},
+  \bibinfo{year}{2022}.
+\newblock \bibinfo{title}{Hidden progress in deep learning: {SGD} learns
+  parities near the computational limit}, in: \bibinfo{booktitle}{Advances in
+  Neural Information Processing Systems (NeurIPS)}, pp.\ \bibinfo{pages}{21750--21764}.
+\newblock \bibinfo{note}{arXiv:2207.08799}.
+\newblock \doi{10.52202/068431-1581}
+%Type = Article
+\bibitem[{Beneventano et~al.(2026)Beneventano, Abdelmoneum and
+  Poggio}]{beneventano2026spectraldynamics}
+\bibinfo{author}{Beneventano, P.}, \bibinfo{author}{Abdelmoneum, M.},
+  \bibinfo{author}{Poggio, T.}, \bibinfo{year}{2026}.
+\newblock \bibinfo{title}{The spectral dynamics and noise geometry of Muon}.
+\newblock \bibinfo{journal}{arXiv preprint arXiv:2606.08388}.
+%Type = Inproceedings
+\newblock \doi{10.48550/arXiv.2606.08388}
+\bibitem[{Bernstein and Newhouse(2024)}]{bernstein2024anthology}
+\bibinfo{author}{Bernstein, J.}, \bibinfo{author}{Newhouse, L.},
+  \bibinfo{year}{2024}.
+\newblock \bibinfo{title}{Old optimizer, new norm: An anthology}.
+\newblock \bibinfo{journal}{arXiv preprint arXiv:2409.20325}.
+\newblock \doi{10.48550/arXiv.2409.20325}
+%Type = Article
+\bibitem[{Bhattamishra et~al.(2023)Bhattamishra, Patel, Kanade and
+  Blunsom}]{bhattamishra2023simplicity}
+\bibinfo{author}{Bhattamishra, S.}, \bibinfo{author}{Patel, A.},
+  \bibinfo{author}{Kanade, V.}, \bibinfo{author}{Blunsom, P.},
+  \bibinfo{year}{2023}.
+\newblock \bibinfo{title}{Simplicity bias in transformers and their ability to
+  learn sparse {Boolean} functions}, in: \bibinfo{booktitle}{Annual Meeting of
+  the Association for Computational Linguistics (ACL)},
+  pp.\ \bibinfo{pages}{5767--5791}.
+\newblock \bibinfo{note}{arXiv:2211.12316}.
+\newblock \doi{10.18653/v1/2023.acl-long.317}
+%Type = Article
+\bibitem[{Dong et~al.(2025)Dong, Noci, Khodak and Li}]{dong2025randomattention}
+\bibinfo{author}{Dong, Y.}, \bibinfo{author}{Noci, L.},
+  \bibinfo{author}{Khodak, M.}, \bibinfo{author}{Li, M.}, \bibinfo{year}{2025}.
+\newblock \bibinfo{title}{Is random attention sufficient for sequence modeling?
+  {Disentangling} trainable components in the transformer}.
+\newblock \bibinfo{journal}{arXiv preprint arXiv:2506.01115}.
+%Type = Article
+\newblock \doi{10.48550/arXiv.2506.01115}
+\bibitem[{Dragutinovi{\'c} et~al.(2026)Dragutinovi{\'c}, Zhang and
+  Ranganath}]{dragutinovic2026usemuon}
+\bibinfo{author}{Dragutinovi{\'c}, S.}, \bibinfo{author}{Zhang, Y.},
+  \bibinfo{author}{Ranganath, R.}, \bibinfo{year}{2026}.
+\newblock \bibinfo{title}{To use or not to use Muon: How simplicity bias in
+  optimizers matters}.
+\newblock \bibinfo{journal}{arXiv preprint arXiv:2603.00742}.
+%Type = Inproceedings
+\newblock \doi{10.48550/arXiv.2603.00742}
+%Type = Misc
+\bibitem[{Edelman et~al.(2024)Edelman, Edelman, Goel, Malach and
+  Tsilivis}]{edelman2024statinduction}
+\bibinfo{author}{Edelman, B.L.}, \bibinfo{author}{Edelman, E.},
+  \bibinfo{author}{Goel, S.}, \bibinfo{author}{Malach, E.},
+  \bibinfo{author}{Tsilivis, N.}, \bibinfo{year}{2024}.
+\newblock \bibinfo{title}{The evolution of statistical induction heads:
+  In-context learning {Markov} chains}, in: \bibinfo{booktitle}{Advances in
+  Neural Information Processing Systems (NeurIPS)},
+  pp.\ \bibinfo{pages}{64273--64311}.
+\newblock \bibinfo{note}{arXiv:2402.11004}.
+%Type = Inproceedings
+  \doi{10.52202/079017-2050}.
+\bibitem[{Jordan et~al.(2024)Jordan, Jin, Boza, You, Cesista, Newhouse and
+  Bernstein}]{jordan2024muon}
+\bibinfo{author}{Jordan, K.}, \bibinfo{author}{Jin, Y.}, \bibinfo{author}{Boza, V.},
+  \bibinfo{author}{You, J.}, \bibinfo{author}{Cesista, F.},
+  \bibinfo{author}{Newhouse, L.}, \bibinfo{author}{Bernstein, J.},
+  \bibinfo{year}{2024}.
+\newblock \bibinfo{title}{Muon: An optimizer for hidden layers in neural networks}.
+\newblock \bibinfo{howpublished}{Blog post,
+  \url{https://kellerjordan.github.io/posts/muon/}}
+%Type = Article
+\bibitem[{Kumar et~al.(2024)Kumar, Bordelon, Gershman and
+  Pehlevan}]{kumar2024lazytorich}
+\bibinfo{author}{Kumar, T.}, \bibinfo{author}{Bordelon, B.},
+  \bibinfo{author}{Gershman, S.J.}, \bibinfo{author}{Pehlevan, C.},
+  \bibinfo{year}{2024}.
+\newblock \bibinfo{title}{Grokking as the transition from lazy to rich
+  training dynamics}, in: \bibinfo{booktitle}{International Conference on
+  Learning Representations (ICLR)}.
+\newblock \bibinfo{note}{arXiv:2310.06110}.
+\newblock \doi{10.48550/arXiv.2310.06110}
+%Type = Inproceedings
+\bibitem[{Lakens(2017)}]{lakens2017equivalence}
+\bibinfo{author}{Lakens, D.}, \bibinfo{year}{2017}.
+\newblock \bibinfo{title}{Equivalence tests: {A} practical primer for $t$ tests,
+  correlations, and meta-analyses}.
+\newblock \bibinfo{journal}{Social Psychological and Personality Science}
+  \bibinfo{volume}{8}(\bibinfo{number}{4}):\bibinfo{pages}{355--362}.
+%Type = Article
+\newblock \doi{10.1177/1948550617697177}
+\bibitem[{Lee et~al.(2024)Lee, Kang, Kim and Lee}]{lee2024grokfast}
+\bibinfo{author}{Lee, J.}, \bibinfo{author}{Kang, B.G.},
+  \bibinfo{author}{Kim, K.}, \bibinfo{author}{Lee, K.M.}, \bibinfo{year}{2024}.
+\newblock \bibinfo{title}{Grokfast: Accelerated grokking by amplifying slow
+  gradients}.
+\newblock \bibinfo{journal}{arXiv preprint arXiv:2405.20233}.
+\newblock \doi{10.48550/arXiv.2405.20233}
+%Type = Article
+\bibitem[{Liu et~al.(2023)Liu, Michaud and Tegmark}]{liu2023omnigrok}
+\bibinfo{author}{Liu, Z.}, \bibinfo{author}{Michaud, E.J.},
+  \bibinfo{author}{Tegmark, M.}, \bibinfo{year}{2023}.
+\newblock \bibinfo{title}{Omnigrok: Grokking beyond algorithmic data}, in:
+  \bibinfo{booktitle}{International Conference on Learning Representations
+  (ICLR)}.
+\newblock \bibinfo{note}{arXiv:2210.01117}.
+%Type = Article
+\newblock \doi{10.48550/arXiv.2210.01117}
+\bibitem[{Lyu et~al.(2024)Lyu, Jin, Li, Du, Lee and Hu}]{lyu2024dichotomy}
+\bibinfo{author}{Lyu, K.}, \bibinfo{author}{Jin, J.}, \bibinfo{author}{Li, Z.},
+  \bibinfo{author}{Du, S.S.}, \bibinfo{author}{Lee, J.D.},
+  \bibinfo{author}{Hu, W.}, \bibinfo{year}{2024}.
+\newblock \bibinfo{title}{Dichotomy of early and late phase implicit biases
+  can provably induce grokking}, in: \bibinfo{booktitle}{International
+  Conference on Learning Representations (ICLR)}.
+\newblock \bibinfo{note}{arXiv:2311.18817}.
+\newblock \doi{10.48550/arXiv.2311.18817}
+%Type = Inproceedings
+\bibitem[{Musat et~al.(2025)Musat, Pimentel, Noci, Stolfo, Sachan and
+  Hofmann}]{musat2025inductionheads}
+\bibinfo{author}{Musat, T.}, \bibinfo{author}{Pimentel, T.},
+  \bibinfo{author}{Noci, L.}, \bibinfo{author}{Stolfo, A.},
+  \bibinfo{author}{Sachan, M.}, \bibinfo{author}{Hofmann, T.},
+  \bibinfo{year}{2025}.
+\newblock \bibinfo{title}{On the emergence of induction heads for in-context
+  learning}.
+\newblock \bibinfo{journal}{arXiv preprint arXiv:2511.01033}.
+%Type = Inproceedings
+\newblock \doi{10.48550/arXiv.2511.01033}
+\bibitem[{Nanda et~al.(2023)Nanda, Chan, Lieberum, Smith and
+  Steinhardt}]{nanda2023progress}
+\bibinfo{author}{Nanda, N.}, \bibinfo{author}{Chan, L.},
+  \bibinfo{author}{Lieberum, T.}, \bibinfo{author}{Smith, J.},
+  \bibinfo{author}{Steinhardt, J.}, \bibinfo{year}{2023}.
+\newblock \bibinfo{title}{Progress measures for grokking via mechanistic
+  interpretability}, in: \bibinfo{booktitle}{International Conference on
+  Learning Representations (ICLR)}.
+\newblock \bibinfo{note}{arXiv:2301.05217}.
+\newblock \doi{10.48550/arXiv.2301.05217}
+%Type = Article
+\bibitem[{Olsson et~al.(2022)Olsson, Elhage, Nanda, Joseph, {DasSarma},
+  Henighan, Mann, Askell, Bai, Chen, Conerly, Drain, Ganguli, {Hatfield-Dodds},
+  Hernandez, Johnston, Jones, Kernion, Lovitt, Ndousse, Amodei, Brown, Clark,
+  Kaplan, McCandlish and Olah}]{olsson2022induction}
+\bibinfo{author}{Olsson, C.}, \bibinfo{author}{Elhage, N.},
+  \bibinfo{author}{Nanda, N.}, \bibinfo{author}{Joseph, N.},
+  \bibinfo{author}{{DasSarma}, N.}, \bibinfo{author}{Henighan, T.},
+  \bibinfo{author}{Mann, B.}, \bibinfo{author}{Askell, A.},
+  \bibinfo{author}{Bai, Y.}, \bibinfo{author}{Chen, A.},
+  \bibinfo{author}{Conerly, T.}, \bibinfo{author}{Drain, D.},
+  \bibinfo{author}{Ganguli, D.}, \bibinfo{author}{{Hatfield-Dodds}, Z.},
+  \bibinfo{author}{Hernandez, D.}, \bibinfo{author}{Johnston, S.},
+  \bibinfo{author}{Jones, A.}, \bibinfo{author}{Kernion, J.},
+  \bibinfo{author}{Lovitt, L.}, \bibinfo{author}{Ndousse, K.},
+  \bibinfo{author}{Amodei, D.}, \bibinfo{author}{Brown, T.},
+  \bibinfo{author}{Clark, J.}, \bibinfo{author}{Kaplan, J.},
+  \bibinfo{author}{McCandlish, S.}, \bibinfo{author}{Olah, C.},
+  \bibinfo{year}{2022}.
+\newblock \bibinfo{title}{In-context learning and induction heads}.
+\newblock \bibinfo{journal}{arXiv preprint arXiv:2209.11895}.
+  \bibinfo{note}{Transformer Circuits Thread}.
+%Type = Article
+\newblock \doi{10.48550/arXiv.2209.11895}
+\bibitem[{Oneto et~al.(2026)Oneto, Ridella, Minisi, Coraddu and
+  Anguita}]{neucom2026grokking}
+\bibinfo{author}{Oneto, L.}, \bibinfo{author}{Ridella, S.},
+  \bibinfo{author}{Minisi, S.}, \bibinfo{author}{Coraddu, A.},
+  \bibinfo{author}{Anguita, D.}, \bibinfo{year}{2026}.
+\newblock \bibinfo{title}{Reconciling grokking with statistical learning theory
+  through the lens of norm- and stability-based generalization bounds}.
+\newblock \bibinfo{journal}{Neurocomputing}
+  \DOIprefix\doi{10.1016/j.neucom.2026.132826}.
+%Type = Article
+\bibitem[{Ortega and Masegosa(2026)}]{neucom2026sgdbias}
+\bibinfo{author}{Ortega, L.A.}, \bibinfo{author}{Masegosa, A.R.},
+  \bibinfo{year}{2026}.
+\newblock \bibinfo{title}{A large deviation theory analysis on the implicit
+  bias of {SGD}}.
+\newblock \bibinfo{journal}{Neurocomputing}
+  \DOIprefix\doi{10.1016/j.neucom.2026.132960}.
+%Type = Article
+\bibitem[{Park et~al.(2025)Park, Kim and Kim}]{park2025kagrokking}
+\bibinfo{author}{Park, Y.}, \bibinfo{author}{Kim, M.}, \bibinfo{author}{Kim, Y.},
+  \bibinfo{year}{2025}.
+\newblock \bibinfo{title}{Acceleration of grokking in learning arithmetic
+  operations via {Kolmogorov--Arnold} representation}.
+\newblock \bibinfo{journal}{Neurocomputing}
+  \DOIprefix\doi{10.1016/j.neucom.2025.130347}.
+%Type = Article
+\bibitem[{Power et~al.(2022)Power, Burda, Edwards, Babuschkin and
+  Misra}]{power2022grokking}
+\bibinfo{author}{Power, A.}, \bibinfo{author}{Burda, Y.},
+  \bibinfo{author}{Edwards, H.}, \bibinfo{author}{Babuschkin, I.},
+  \bibinfo{author}{Misra, V.}, \bibinfo{year}{2022}.
+\newblock \bibinfo{title}{Grokking: Generalization beyond overfitting on small
+  algorithmic datasets}.
+\newblock \bibinfo{journal}{arXiv preprint arXiv:2201.02177}.
+%Type = Inproceedings
+\newblock \doi{10.48550/arXiv.2201.02177}
+\bibitem[{Reddy(2024)}]{reddy2024mechanistic}
+\bibinfo{author}{Reddy, G.}, \bibinfo{year}{2024}.
+\newblock \bibinfo{title}{The mechanistic basis of data dependence and abrupt
+  learning in an in-context classification task}, in:
+  \bibinfo{booktitle}{International Conference on Learning Representations
+  (ICLR)}.
+\newblock \bibinfo{note}{arXiv:2312.03002}.
+\newblock \doi{10.48550/arXiv.2312.03002}
+%Type = Inproceedings
+\bibitem[{Rende et~al.(2024)Rende, Gerace, Laio and
+  Goldt}]{rende2024distributional}
+\bibinfo{author}{Rende, R.}, \bibinfo{author}{Gerace, F.},
+  \bibinfo{author}{Laio, A.}, \bibinfo{author}{Goldt, S.},
+  \bibinfo{year}{2024}.
+\newblock \bibinfo{title}{A distributional simplicity bias in the learning
+  dynamics of transformers}, in: \bibinfo{booktitle}{Advances in Neural
+  Information Processing Systems (NeurIPS)}.
+\newblock \bibinfo{note}{arXiv:2410.19637}.
+%Type = Inproceedings
+\newblock \doi{10.52202/079017-3049}
+\bibitem[{Sanford et~al.(2023)Sanford, Hsu and
+  Telgarsky}]{sanford2023transformers}
+\bibinfo{author}{Sanford, C.}, \bibinfo{author}{Hsu, D.},
+  \bibinfo{author}{Telgarsky, M.}, \bibinfo{year}{2023}.
+\newblock \bibinfo{title}{Representational strengths and limitations of
+  transformers}, in: \bibinfo{booktitle}{Advances in Neural Information
+  Processing Systems (NeurIPS)}.
+\newblock \bibinfo{note}{arXiv:2306.02896}.
+%Type = Article
+\newblock \doi{10.52202/075280-1596}
+\bibitem[{Saxe et~al.(2014)Saxe, McClelland and Ganguli}]{saxe2014exact}
+\bibinfo{author}{Saxe, A.M.}, \bibinfo{author}{McClelland, J.L.},
+  \bibinfo{author}{Ganguli, S.}, \bibinfo{year}{2014}.
+\newblock \bibinfo{title}{Exact solutions to the nonlinear dynamics of learning
+  in deep linear neural networks}.
+\newblock \bibinfo{journal}{International Conference on Learning Representations (ICLR)}. \bibinfo{note}{arXiv:1312.6120}.
+%Type = Article
+\newblock \doi{10.48550/arXiv.1312.6120}
+%Type = Article
+\bibitem[{Schuirmann(1987)}]{schuirmann1987tost}
+\bibinfo{author}{Schuirmann, D.J.}, \bibinfo{year}{1987}.
+\newblock \bibinfo{title}{A comparison of the two one-sided tests procedure
+  and the power approach for assessing the equivalence of average
+  bioavailability}.
+\newblock \bibinfo{journal}{Journal of Pharmacokinetics and Biopharmaceutics}
+  \bibinfo{volume}{15}(\bibinfo{number}{6}):\bibinfo{pages}{657--680}.
+%Type = Article
+\newblock \doi{10.1007/BF01068419}
+\bibitem[{Varre et~al.(2025)Varre, Y{\"u}ce and Flammarion}]{varre2025ngrams}
+\bibinfo{author}{Varre, A.}, \bibinfo{author}{Y{\"u}ce, G.},
+  \bibinfo{author}{Flammarion, N.}, \bibinfo{year}{2025}.
+\newblock \bibinfo{title}{Learning in-context $n$-grams with transformers:
+  Sub-$n$-grams are near-stationary points}, in:
+  \bibinfo{booktitle}{Proceedings of the 42nd International Conference on
+  Machine Learning (ICML)}, pp.\ \bibinfo{pages}{60924--60963}.
+\newblock \bibinfo{note}{arXiv:2508.12837; PMLR 267}.
+%Type = Inproceedings
+\newblock \doi{10.48550/arXiv.2508.12837}
+\bibitem[{Vasudeva et~al.(2025)Vasudeva, Fu, Zhou, Kau, Huang and
+  Sharan}]{vasudeva2025lowsensitivity}
+\bibinfo{author}{Vasudeva, B.}, \bibinfo{author}{Fu, D.},
+  \bibinfo{author}{Zhou, T.}, \bibinfo{author}{Kau, E.},
+  \bibinfo{author}{Huang, Y.}, \bibinfo{author}{Sharan, V.},
+  \bibinfo{year}{2025}.
+\newblock \bibinfo{title}{Transformers learn low sensitivity functions:
+  Investigations and implications}, in: \bibinfo{booktitle}{International
+  Conference on Learning Representations (ICLR)}.
+\newblock \bibinfo{note}{arXiv:2403.06925}.
+\newblock \doi{10.48550/arXiv.2403.06925}
+%Type = Article
+\bibitem[{Xie and Li(2024)}]{xie2024adamw}
+\bibinfo{author}{Xie, S.}, \bibinfo{author}{Li, Z.}, \bibinfo{year}{2024}.
+\newblock \bibinfo{title}{Implicit bias of {AdamW}: $\ell_\infty$ norm
+  constrained optimization}, in:
+  \bibinfo{booktitle}{Proceedings of the 41st International Conference on
+  Machine Learning (ICML)}, pp.\ \bibinfo{pages}{54488--54510}.
+\newblock \bibinfo{note}{arXiv:2404.04454; PMLR 235}.
+%Type = Inproceedings
+\newblock \doi{10.48550/arXiv.2404.04454}
+\bibitem[{Xu(2026)}]{xu2026holographic}
+\bibinfo{author}{Xu, Y.}, \bibinfo{year}{2026}.
+\newblock \bibinfo{title}{Global low-rank, local full-rank: The holographic
+  encoding of learned algorithms}.
+\newblock \bibinfo{journal}{arXiv preprint arXiv:2602.18649}.
+\newblock \doi{10.48550/arXiv.2602.18649}
+\end{thebibliography}
+
+\end{document}

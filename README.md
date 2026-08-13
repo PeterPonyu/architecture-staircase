@@ -5,9 +5,15 @@
 Reproducibility archive: **experiment code and per-run result logs only**.
 Manuscript and write-up/derivation documents are intentionally **not** included.
 
+**GitHub:** <https://github.com/PeterPonyu/architecture-staircase>
+
 ## Contents
 - `experiments/<study>/` — runner / analysis code per sub-experiment.
 - `experiments/results/` — per-run logs (JSON/JSONL) behind every reported number.
+- `papers/C/main.tex` — full pointer manuscript (`\input{../figs/figpreamble.tex}`).
+- `papers/figs/` — generators, `figpreamble.tex`, and JSON summaries (compiled `tex/`/`vec/` gitignored).
+- `papers/FIGURE-INDEX.json` — portal contract (PeerJ `FigureN.pdf` names as metadata only).
+- `portal/` — facing-page lab-notebook site (excluded from Zenodo `git archive` packs).
 
 ## Reproducing
 The committed per-run logs are the recorded outputs. To re-run a study from

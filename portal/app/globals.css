@@ -1,0 +1,253 @@
+:root {
+  --font-display: var(--font-literata), "Iowan Old Style", Palatino, serif;
+  --font-body: var(--font-stix), "STIX Two Text", "STIX Two Math", Palatino, serif;
+  --paper: #f3ede3;
+  --rule: #d9cdb8;
+  --ink: #1f2a6b;
+  --ink-strong: #161c45;
+  --spine: #2a2450;
+  --spine-text: #f3ede3;
+  --gutter: #e7e0d4;
+  --freeze-wash: #efe6d6;
+  --ablation-wash: #e6e8e2;
+  --chip-pass: #2f5d50;
+  --stitch: #6b4e3d;
+  --rule-rhythm: 28px;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  min-height: 100%;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--font-body);
+  font-size: 17px;
+  line-height: 1.45;
+}
+
+.notebook {
+  display: grid;
+  grid-template-columns: 168px minmax(0, 1fr);
+  grid-template-rows: auto 1fr auto;
+  min-height: 100vh;
+  min-height: 900px;
+}
+
+.spine {
+  grid-column: 1;
+  grid-row: 1 / -1;
+  background: var(--spine);
+  color: var(--spine-text);
+  display: flex;
+  flex-direction: column;
+  gap: 26px;
+  padding: 28px 14px 28px 26px;
+}
+
+.spine-link {
+  color: var(--spine-text);
+  text-decoration: none;
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 16px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  opacity: 0.82;
+  border-bottom: 1px solid transparent;
+}
+
+.spine-link:hover,
+.spine-link:focus-visible {
+  opacity: 1;
+  border-bottom-color: var(--spine-text);
+}
+
+.spine-link.is-active {
+  opacity: 1;
+}
+
+.spine-mark {
+  width: 8px;
+  height: 8px;
+  background: var(--spine-text);
+  flex: 0 0 auto;
+}
+
+.spine-link:not(.is-active) .spine-mark {
+  background: transparent;
+}
+
+.masthead,
+.spread,
+.leaf,
+.colophon {
+  grid-column: 2;
+  background-image: repeating-linear-gradient(
+    to bottom,
+    transparent 0,
+    transparent calc(var(--rule-rhythm) - 1px),
+    var(--rule) calc(var(--rule-rhythm) - 1px),
+    var(--rule) var(--rule-rhythm)
+  );
+}
+
+.masthead {
+  padding: 16px 40px 4px 32px;
+}
+
+.kicker {
+  margin: 0 0 6px;
+  font-family: var(--font-display);
+  font-size: 15px;
+  font-weight: 400;
+}
+
+.masthead h1 {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: 44px;
+  font-weight: 700;
+  line-height: 1.12;
+  color: var(--ink-strong);
+}
+
+.deck {
+  margin: 8px 0 12px;
+  font-family: var(--font-display);
+  font-size: 18px;
+}
+
+.spread {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 108px minmax(0, 1fr);
+  min-height: 580px;
+}
+
+.page {
+  padding: 8px 36px 28px;
+}
+
+.page-freeze {
+  background-color: color-mix(in srgb, var(--freeze-wash) 35%, transparent);
+}
+
+.page-ablation {
+  background-color: color-mix(in srgb, var(--ablation-wash) 28%, transparent);
+}
+
+.page h2,
+.leaf h2 {
+  margin: 10px 0 18px;
+  font-family: var(--font-display);
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--ink-strong);
+}
+
+.door {
+  margin: 0 0 18px;
+  max-width: 36rem;
+}
+
+.ruled-slot {
+  height: calc(var(--rule-rhythm) * 3);
+}
+
+.gutter {
+  background: var(--gutter);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 12px 4px 24px;
+  gap: 12px;
+  position: relative;
+}
+
+.gutter::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 50%;
+  width: 1px;
+  background: var(--stitch);
+  opacity: 0.55;
+}
+
+.chip {
+  position: relative;
+  z-index: 1;
+  background: var(--chip-pass);
+  color: var(--paper);
+  font-size: 13px;
+  font-weight: 600;
+  padding: 7px 10px;
+  text-align: center;
+  white-space: nowrap;
+}
+
+.chip-bottom {
+  margin-top: auto;
+}
+
+.stitch {
+  position: relative;
+  z-index: 1;
+  width: 3px;
+  height: 14px;
+  background: var(--stitch);
+}
+
+.stitch-long {
+  flex: 1 1 auto;
+  min-height: 48px;
+  width: 3px;
+  background: repeating-linear-gradient(
+    to bottom,
+    var(--stitch) 0 10px,
+    transparent 10px 16px
+  );
+}
+
+.leaf {
+  padding: 8px 48px 36px 32px;
+}
+
+.leaf p,
+.leaf li {
+  max-width: 46rem;
+}
+
+.name-index {
+  width: 100%;
+  max-width: 52rem;
+  border-collapse: collapse;
+  font-size: 15px;
+}
+
+.name-index th,
+.name-index td {
+  text-align: left;
+  padding: 6px 10px 6px 0;
+  border-bottom: 1px solid var(--rule);
+}
+
+.colophon {
+  padding: 12px 40px 16px 32px;
+  font-size: 12px;
+  background-color: #ede6da;
+  background-image: none;
+  border-top: 1px solid var(--rule);
+}
+
+.colophon a {
+  color: var(--ink);
+}

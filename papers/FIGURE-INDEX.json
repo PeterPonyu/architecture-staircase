@@ -1,0 +1,250 @@
+{
+  "paper_id": "C",
+  "github": "PeterPonyu/architecture-staircase",
+  "zenodo_concept_doi": "10.5281/zenodo.21020348",
+  "pipeline": "figs/PIPELINE.md",
+  "figures": [
+    {
+      "id": "C_landscape",
+      "label": "fig:landscape",
+      "generator": "figs/make_landscape_r.R",
+      "summary": null,
+      "preview_svg": null,
+      "tex_build": "figs/tex/C_landscape.tex",
+      "vec_build": "figs/vec/C_landscape.pdf",
+      "caption": "Sequential low-to-high feature acquisition across studies.",
+      "caption_panels": null,
+      "venue_flat_name": "Figure1.pdf"
+    },
+    {
+      "id": "C_ladder_necessity",
+      "label": "fig:ladder",
+      "generator": "figs/make_C_new_figs_r.R",
+      "summary": "figs/summaries/C_ladder_necessity.json",
+      "preview_svg": null,
+      "tex_build": "figs/tex/C_ladder_necessity.tex",
+      "vec_build": "figs/vec/C_ladder_necessity.pdf",
+      "caption": "Isolated-target versus nested-ladder necessity.",
+      "caption_panels": [
+        "isolated-versus-ladder fit",
+        "SGDM degree acquisition",
+        "per-seed target fit",
+        "per-degree optimizer comparison"
+      ],
+      "venue_flat_name": "Figure2.pdf"
+    },
+    {
+      "id": "C_targetfamily",
+      "label": "fig:targetfamily",
+      "generator": "figs/make_gap20260705_C_figs_r.R",
+      "summary": "figs/summaries/C_targetfamily.json",
+      "preview_svg": null,
+      "tex_build": "figs/tex/C_targetfamily.tex",
+      "vec_build": "figs/vec/C_targetfamily.pdf",
+      "caption": "Staircase rank by target family and optimizer.",
+      "caption_panels": [
+        "target-family rank",
+        "fit-gate check",
+        "family onsets",
+        "rank-versus-fit control"
+      ],
+      "venue_flat_name": "Figure3.pdf"
+    },
+    {
+      "id": "C_arch_depth",
+      "label": "fig:arch",
+      "generator": "figs/make_C_figs_r.R",
+      "summary": "figs/summaries/C_arch_depth.json",
+      "preview_svg": null,
+      "tex_build": "figs/tex/C_arch_depth.tex",
+      "vec_build": "figs/vec/C_arch_depth.pdf",
+      "caption": "Staircase rank across width, depth, and freeze arms.",
+      "caption_panels": [
+        "width axis",
+        "depth axis",
+        "freeze comparison",
+        "fit-versus-depth control"
+      ],
+      "venue_flat_name": "Figure4.pdf"
+    },
+    {
+      "id": "C_ownership_optaxis",
+      "label": "fig:ownershipopt",
+      "generator": "figs/make_C_figs_r.R",
+      "summary": "figs/summaries/C_ownership_optaxis.json",
+      "preview_svg": null,
+      "tex_build": "figs/tex/C_ownership_optaxis.tex",
+      "vec_build": "figs/vec/C_ownership_optaxis.pdf",
+      "caption": "Degree-four acquisition by freeze arm and optimizer.",
+      "caption_panels": [
+        "median freeze effect",
+        "per-seed distributions",
+        "paired attention-freeze delta",
+        "matched-fit degree control"
+      ],
+      "venue_flat_name": "Figure5.pdf"
+    },
+    {
+      "id": "C_ownership_lr_sensitivity",
+      "label": "fig:ownershiplr",
+      "generator": "figs/make_C_figs_r.R",
+      "summary": null,
+      "preview_svg": null,
+      "tex_build": "figs/tex/C_ownership_lr_sensitivity.tex",
+      "vec_build": "figs/vec/C_ownership_lr_sensitivity.pdf",
+      "caption": "Muon learning-rate sweep for the attention-freeze ownership claim.",
+      "caption_panels": null,
+      "venue_flat_name": "Figure6.pdf"
+    },
+    {
+      "id": "C_scheme",
+      "label": "fig:scheme",
+      "generator": "figs/figpreamble.tex",
+      "summary": null,
+      "preview_svg": null,
+      "tex_build": "figs/tex/C_scheme.tex",
+      "vec_build": "figs/vec/C_scheme.pdf",
+      "caption": "Study design and headline finding.",
+      "caption_panels": null,
+      "venue_flat_name": "Figure7.pdf"
+    },
+    {
+      "id": "C_staircase_si",
+      "label": "fig:si",
+      "generator": "figs/make_C_figs_r.R",
+      "summary": "figs/summaries/C_staircase_si.json",
+      "preview_svg": null,
+      "tex_build": "figs/tex/C_staircase_si.tex",
+      "vec_build": "figs/vec/C_staircase_si.pdf",
+      "caption": "Staircase-index distributions and TOST equivalence.",
+      "caption_panels": [
+        "per-seed index",
+        "primary TOST",
+        "point-null robustness",
+        "mean-median robustness"
+      ],
+      "venue_flat_name": "Figure8.pdf"
+    },
+    {
+      "id": "C_staircase_rho",
+      "label": "fig:rho",
+      "generator": "figs/make_C_figs_r.R",
+      "summary": "figs/summaries/C_staircase_rho.json",
+      "preview_svg": null,
+      "tex_build": "figs/tex/C_staircase_rho.tex",
+      "vec_build": "figs/vec/C_staircase_rho.pdf",
+      "caption": "Degree acquisition under AdamW, SGDM, and Muon.",
+      "caption_panels": [
+        "AdamW acquisition",
+        "SGDM acquisition",
+        "Muon acquisition",
+        "onset distributions"
+      ],
+      "venue_flat_name": "Figure9.pdf"
+    },
+    {
+      "id": "C_pure3_speedup",
+      "label": "fig:pure3",
+      "generator": "figs/make_C_new_figs_r.R",
+      "summary": "figs/summaries/C_pure3_speedup.json",
+      "preview_svg": null,
+      "tex_build": "figs/tex/C_pure3_speedup.tex",
+      "vec_build": "figs/vec/C_pure3_speedup.pdf",
+      "caption": "Isolated degree-three timing across optimizers.",
+      "caption_panels": [
+        "isolated-target timing",
+        "bootstrap speed ratio",
+        "matched-fit control",
+        "ladder half-times"
+      ],
+      "venue_flat_name": "Figure10.pdf"
+    },
+    {
+      "id": "C_ownership_localize",
+      "label": "fig:ownershiploc",
+      "generator": "figs/make_gap20260705_C_figs_r.R",
+      "summary": "figs/summaries/C_ownership_localize.json",
+      "preview_svg": null,
+      "tex_build": "figs/tex/C_ownership_localize.tex",
+      "vec_build": "figs/vec/C_ownership_localize.pdf",
+      "caption": "Layer-localized freeze arms and degree-four acquisition.",
+      "caption_panels": [
+        "freeze-arm medians",
+        "per-seed distributions",
+        "fit control",
+        "acquisition fractions"
+      ],
+      "venue_flat_name": "Figure11.pdf"
+    },
+    {
+      "id": "C_case",
+      "label": "fig:case",
+      "generator": "figs/make_C_figs_r.R",
+      "summary": null,
+      "preview_svg": null,
+      "tex_build": "figs/tex/C_case.tex",
+      "vec_build": "figs/vec/C_case.pdf",
+      "caption": "Per-degree Walsh-correlation trajectories for a single seed.",
+      "caption_panels": null,
+      "venue_flat_name": "Figure12.pdf"
+    },
+    {
+      "id": "C_timing",
+      "label": "fig:timing",
+      "generator": "figs/make_C_figs_r.R",
+      "summary": "figs/summaries/C_timing.json",
+      "preview_svg": null,
+      "tex_build": "figs/tex/C_timing.tex",
+      "vec_build": "figs/vec/C_timing.pdf",
+      "caption": "ICL emergence time by context length and optimizer.",
+      "caption_panels": [
+        "emergence-versus-length",
+        "matched-cadence control",
+        "acceleration intervals",
+        "per-seed emergence"
+      ],
+      "venue_flat_name": "Figure13.pdf"
+    },
+    {
+      "id": "C_scale",
+      "label": "fig:cscale",
+      "generator": "figs/make_C_figs_r.R",
+      "summary": null,
+      "preview_svg": null,
+      "tex_build": "figs/tex/C_scale.tex",
+      "vec_build": "figs/vec/C_scale.pdf",
+      "caption": "Scale-grid depth threshold and freeze audit.",
+      "caption_panels": null,
+      "venue_flat_name": "Figure14.pdf"
+    },
+    {
+      "id": "C_dissoc",
+      "label": "fig:dissoc",
+      "generator": "figs/make_C_figs_r.R",
+      "summary": "figs/summaries/C_dissoc.json",
+      "preview_svg": null,
+      "tex_build": "figs/tex/C_dissoc.tex",
+      "vec_build": "figs/vec/C_dissoc.pdf",
+      "caption": "Two-probe ownership plus geometry and timing summary.",
+      "caption_panels": [
+        "staircase-index equivalence",
+        "freeze response",
+        "emergence timing",
+        "capture null"
+      ],
+      "venue_flat_name": "Figure15.pdf"
+    },
+    {
+      "id": "C_subspace",
+      "label": "fig:subspace",
+      "generator": "figs/make_C_figs_r.R",
+      "summary": null,
+      "preview_svg": null,
+      "tex_build": "figs/tex/C_subspace.tex",
+      "vec_build": "figs/vec/C_subspace.pdf",
+      "caption": "Induction-head update subspace across context lengths.",
+      "caption_panels": null,
+      "venue_flat_name": "Figure16.pdf"
+    }
+  ]
+}

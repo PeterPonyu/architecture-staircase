@@ -46,3 +46,10 @@ def test_dual_license_notice_preserved() -> None:
     license_text = (REPO_ROOT / "LICENSE").read_text(encoding="utf-8")
     assert "MIT License" in license_text
     assert "Creative Commons Attribution 4.0" in license_text or "CC BY 4.0" in license_text
+
+
+def test_readme_cites_github_warehouse_url() -> None:
+    from conftest import GITHUB_URL
+
+    text = (REPO_ROOT / "README.md").read_text(encoding="utf-8")
+    assert GITHUB_URL in text, "README must cite https://github.com/PeterPonyu/architecture-staircase"

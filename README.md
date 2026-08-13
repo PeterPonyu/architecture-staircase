@@ -2,6 +2,8 @@
 
 # Architecture-shaped degree-staircase emergence — code & data
 
+Warehouse: https://github.com/PeterPonyu/architecture-staircase
+
 Reproducibility archive: **experiment code and per-run result logs only**.
 Manuscript and write-up/derivation documents are intentionally **not** included.
 

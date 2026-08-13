@@ -86,12 +86,19 @@ def test_pages_push_paths_are_portal_and_index_only() -> None:
     data = _load_workflow(PAGES_WORKFLOW)
     on = data.get("on") or data.get(True)
     assert isinstance(on, dict), "I3: pages.yml must use a mapping on: trigger"
+    assert "workflow_dispatch" in on, "I3: first enable must not depend on a portal-only push"
     push = on.get("push") or {}
     paths = push.get("paths") or []
-    joined = " ".join(paths)
-    assert "portal/**" in joined, "I3: path filters must include portal/**"
-    assert "papers/FIGURE-INDEX.json" in joined or "papers/**" in joined
-    assert "experiments/**" not in joined
+    assert "portal/**" in paths, "I3: path filters must include portal/**"
+    assert "papers/FIGURE-INDEX.json" in paths
+    assert "papers/figs/summaries/**" in paths
+    assert "papers/figs/previews/**" in paths, (
+        "I3: previews live under papers/figs/previews/, not papers/previews/"
+    )
+    assert ".github/workflows/pages.yml" in paths, (
+        "I3: path filters must include the workflow file itself"
+    )
+    assert "experiments/**" not in paths
     assert not any(p.startswith("experiments") for p in paths)
 
 
@@ -117,8 +124,10 @@ def test_visual_pixel_workflow_is_optional_and_gated() -> None:
     jobs = data.get("jobs") or {}
     assert jobs, "visual-pixel.yml must exist as an optional workflow"
     for name, job in jobs.items():
-        assert _is_gated_off(_job_if(job)), (
-            f"visual-pixel job {name} must be gated until reference.png is approved"
+        raw_if = str(job.get("if", "")).lower().replace(" ", "")
+        assert raw_if in {"false", "${{false}}"}, (
+            f"visual-pixel job {name!r} must be gated with if: false until "
+            "reference.png is user-approved (must not fail required CI)"
         )
     on = data.get("on") or data.get(True)
     assert "workflow_dispatch" in on or (

@@ -1,0 +1,36 @@
+%% Paper C warehouse pointer tex (not a journal-flat / PeerJ export).
+%% Compiled papers/figs/tex and papers/figs/vec are build products (gitignored).
+%% Do not place venue-flat FigureN.pdf next to this file.
+\documentclass[11pt]{article}
+\usepackage{graphicx}
+\input{../figs/figpreamble.tex}
+
+\begin{document}
+\title{Train the pathway, deposit the computation (pointer tree)}
+\author{Zeyu Fu}
+\maketitle
+
+Pointer contract only: plot-tier figures enter through \texttt{\textbackslash figtikz};
+heatmap-tier PDFs resolve via \texttt{figpreamble} \texttt{\textbackslash graphicspath}
+to untracked \texttt{../figs/vec/}. Optional SVG previews are portal assets and
+must not appear here. PeerJ \texttt{FigureN.pdf} names live in
+\texttt{papers/FIGURE-INDEX.json} as metadata only.
+
+\figtikz[\linewidth]{C_landscape}
+\figtikz[\linewidth]{C_ladder_necessity}
+\figtikz[\linewidth]{C_targetfamily}
+\figtikz[\linewidth]{C_arch_depth}
+\figtikz[\linewidth]{C_ownership_optaxis}
+\figtikz[\linewidth]{C_ownership_lr_sensitivity}
+\figtikz[\linewidth]{C_scheme}
+\figtikz[\linewidth]{C_staircase_si}
+\figtikz[\linewidth]{C_staircase_rho}
+\figtikz[\linewidth]{C_pure3_speedup}
+\figtikz[\linewidth]{C_ownership_localize}
+\figtikz[\linewidth]{C_case}
+\figtikz[\linewidth]{C_timing}
+\figtikz[\linewidth]{C_scale}
+\figtikz[\linewidth]{C_dissoc}
+\figtikz[\linewidth]{C_subspace}
+
+\end{document}

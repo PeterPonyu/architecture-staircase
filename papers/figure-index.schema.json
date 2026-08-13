@@ -1,0 +1,36 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/PeterPonyu/architecture-staircase/papers/figure-index.schema.json",
+  "title": "Paper warehouse FIGURE-INDEX",
+  "type": "object",
+  "required": ["paper_id", "github", "zenodo_concept_doi", "pipeline", "figures"],
+  "properties": {
+    "paper_id": { "const": "C" },
+    "github": { "type": "string" },
+    "zenodo_concept_doi": { "type": "string", "pattern": "^10\\.5281/zenodo\\." },
+    "pipeline": { "type": "string" },
+    "figures": {
+      "type": "array",
+      "minItems": 16,
+      "items": {
+        "type": "object",
+        "required": ["id", "label", "generator", "venue_flat_name"],
+        "properties": {
+          "id": { "type": "string" },
+          "label": { "type": "string" },
+          "generator": { "type": "string" },
+          "summary": { "type": ["string", "null"] },
+          "preview_svg": { "type": ["string", "null"] },
+          "tex_build": { "type": "string" },
+          "vec_build": { "type": "string" },
+          "venue_flat_name": {
+            "type": "string",
+            "pattern": "^Figure([1-9]|1[0-6])\\.pdf$"
+          }
+        },
+        "additionalProperties": true
+      }
+    }
+  },
+  "additionalProperties": true
+}

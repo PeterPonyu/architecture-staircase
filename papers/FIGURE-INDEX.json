@@ -1,0 +1,168 @@
+{
+  "paper_id": "C",
+  "github": "PeterPonyu/architecture-staircase",
+  "zenodo_concept_doi": "10.5281/zenodo.21020348",
+  "pipeline": "papers/figs/fig_pipeline.R",
+  "figures": [
+    {
+      "id": "C_landscape",
+      "label": "fig:landscape",
+      "generator": "papers/figs/make_landscape_r.R",
+      "summary": null,
+      "preview_svg": null,
+      "tex_build": "papers/figs/tex/C_landscape.tex",
+      "vec_build": "papers/figs/vec/C_landscape.pdf",
+      "venue_flat_name": "Figure1.pdf"
+    },
+    {
+      "id": "C_ladder_necessity",
+      "label": "fig:ladder",
+      "generator": "papers/figs/make_C_new_figs_r.R",
+      "summary": "papers/figs/summaries/C_ladder_necessity.json",
+      "preview_svg": null,
+      "tex_build": "papers/figs/tex/C_ladder_necessity.tex",
+      "vec_build": "papers/figs/vec/C_ladder_necessity.pdf",
+      "venue_flat_name": "Figure2.pdf"
+    },
+    {
+      "id": "C_targetfamily",
+      "label": "fig:targetfamily",
+      "generator": "papers/figs/make_gap20260705_C_figs_r.R",
+      "summary": "papers/figs/summaries/C_targetfamily.json",
+      "preview_svg": null,
+      "tex_build": "papers/figs/tex/C_targetfamily.tex",
+      "vec_build": "papers/figs/vec/C_targetfamily.pdf",
+      "venue_flat_name": "Figure3.pdf"
+    },
+    {
+      "id": "C_arch_depth",
+      "label": "fig:arch",
+      "generator": "papers/figs/make_C_figs_r.R",
+      "summary": "papers/figs/summaries/C_arch_depth.json",
+      "preview_svg": null,
+      "tex_build": "papers/figs/tex/C_arch_depth.tex",
+      "vec_build": "papers/figs/vec/C_arch_depth.pdf",
+      "venue_flat_name": "Figure4.pdf"
+    },
+    {
+      "id": "C_ownership_optaxis",
+      "label": "fig:ownershipopt",
+      "generator": "papers/figs/make_C_figs_r.R",
+      "summary": "papers/figs/summaries/C_ownership_optaxis.json",
+      "preview_svg": null,
+      "tex_build": "papers/figs/tex/C_ownership_optaxis.tex",
+      "vec_build": "papers/figs/vec/C_ownership_optaxis.pdf",
+      "venue_flat_name": "Figure5.pdf"
+    },
+    {
+      "id": "C_ownership_lr_sensitivity",
+      "label": "fig:ownershiplr",
+      "generator": "papers/figs/make_C_figs_r.R",
+      "summary": null,
+      "preview_svg": null,
+      "tex_build": "papers/figs/tex/C_ownership_lr_sensitivity.tex",
+      "vec_build": "papers/figs/vec/C_ownership_lr_sensitivity.pdf",
+      "venue_flat_name": "Figure6.pdf"
+    },
+    {
+      "id": "C_scheme",
+      "label": "fig:scheme",
+      "generator": "schematic:tikz",
+      "summary": null,
+      "preview_svg": null,
+      "tex_build": "papers/figs/tex/C_scheme.tex",
+      "vec_build": "papers/figs/vec/C_scheme.pdf",
+      "venue_flat_name": "Figure7.pdf"
+    },
+    {
+      "id": "C_staircase_si",
+      "label": "fig:si",
+      "generator": "papers/figs/make_C_figs_r.R",
+      "summary": "papers/figs/summaries/C_staircase_si.json",
+      "preview_svg": null,
+      "tex_build": "papers/figs/tex/C_staircase_si.tex",
+      "vec_build": "papers/figs/vec/C_staircase_si.pdf",
+      "venue_flat_name": "Figure8.pdf"
+    },
+    {
+      "id": "C_staircase_rho",
+      "label": "fig:rho",
+      "generator": "papers/figs/make_C_figs_r.R",
+      "summary": "papers/figs/summaries/C_staircase_rho.json",
+      "preview_svg": null,
+      "tex_build": "papers/figs/tex/C_staircase_rho.tex",
+      "vec_build": "papers/figs/vec/C_staircase_rho.pdf",
+      "venue_flat_name": "Figure9.pdf"
+    },
+    {
+      "id": "C_pure3_speedup",
+      "label": "fig:pure3",
+      "generator": "papers/figs/make_C_new_figs_r.R",
+      "summary": "papers/figs/summaries/C_pure3_speedup.json",
+      "preview_svg": null,
+      "tex_build": "papers/figs/tex/C_pure3_speedup.tex",
+      "vec_build": "papers/figs/vec/C_pure3_speedup.pdf",
+      "venue_flat_name": "Figure10.pdf"
+    },
+    {
+      "id": "C_ownership_localize",
+      "label": "fig:ownershiploc",
+      "generator": "papers/figs/make_gap20260705_C_figs_r.R",
+      "summary": "papers/figs/summaries/C_ownership_localize.json",
+      "preview_svg": null,
+      "tex_build": "papers/figs/tex/C_ownership_localize.tex",
+      "vec_build": "papers/figs/vec/C_ownership_localize.pdf",
+      "venue_flat_name": "Figure11.pdf"
+    },
+    {
+      "id": "C_case",
+      "label": "fig:case",
+      "generator": "papers/figs/make_C_figs_r.R",
+      "summary": null,
+      "preview_svg": null,
+      "tex_build": "papers/figs/tex/C_case.tex",
+      "vec_build": "papers/figs/vec/C_case.pdf",
+      "venue_flat_name": "Figure12.pdf"
+    },
+    {
+      "id": "C_timing",
+      "label": "fig:timing",
+      "generator": "papers/figs/make_C_figs_r.R",
+      "summary": "papers/figs/summaries/C_timing.json",
+      "preview_svg": null,
+      "tex_build": "papers/figs/tex/C_timing.tex",
+      "vec_build": "papers/figs/vec/C_timing.pdf",
+      "venue_flat_name": "Figure13.pdf"
+    },
+    {
+      "id": "C_scale",
+      "label": "fig:cscale",
+      "generator": "papers/figs/make_C_figs_r.R",
+      "summary": null,
+      "preview_svg": null,
+      "tex_build": "papers/figs/tex/C_scale.tex",
+      "vec_build": "papers/figs/vec/C_scale.pdf",
+      "venue_flat_name": "Figure14.pdf"
+    },
+    {
+      "id": "C_dissoc",
+      "label": "fig:dissoc",
+      "generator": "papers/figs/make_C_figs_r.R",
+      "summary": "papers/figs/summaries/C_dissoc.json",
+      "preview_svg": null,
+      "tex_build": "papers/figs/tex/C_dissoc.tex",
+      "vec_build": "papers/figs/vec/C_dissoc.pdf",
+      "venue_flat_name": "Figure15.pdf"
+    },
+    {
+      "id": "C_subspace",
+      "label": "fig:subspace",
+      "generator": "papers/figs/make_C_figs_r.R",
+      "summary": null,
+      "preview_svg": null,
+      "tex_build": "papers/figs/tex/C_subspace.tex",
+      "vec_build": "papers/figs/vec/C_subspace.pdf",
+      "venue_flat_name": "Figure16.pdf"
+    }
+  ]
+}

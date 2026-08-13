@@ -51,6 +51,8 @@ HARD_EXCLUDES=(
   .claude
   .codex
   .github
+  portal
+  _site
   .venv
   .tox
   .mypy_cache
@@ -80,7 +82,8 @@ verify_tarball() {
       for (i = 1; i <= n; i++) {
         if (a[i] == ".git" || a[i] == ".omc" || a[i] == ".omx" ||
             a[i] == ".cursor" || a[i] == ".claude" || a[i] == ".codex" ||
-            a[i] == ".github" || a[i] == ".venv" || a[i] == ".tox" ||
+            a[i] == ".github" || a[i] == "portal" || a[i] == "_site" ||
+            a[i] == ".venv" || a[i] == ".tox" ||
             a[i] == ".mypy_cache" || a[i] == ".pytest_cache" ||
             a[i] == ".ruff_cache" || a[i] == ".ipynb_checkpoints" ||
             a[i] == ".idea" || a[i] == ".vscode" || a[i] == ".DS_Store" ||
@@ -150,6 +153,8 @@ pack_workdir() {
     --exclude='.claude/' \
     --exclude='.codex/' \
     --exclude='.github/' \
+    --exclude='portal/' \
+    --exclude='_site/' \
     --exclude='.venv/' \
     --exclude='.tox/' \
     --exclude='.mypy_cache/' \

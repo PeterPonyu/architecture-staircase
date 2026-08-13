@@ -1,0 +1,28 @@
+/* Paper C stub tokens only — not a shared five-paper theme. */
+:root {
+  --font-body: "Literata", serif;
+  --font-math: "STIX Two Text", serif;
+  --ink: #1e2a4a;
+  --paper: #f7f1e8;
+  --rule: #d7cfc4;
+}
+
+body {
+  margin: 0;
+  font-family: var(--font-body);
+  background: var(--paper);
+  color: var(--ink);
+}
+
+.notebook {
+  max-width: 72rem;
+  margin: 0 auto;
+  padding: 1rem;
+}
+
+.spine {
+  display: flex;
+  gap: 1rem;
+  border-bottom: 1px solid var(--rule);
+  padding-bottom: 0.5rem;
+}

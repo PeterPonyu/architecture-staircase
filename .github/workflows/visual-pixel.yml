@@ -1,0 +1,22 @@
+name: Visual pixel (optional, gated)
+
+on:
+  workflow_dispatch:
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  visual-pixel:
+    name: Pixel diff vs approved reference
+    if: ${{ vars.VISUAL_REFERENCE_APPROVED == 'true' }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Skip until reference is approved
+        run: |
+          echo "This job is optional. It stays skipped until repo variable"
+          echo "VISUAL_REFERENCE_APPROVED is set to true after reference.png approval."
+          test -f portal/reference.png

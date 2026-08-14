@@ -10,13 +10,19 @@ const literata = localFont({
   src: "./fonts/literata-latin-opsz-normal.woff2",
   variable: "--font-literata",
   display: "swap",
+  weight: "200 900",
+  adjustFontFallback: false,
 });
 
 const stix = localFont({
   src: "./fonts/stix-two-text-latin-wght-normal.woff2",
   variable: "--font-stix",
   display: "swap",
+  weight: "400 700",
+  adjustFontFallback: false,
 });
+
+const fontVars = `${literata.variable} ${stix.variable}`;
 
 export const metadata: Metadata = {
   title: "Lab book C · architecture-staircase",
@@ -27,8 +33,8 @@ export default function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="en" className={`${literata.variable} ${stix.variable}`}>
-      <body>
+    <html lang="en" className={fontVars}>
+      <body className={`${fontVars} ${stix.className}`}>
         <Notebook>{children}</Notebook>
       </body>
     </html>

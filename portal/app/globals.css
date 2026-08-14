@@ -1,6 +1,4 @@
 :root {
-  --font-display: var(--font-literata), "Iowan Old Style", Palatino, serif;
-  --font-body: var(--font-stix), "STIX Two Text", "STIX Two Math", Palatino, serif;
   --paper: #f3ede3;
   --rule: #d9cdb8;
   --ink: #1f2a6b;
@@ -23,6 +21,11 @@
 
 html,
 body {
+  /* Re-specify aliases here. :root computed them as invalid when
+     --font-literata / --font-stix lived only on body, and descendants
+     inherited the guaranteed-invalid value (computed font = Times). */
+  --font-display: var(--font-literata), "Iowan Old Style", Palatino, serif;
+  --font-body: var(--font-stix), "STIX Two Text", "STIX Two Math", Palatino, serif;
   margin: 0;
   min-height: 100%;
   background: var(--paper);

@@ -9,7 +9,7 @@ const NAV = [
   { href: "/scale/", label: "Scale" },
   { href: "/subspace/", label: "Subspace" },
   { href: "/ledger/", label: "Ledger" },
-  { href: "/reproduce/", label: "Reproduce" },
+  { href: "/reproduce/", label: "Reproduce-as-rebuild" },
 ] as const;
 
 function isActive(pathname: string, href: string): boolean {
@@ -22,7 +22,7 @@ function isActive(pathname: string, href: string): boolean {
 export function Spine() {
   const pathname = usePathname() ?? "/";
   return (
-    <nav className="spine" aria-label="Lab book spine">
+    <nav className="spine" aria-label="Staircase spine">
       {NAV.map((item) => {
         const active = isActive(pathname, item.href);
         return (

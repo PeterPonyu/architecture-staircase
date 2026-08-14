@@ -3,8 +3,8 @@ export default function StaircasePage() {
     <section className="leaf">
       <h2>Staircase</h2>
       <p>
-        Geometry leaf in the lab-book spine. Rebuild path:
-        <code> papers/figs/PIPELINE.md</code>.
+        Features arrive in a fixed low-to-high order. Architecture sets that
+        order: a staircase, not a compass.
       </p>
     </section>
   );

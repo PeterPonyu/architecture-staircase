@@ -2,19 +2,17 @@
 
 import { useEffect, useState } from "react";
 
-type FigureRow = {
+type ObjectRow = {
   id?: string;
   generator?: string;
 };
 
-type FigureIndex = {
-  pipeline?: string;
-  figures?: FigureRow[];
+type ObjectIndex = {
+  figures?: ObjectRow[];
 };
 
 export default function LedgerPage() {
-  const [rows, setRows] = useState<FigureRow[]>([]);
-  const [pipeline, setPipeline] = useState("figs/PIPELINE.md");
+  const [rows, setRows] = useState<ObjectRow[]>([]);
 
   useEffect(() => {
     const candidates = ["/architecture-staircase/data/figures.json"];
@@ -28,18 +26,17 @@ export default function LedgerPage() {
           if (!response.ok) {
             throw new Error("missing");
           }
-          return response.json() as Promise<FigureIndex>;
+          return response.json() as Promise<ObjectIndex>;
         })
         .then((index) => {
           if (cancelled) {
             return;
           }
-          setPipeline(index.pipeline || "figs/PIPELINE.md");
-          const figures = (index.figures || []).map((fig) => ({
-            id: fig.id,
-            generator: fig.generator,
+          const objects = (index.figures || []).map((row) => ({
+            id: row.id,
+            generator: row.generator,
           }));
-          setRows(figures);
+          setRows(objects);
         })
         .catch(() => {
           load(i + 1);
@@ -54,15 +51,11 @@ export default function LedgerPage() {
   return (
     <section className="leaf">
       <h2>Ledger</h2>
-      <p>
-        Name index from <code>papers/FIGURE-INDEX.json</code> (copied at build to
-        <code> data/figures.json</code>). Warehouse ids and generators only.
-        Pipeline: <code>{pipeline}</code>.
-      </p>
+      <p>Named staircase objects and the generators that rebuild them.</p>
       <table className="name-index">
         <thead>
           <tr>
-            <th>Warehouse id</th>
+            <th>Object</th>
             <th>Generator</th>
           </tr>
         </thead>

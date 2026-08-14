@@ -54,4 +54,4 @@ def test_ledger_does_not_render_captions_or_venue_pdf_names() -> None:
     ledger = (PORTAL_DIR / "app" / "ledger" / "page.tsx").read_text(encoding="utf-8")
     assert "caption" not in ledger.lower()
     assert "venue_flat_name" not in ledger
-    assert "Figure" not in ledger or "FIGURE-INDEX" in ledger
+    assert "Figure" not in ledger

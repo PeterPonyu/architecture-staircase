@@ -4,8 +4,8 @@ export default function ProbesPage() {
       <section className="page page-freeze" aria-labelledby="freeze-title">
         <h2 id="freeze-title">Training necessity (freeze)</h2>
         <p className="door">
-          Left page of the facing-page grammar. This leaf is a door to the freeze
-          probe in <code>papers/C/main.tex</code>, not a results board.
+          The freeze probe asks which modules must be trained for the degree
+          staircase to appear. Necessity lives on this page.
         </p>
         <div className="ruled-slot" aria-hidden="true" />
         <div className="ruled-slot" aria-hidden="true" />
@@ -24,8 +24,8 @@ export default function ProbesPage() {
       <section className="page page-ablation" aria-labelledby="ablation-title">
         <h2 id="ablation-title">Trained computation (ablation)</h2>
         <p className="door">
-          Right page of the facing-page grammar. This leaf is a door to the
-          ablation probe in <code>papers/C/main.tex</code>, not a results board.
+          The ablation probe asks which trained modules carry the computation
+          once the staircase is in place. Ownership lives on this page.
         </p>
         <div className="ruled-slot" aria-hidden="true" />
         <div className="ruled-slot" aria-hidden="true" />

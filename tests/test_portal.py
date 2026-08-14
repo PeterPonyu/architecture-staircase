@@ -7,7 +7,14 @@ from pathlib import Path
 
 from conftest import CONCEPT_DOI, GITHUB_URL, PORTAL_DIR, VERSION_DOI
 
-REQUIRED_NAV = ("Probes", "Staircase", "Scale", "Subspace", "Ledger", "Reproduce")
+REQUIRED_NAV = (
+    "Probes",
+    "Staircase",
+    "Scale",
+    "Subspace",
+    "Ledger",
+    "Reproduce-as-rebuild",
+)
 SOURCE_SUFFIXES = {".tsx", ".ts", ".css", ".js", ".mjs", ".json"}
 SKIP_PARTS = {"node_modules", ".next", "out", "public"}
 
@@ -112,14 +119,39 @@ def test_footer_has_doi_github_license() -> None:
     assert "21882597" in html or VERSION_DOI in html
 
 
-def test_points_at_pipeline() -> None:
-    blob = _blob()
-    assert "papers/figs/PIPELINE.md" in blob or "figs/PIPELINE.md" in blob
+DOOR_CHROME = re.compile(
+    r"documents?|papers?|journals?|manuscripts?|submissions?|"
+    r"peerj|main\.tex|figure-index|pipeline|warehouse",
+    re.I,
+)
+
+
+def _door_copy() -> str:
+    chunks: list[str] = []
+    for rel in (
+        "app/layout.tsx",
+        "app/page.tsx",
+        "app/staircase/page.tsx",
+        "app/scale/page.tsx",
+        "app/subspace/page.tsx",
+        "app/ledger/page.tsx",
+        "app/reproduce/page.tsx",
+        "components/Notebook.tsx",
+        "components/Spine.tsx",
+    ):
+        chunks.append((PORTAL_DIR / rel).read_text(encoding="utf-8"))
+    return "\n".join(chunks)
+
+
+def test_door_copy_has_no_chrome() -> None:
+    hits = DOOR_CHROME.findall(_door_copy())
+    assert not hits, f"science-door copy still names chrome: {hits}"
 
 
 def test_consumes_figure_index_not_peerj_pdfs() -> None:
     blob = _blob()
-    assert "FIGURE-INDEX.json" in blob or "figures.json" in blob
+    ledger = (PORTAL_DIR / "app" / "ledger" / "page.tsx").read_text(encoding="utf-8")
+    assert "figures.json" in ledger
     assert not PEERJ_FIGURE_PDF.search(blob)
 
 

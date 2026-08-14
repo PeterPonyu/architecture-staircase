@@ -76,6 +76,21 @@ needles = [
 hits = [s for s in needles if s in blob]
 if hits:
     raise SystemExit(f"leak in export HTML: {hits}")
+chrome = [
+    "doc" + "uments",
+    "pap" + "ers",
+    "jour" + "nals",
+    "manu" + "scripts",
+    "sub" + "missions",
+    "Peer" + "J",
+    "main" + ".tex",
+    "FIGURE" + "-INDEX",
+    "PIPE" + "LINE",
+    "ware" + "house",
+]
+chrome_hits = [s for s in chrome if s.lower() in blob.lower()]
+if chrome_hits:
+    raise SystemExit(f"chrome in export HTML: {chrome_hits}")
 print(f"export proof: {len(html_files)} html files; basePath present; leak scan clean")
 PY
 

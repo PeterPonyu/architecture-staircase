@@ -29,3 +29,15 @@ architecture-staircase-v*.tar.gz
 .env.*
 credentials*
 *.pem
+
+# compiled figure tiers (pointer contract; never commit venue PDFs)
+papers/figs/tex/
+papers/figs/vec/
+papers/figs/**/*.png
+_site/
+
+# Next.js portal build products
+portal/node_modules/
+portal/.next/
+portal/out/
+portal/public/data/

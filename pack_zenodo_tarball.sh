@@ -121,7 +121,7 @@ verify_tarball() {
   # source does not embed a contiguous machine path that would self-match.
   local tmp leak_pat
   tmp="$(mktemp -d)"
-  leak_pat="/home/""zeyufu|Desktop/""dl-research"
+  leak_pat="/home/""zeyufu|Desktop/""dl-""research"
   tar -xzf "$tarball" -C "$tmp"
   if rg -a -n "$leak_pat" "$tmp" --glob '!.git/**' --glob '!**/pack_zenodo_tarball.sh' >/tmp/pack_leak_hits.txt 2>/dev/null; then
     echo "FAIL: absolute local paths in tarball contents:" >&2

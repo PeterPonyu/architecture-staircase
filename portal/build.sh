@@ -42,6 +42,14 @@ cp -a portal/out/. _site/
 mkdir -p _site/data
 cp papers/FIGURE-INDEX.json _site/data/figures.json
 
+# F9: the artifact INDEX keeps papers/-relative figs/ paths, so the figs data
+# tiers it names must resolve under _site/data/figs/.
+mkdir -p _site/data/figs
+cp -a papers/figs/summaries _site/data/figs/summaries
+if [[ -d papers/figs/previews ]]; then
+  cp -a papers/figs/previews _site/data/figs/previews
+fi
+
 if [[ -e _site/experiments || -e _site/.omc ]]; then
   echo "I4: experiments or .omc leaked into _site" >&2
   exit 1

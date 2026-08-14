@@ -27,8 +27,8 @@ export default function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="en">
-      <body className={`${literata.variable} ${stix.variable}`}>
+    <html lang="en" className={`${literata.variable} ${stix.variable}`}>
+      <body>
         <Notebook>{children}</Notebook>
       </body>
     </html>

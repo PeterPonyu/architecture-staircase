@@ -1,13 +1,15 @@
+import { science } from "@/lib/science";
+
 const GITHUB = "https://github.com/PeterPonyu/architecture-staircase";
 
-export default function ReproducePage() {
+export default function RebuildPage() {
   return (
     <section className="leaf">
-      <h2>Reproduce-as-rebuild</h2>
+      <h2>Rebuild</h2>
       <p>
         Reproduce means rebuild. Clone{" "}
         <a href={GITHUB}>{GITHUB}</a>, rerun the experiment runners, and
-        regenerate each staircase object from its generator.
+        regenerate each staircase object.
       </p>
       <p>
         Concept DOI{" "}
@@ -20,6 +22,11 @@ export default function ReproducePage() {
         </a>
         .
       </p>
+      <ol className="rebuild-list">
+        {science.rebuild.map((row) => (
+          <li key={row.title}>{row.title}</li>
+        ))}
+      </ol>
     </section>
   );
 }

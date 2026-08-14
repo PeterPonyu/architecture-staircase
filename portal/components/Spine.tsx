@@ -9,7 +9,7 @@ const NAV = [
   { href: "/scale/", label: "Scale" },
   { href: "/subspace/", label: "Subspace" },
   { href: "/ledger/", label: "Ledger" },
-  { href: "/reproduce/", label: "Reproduce-as-rebuild" },
+  { href: "/reproduce/", label: "Rebuild" },
 ] as const;
 
 function isActive(pathname: string, href: string): boolean {

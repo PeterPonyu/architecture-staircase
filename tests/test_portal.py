@@ -13,7 +13,7 @@ REQUIRED_NAV = (
     "Scale",
     "Subspace",
     "Ledger",
-    "Reproduce-as-rebuild",
+    "Rebuild",
 )
 SOURCE_SUFFIXES = {".tsx", ".ts", ".css", ".js", ".mjs", ".json"}
 SKIP_PARTS = {"node_modules", ".next", "out", "public"}
@@ -138,6 +138,8 @@ def _door_copy() -> str:
         "app/reproduce/page.tsx",
         "components/Notebook.tsx",
         "components/Spine.tsx",
+        "components/Entries.tsx",
+        "lib/science.ts",
     ):
         chunks.append((PORTAL_DIR / rel).read_text(encoding="utf-8"))
     return "\n".join(chunks)
@@ -148,10 +150,22 @@ def test_door_copy_has_no_chrome() -> None:
     assert not hits, f"science-door copy still names chrome: {hits}"
 
 
-def test_consumes_figure_index_not_peerj_pdfs() -> None:
+def test_consumes_science_view_not_peerj_pdfs() -> None:
     blob = _blob()
-    ledger = (PORTAL_DIR / "app" / "ledger" / "page.tsx").read_text(encoding="utf-8")
-    assert "figures.json" in ledger
+    science_ts = (PORTAL_DIR / "lib" / "science.ts").read_text(encoding="utf-8")
+    assert "science.json" in science_ts
+    for rel in (
+        "app/page.tsx",
+        "app/staircase/page.tsx",
+        "app/scale/page.tsx",
+        "app/subspace/page.tsx",
+        "app/ledger/page.tsx",
+        "app/reproduce/page.tsx",
+    ):
+        text = (PORTAL_DIR / rel).read_text(encoding="utf-8")
+        assert "science" in text
+        assert "C_" not in text
+        assert "figures.json" not in text
     assert not PEERJ_FIGURE_PDF.search(blob)
 
 

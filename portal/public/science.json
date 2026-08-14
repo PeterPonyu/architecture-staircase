@@ -1,0 +1,424 @@
+{
+  "probes": {
+    "freeze": [
+      {
+        "title": "Isolated-target versus nested-ladder necessity.",
+        "panels": [
+          "isolated-versus-ladder fit",
+          "SGDM degree acquisition",
+          "per-seed target fit",
+          "per-degree optimizer comparison"
+        ],
+        "questions": [
+          "How does final fit differ between the isolated target and nested ladder?",
+          "Which degrees does SGDM acquire on the nested ladder?",
+          "How variable is final fit across seeds, targets, and optimizers?",
+          "How do per-degree final correlations compare across optimizers?"
+        ]
+      },
+      {
+        "title": "Layer-localized freeze arms and degree-four acquisition.",
+        "panels": [
+          "freeze-arm medians",
+          "per-seed distributions",
+          "fit control",
+          "acquisition fractions"
+        ],
+        "questions": [
+          "Which layer-localized freeze arms preserve degree-four acquisition?",
+          "How variable is degree-four acquisition across seeds and freeze arms?",
+          "Is overall fit preserved under every freeze arm?",
+          "What fraction of seeds exceeds the degree-four acquisition threshold?"
+        ]
+      },
+      {
+        "title": "Two-probe ownership plus geometry and timing",
+        "panels": [],
+        "questions": [
+          "How does degree-four acquisition respond to component freezes?"
+        ]
+      }
+    ],
+    "ablation": [
+      {
+        "title": "Degree-four acquisition by freeze arm and optimizer.",
+        "panels": [
+          "median freeze effect",
+          "per-seed distributions",
+          "paired attention-freeze delta",
+          "matched-fit degree control"
+        ],
+        "questions": [
+          "How does median degree-four acquisition vary by freeze arm and optimizer?",
+          "How variable is the freeze effect across seeds?",
+          "What paired attention-freeze delta occurs within each optimizer?",
+          "Are lower degrees preserved at the matched-fit point?"
+        ]
+      },
+      {
+        "title": "Two-probe ownership plus geometry and timing",
+        "panels": [],
+        "questions": [
+          "Are staircase-index distributions equivalent across optimizers?"
+        ]
+      }
+    ]
+  },
+  "staircase": [
+    {
+      "title": "Sequential low-to-high feature acquisition across studies.",
+      "panels": [],
+      "questions": []
+    },
+    {
+      "title": "Staircase rank by target family and optimizer.",
+      "panels": [
+        "target-family rank",
+        "fit-gate check",
+        "family onsets",
+        "rank-versus-fit control"
+      ],
+      "questions": [
+        "How does staircase rank vary by target family and optimizer?",
+        "Which target-family cells pass the fit gate?",
+        "How do per-degree onsets vary by target family?",
+        "Does staircase rank track final fit quality?"
+      ]
+    },
+    {
+      "title": "Staircase-index distributions and TOST equivalence.",
+      "panels": [
+        "per-seed index",
+        "primary TOST",
+        "point-null robustness",
+        "mean-median robustness"
+      ],
+      "questions": [
+        "What is the raw per-seed staircase-index distribution?",
+        "Does the pre-specified TOST establish equivalence?",
+        "Do secondary point-null tests agree?",
+        "How robust are staircase-index summaries to mean versus median aggregation?"
+      ]
+    },
+    {
+      "title": "Degree acquisition under AdamW, SGDM, and Muon.",
+      "panels": [
+        "AdamW acquisition",
+        "SGDM acquisition",
+        "Muon acquisition",
+        "onset distributions"
+      ],
+      "questions": [
+        "How are degrees acquired under AdamW?",
+        "How are degrees acquired under SGDM?",
+        "How are degrees acquired under Muon?",
+        "How are degree-onset distributions ordered across optimizers?"
+      ]
+    }
+  ],
+  "scale": [
+    {
+      "title": "Staircase rank across width, depth, and freeze arms.",
+      "panels": [
+        "width axis",
+        "depth axis",
+        "freeze comparison",
+        "fit-versus-depth control"
+      ],
+      "questions": [
+        "How does staircase rank vary with model width?",
+        "How does staircase rank vary with network depth?",
+        "How do attention and MLP freezes change fit and staircase rank?",
+        "Does final fit remain high across the depth threshold?"
+      ]
+    },
+    {
+      "title": "Scale-grid depth threshold and freeze audit.",
+      "panels": [],
+      "questions": []
+    },
+    {
+      "title": "Isolated degree-three timing across optimizers.",
+      "panels": [
+        "isolated-target timing",
+        "bootstrap speed ratio",
+        "matched-fit control",
+        "ladder half-times"
+      ],
+      "questions": [
+        "How quickly does each optimizer acquire the isolated degree-three target?",
+        "What bootstrap interval supports the AdamW-to-Muon speed ratio?",
+        "Is the timing contrast confounded by final fit quality?",
+        "How are per-degree half-times ordered on the nested ladder?"
+      ]
+    },
+    {
+      "title": "ICL emergence time by context length and optimizer.",
+      "panels": [
+        "emergence-versus-length",
+        "matched-cadence control",
+        "acceleration intervals",
+        "per-seed emergence"
+      ],
+      "questions": [
+        "How does ICL emergence time vary with context length and optimizer?",
+        "Does the optimizer timing contrast survive matched evaluation cadence?",
+        "What bootstrap intervals support optimizer-to-Muon acceleration ratios?",
+        "How variable are emergence steps across seeds and context lengths?"
+      ]
+    },
+    {
+      "title": "Two-probe ownership plus geometry and timing",
+      "panels": [],
+      "questions": [
+        "How does ICL emergence time vary with context length and optimizer?"
+      ]
+    }
+  ],
+  "subspace": [
+    {
+      "title": "Induction-head update subspace across context lengths.",
+      "panels": [],
+      "questions": []
+    },
+    {
+      "title": "Two-probe ownership plus geometry and timing",
+      "panels": [],
+      "questions": [
+        "Does ansatz-direction capture remain at the random baseline?"
+      ]
+    }
+  ],
+  "ledger": [
+    {
+      "title": "Sequential low-to-high feature acquisition across studies.",
+      "panels": [],
+      "questions": []
+    },
+    {
+      "title": "Isolated-target versus nested-ladder necessity.",
+      "panels": [
+        "isolated-versus-ladder fit",
+        "SGDM degree acquisition",
+        "per-seed target fit",
+        "per-degree optimizer comparison"
+      ],
+      "questions": [
+        "How does final fit differ between the isolated target and nested ladder?",
+        "Which degrees does SGDM acquire on the nested ladder?",
+        "How variable is final fit across seeds, targets, and optimizers?",
+        "How do per-degree final correlations compare across optimizers?"
+      ]
+    },
+    {
+      "title": "Staircase rank by target family and optimizer.",
+      "panels": [
+        "target-family rank",
+        "fit-gate check",
+        "family onsets",
+        "rank-versus-fit control"
+      ],
+      "questions": [
+        "How does staircase rank vary by target family and optimizer?",
+        "Which target-family cells pass the fit gate?",
+        "How do per-degree onsets vary by target family?",
+        "Does staircase rank track final fit quality?"
+      ]
+    },
+    {
+      "title": "Staircase rank across width, depth, and freeze arms.",
+      "panels": [
+        "width axis",
+        "depth axis",
+        "freeze comparison",
+        "fit-versus-depth control"
+      ],
+      "questions": [
+        "How does staircase rank vary with model width?",
+        "How does staircase rank vary with network depth?",
+        "How do attention and MLP freezes change fit and staircase rank?",
+        "Does final fit remain high across the depth threshold?"
+      ]
+    },
+    {
+      "title": "Degree-four acquisition by freeze arm and optimizer.",
+      "panels": [
+        "median freeze effect",
+        "per-seed distributions",
+        "paired attention-freeze delta",
+        "matched-fit degree control"
+      ],
+      "questions": [
+        "How does median degree-four acquisition vary by freeze arm and optimizer?",
+        "How variable is the freeze effect across seeds?",
+        "What paired attention-freeze delta occurs within each optimizer?",
+        "Are lower degrees preserved at the matched-fit point?"
+      ]
+    },
+    {
+      "title": "Learning-rate sweep for the attention-freeze ownership probe.",
+      "panels": [],
+      "questions": []
+    },
+    {
+      "title": "Study design for the two-probe staircase.",
+      "panels": [],
+      "questions": []
+    },
+    {
+      "title": "Staircase-index distributions and TOST equivalence.",
+      "panels": [
+        "per-seed index",
+        "primary TOST",
+        "point-null robustness",
+        "mean-median robustness"
+      ],
+      "questions": [
+        "What is the raw per-seed staircase-index distribution?",
+        "Does the pre-specified TOST establish equivalence?",
+        "Do secondary point-null tests agree?",
+        "How robust are staircase-index summaries to mean versus median aggregation?"
+      ]
+    },
+    {
+      "title": "Degree acquisition under AdamW, SGDM, and Muon.",
+      "panels": [
+        "AdamW acquisition",
+        "SGDM acquisition",
+        "Muon acquisition",
+        "onset distributions"
+      ],
+      "questions": [
+        "How are degrees acquired under AdamW?",
+        "How are degrees acquired under SGDM?",
+        "How are degrees acquired under Muon?",
+        "How are degree-onset distributions ordered across optimizers?"
+      ]
+    },
+    {
+      "title": "Isolated degree-three timing across optimizers.",
+      "panels": [
+        "isolated-target timing",
+        "bootstrap speed ratio",
+        "matched-fit control",
+        "ladder half-times"
+      ],
+      "questions": [
+        "How quickly does each optimizer acquire the isolated degree-three target?",
+        "What bootstrap interval supports the AdamW-to-Muon speed ratio?",
+        "Is the timing contrast confounded by final fit quality?",
+        "How are per-degree half-times ordered on the nested ladder?"
+      ]
+    },
+    {
+      "title": "Layer-localized freeze arms and degree-four acquisition.",
+      "panels": [
+        "freeze-arm medians",
+        "per-seed distributions",
+        "fit control",
+        "acquisition fractions"
+      ],
+      "questions": [
+        "Which layer-localized freeze arms preserve degree-four acquisition?",
+        "How variable is degree-four acquisition across seeds and freeze arms?",
+        "Is overall fit preserved under every freeze arm?",
+        "What fraction of seeds exceeds the degree-four acquisition threshold?"
+      ]
+    },
+    {
+      "title": "Per-degree trajectories for a single seed.",
+      "panels": [],
+      "questions": []
+    },
+    {
+      "title": "ICL emergence time by context length and optimizer.",
+      "panels": [
+        "emergence-versus-length",
+        "matched-cadence control",
+        "acceleration intervals",
+        "per-seed emergence"
+      ],
+      "questions": [
+        "How does ICL emergence time vary with context length and optimizer?",
+        "Does the optimizer timing contrast survive matched evaluation cadence?",
+        "What bootstrap intervals support optimizer-to-Muon acceleration ratios?",
+        "How variable are emergence steps across seeds and context lengths?"
+      ]
+    },
+    {
+      "title": "Scale-grid depth threshold and freeze audit.",
+      "panels": [],
+      "questions": []
+    },
+    {
+      "title": "Two-probe ownership plus geometry and timing summary.",
+      "panels": [
+        "staircase-index equivalence",
+        "freeze response",
+        "emergence timing",
+        "capture null"
+      ],
+      "questions": [
+        "Are staircase-index distributions equivalent across optimizers?",
+        "How does degree-four acquisition respond to component freezes?",
+        "How does ICL emergence time vary with context length and optimizer?",
+        "Does ansatz-direction capture remain at the random baseline?"
+      ]
+    },
+    {
+      "title": "Induction-head update subspace across context lengths.",
+      "panels": [],
+      "questions": []
+    }
+  ],
+  "rebuild": [
+    {
+      "title": "Sequential low-to-high feature acquisition across studies."
+    },
+    {
+      "title": "Isolated-target versus nested-ladder necessity."
+    },
+    {
+      "title": "Staircase rank by target family and optimizer."
+    },
+    {
+      "title": "Staircase rank across width, depth, and freeze arms."
+    },
+    {
+      "title": "Degree-four acquisition by freeze arm and optimizer."
+    },
+    {
+      "title": "Learning-rate sweep for the attention-freeze ownership probe."
+    },
+    {
+      "title": "Study design for the two-probe staircase."
+    },
+    {
+      "title": "Staircase-index distributions and TOST equivalence."
+    },
+    {
+      "title": "Degree acquisition under AdamW, SGDM, and Muon."
+    },
+    {
+      "title": "Isolated degree-three timing across optimizers."
+    },
+    {
+      "title": "Layer-localized freeze arms and degree-four acquisition."
+    },
+    {
+      "title": "Per-degree trajectories for a single seed."
+    },
+    {
+      "title": "ICL emergence time by context length and optimizer."
+    },
+    {
+      "title": "Scale-grid depth threshold and freeze audit."
+    },
+    {
+      "title": "Two-probe ownership plus geometry and timing summary."
+    },
+    {
+      "title": "Induction-head update subspace across context lengths."
+    }
+  ]
+}

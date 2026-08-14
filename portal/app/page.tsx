@@ -1,3 +1,6 @@
+import { Entries } from "@/components/Entries";
+import { science } from "@/lib/science";
+
 export default function ProbesPage() {
   return (
     <div className="spread" id="spread-probes">
@@ -7,9 +10,7 @@ export default function ProbesPage() {
           The freeze probe asks which modules must be trained for the degree
           staircase to appear. Necessity lives on this page.
         </p>
-        <div className="ruled-slot" aria-hidden="true" />
-        <div className="ruled-slot" aria-hidden="true" />
-        <div className="ruled-slot" aria-hidden="true" />
+        <Entries entries={science.probes.freeze} />
       </section>
       <aside className="gutter" aria-label="Dissociation spine">
         <span className="stitch" aria-hidden="true" />
@@ -27,8 +28,7 @@ export default function ProbesPage() {
           The ablation probe asks which trained modules carry the computation
           once the staircase is in place. Ownership lives on this page.
         </p>
-        <div className="ruled-slot" aria-hidden="true" />
-        <div className="ruled-slot" aria-hidden="true" />
+        <Entries entries={science.probes.ablation} />
       </section>
     </div>
   );

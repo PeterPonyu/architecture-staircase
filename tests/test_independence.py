@@ -36,4 +36,4 @@ def test_no_compiled_manuscript_pdf_in_portal_or_site() -> None:
 def test_readme_cites_github() -> None:
     readme = (REPO_ROOT / "README.md").read_text(encoding="utf-8")
     assert "https://github.com/PeterPonyu/architecture-staircase" in readme
-    assert "papers/C/main.tex" in readme
+    assert "https://peterponyu.github.io/architecture-staircase/" in readme

@@ -28,6 +28,7 @@ fi
 
 mkdir -p portal/public/data
 cp papers/FIGURE-INDEX.json portal/public/data/figures.json
+python3 portal/scripts/build_science.py
 
 if [[ ! -d portal/node_modules ]]; then
   (cd portal && npm ci)

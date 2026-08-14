@@ -3,8 +3,8 @@ export default function ScalePage() {
     <section className="leaf">
       <h2>Scale</h2>
       <p>
-        Scale leaf in the lab-book spine. Pointer only:
-        <code> papers/C/main.tex</code> and <code>papers/figs/</code>.
+        Width and depth move when the staircase locks. The two probes stay
+        separate across the scale grid.
       </p>
     </section>
   );

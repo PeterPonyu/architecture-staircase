@@ -3,8 +3,8 @@ export default function SubspacePage() {
     <section className="leaf">
       <h2>Subspace</h2>
       <p>
-        Subspace leaf in the lab-book spine. Contract:
-        <code> papers/FIGURE-INDEX.json</code>.
+        The trained update occupies a localized induction-head subspace.
+        Context length changes the subspace, not the probe split.
       </p>
     </section>
   );

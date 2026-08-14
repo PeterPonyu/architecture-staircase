@@ -37,7 +37,7 @@ body {
 
 .notebook {
   display: grid;
-  grid-template-columns: 168px minmax(0, 1fr);
+  grid-template-columns: 220px minmax(0, 1fr);
   grid-template-rows: auto 1fr auto;
   min-height: 100vh;
   min-height: 900px;
@@ -60,6 +60,7 @@ body {
   font-family: var(--font-display);
   font-weight: 600;
   font-size: 16px;
+  line-height: 1.2;
   display: flex;
   align-items: center;
   gap: 8px;

@@ -25,8 +25,8 @@ const stix = localFont({
 const fontVars = `${literata.variable} ${stix.variable}`;
 
 export const metadata: Metadata = {
-  title: "Lab book C · architecture-staircase",
-  description: "Two-probe lab notebook door for architecture-staircase.",
+  title: "Two-probe architecture staircase",
+  description: "Freeze and ablation probes on the architecture-shaped degree staircase.",
 };
 
 export default function RootLayout({

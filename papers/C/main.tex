@@ -1,10 +1,5 @@
-%% Bundle C — master (canonical).
-%% Target venue (locked 2026-08-10): PeerJ Computer Science.
-%% Closed desk rejects: Machine Learning/Springer (2026-07-14); Neural Networks
-%%   NEUNET-D-26-06458 (2026-08-09). Not under review elsewhere.
-%% Ultragoal: paper-c-peerj-deep-20260810 (ablation-led + PeerJ packaging).
+%% Manuscript master (canonical).
 %% Compile: lualatex; lualatex   (inline thebibliography, no bibtex pass needed).
-%% PeerJ upload package: papers/peerj-C/upload/ (pdflatex + wlpeerj).
 %% Figures in ../figs/, bibliography inline at end of file.
 \documentclass[11pt]{article}
 
@@ -133,13 +128,6 @@ architecture or leaderboard result.
 {\hyphenpenalty=10000\exhyphenpenalty=10000
 \vspace{4pt}\noindent\textbf{Keywords:} component ownership; freeze probe; mean ablation;
 degree staircase; orthogonalization; transformer emergence; reproducibility\par}
-
-% Highlights (Elsevier highlights go in a separate file at submission; PeerJ: N/A):
-% - freeze (training-necessity) is optimizer-dependent; ablation (trained computation) is not
-% - degree-4-selective carrier: layer-1 MLP under both AdamW and Muon (paired contrast under Muon)
-% - staircase index equivalent across optimizers within +-2.0 SI units, corrected (TOST, n=15)
-% - staircase needs depth>=2; optimizer advances emergence 1.6-12x at matched geometry
-% - induction emerges in ~3-D subspace; idealized ansatz directions not detected
 
 \section{Introduction}\label{sec:intro}
 
@@ -1782,9 +1770,8 @@ it as an efficiency gap rather than proving a new separation theorem.
 \label{sec:limitations}
 
 The study is toy-scale (${\sim}400$k parameters, two layers; Boolean staircase + induction)
-and is offered as a controlled, multi-seed dissociation with open logs---the contribution
-PeerJ CS is asked to evaluate---not as a universal law of transformers or a new training
-algorithm. The lead freeze$\perp$ablation dissociation is scoped: freeze outcomes are
+and is offered as a controlled, multi-seed dissociation with open logs---not as a
+universal law of transformers or a new training algorithm. The lead freeze$\perp$ablation dissociation is scoped: freeze outcomes are
 optimizer- and configuration-dependent (AdamW attention-necessity at $d=128$ tightens at
 $L=24$, $d=256$; Muon two-path redundancy at $d=128$ reverses to an attention rescue at
 that audit; SGDM freeze arms are fit-gated and uninformative), and ablation MLP L1

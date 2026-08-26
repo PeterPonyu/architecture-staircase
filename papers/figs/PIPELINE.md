@@ -1,6 +1,6 @@
-# Figure pipeline (Paper C)
+# Figure pipeline
 
-R → TikZ / vector-PDF → LuaLaTeX. Warehouse manuscript `papers/C/main.tex`
+R → TikZ / vector-PDF → LuaLaTeX. The warehouse manuscript
 loads `\input{../figs/figpreamble.tex}` and `\figtikz{Name}` (heatmap tier:
 preamble-routed `\includegraphics{Name.pdf}` into untracked `figs/vec/`).
 

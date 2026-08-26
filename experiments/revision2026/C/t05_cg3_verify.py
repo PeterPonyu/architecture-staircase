@@ -1,4 +1,4 @@
-"""C-G3 verification — recompute the activation-patching verdict from raw jsonls.
+"""Activation-patching verification — recompute the verdict from raw jsonls.
 
 Reads the 16 BOX-4 ablation logs (experiments/revision2026/cg3-C/*.ablate.jsonl:
 8 seeds x {adamw, muon}, 7 conditions x 12 checkpoints each) and recomputes,

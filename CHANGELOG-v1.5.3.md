@@ -20,7 +20,3 @@ public reproducibility archive used by journal reviewers (Zenodo concept DOI
 - Historical path stems (`make_C_*.R`, `papers/figs/C_*.png`, `revision2026/C/`)
   remain as filesystem identifiers; renaming would break figure pipelines.
 - Older Zenodo versions (≤v1.5.2) cannot be rewritten; pin reviewers to v1.5.3+.
-
-## Publish steps (user must run)
-See the PeerJ submit-runbook file `PUBLISH-v1.5.3-STEPS.md` (kept outside this
-code-only archive so local ops paths are not deposited).

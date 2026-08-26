@@ -1,6 +1,6 @@
 cff-version: 1.2.0
 title: "Train the pathway, deposit the computation: a two-probe dissociation of component ownership in transformer emergence"
-message: If you use this code or data, please cite this archive and the manuscript.
+message: Cite this archive for the experiment code and recorded result logs (concept DOI 10.5281/zenodo.21020348; version DOI 10.5281/zenodo.21882597).
 type: dataset
 authors:
   - given-names: Zeyu

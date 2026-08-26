@@ -142,7 +142,8 @@ def test_pointer_tex_is_short_public_note() -> None:
     assert "10.5281/zenodo.21020348" in blob
     assert "10.5281/zenodo.21882597" in blob
     assert "reproduction archive" in blob.lower()
-    assert "submitted separately" in blob.lower()
+    assert "per-run logs" in blob.lower()
+    assert "figure pipeline" in blob.lower()
     assert "Two-probe contract" not in blob
     assert "pointer-only GitHub SSOT" not in blob
     for forbidden in (

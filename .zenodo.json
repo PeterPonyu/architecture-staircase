@@ -1,6 +1,6 @@
 {
   "title": "Train the pathway, deposit the computation: a two-probe dissociation of component ownership in transformer emergence \u2014 code and data",
-  "description": "Code and recorded result logs for a two-probe dissociation of component ownership in transformer emergence. Freeze probes ask which sub-network must be trained; mean-ablation probes ask where the trained computation sits. Arms are synthetic Boolean degree-staircase targets and in-context induction streams. Experiment code and per-run logs only; manuscript sources are not included. Code: MIT; result logs: CC-BY-4.0. Concept DOI: 10.5281/zenodo.21020348.",
+  "description": "This archive is the experiment code and recorded result logs for Train the pathway, deposit the computation: a two-probe dissociation of component ownership in transformer emergence. Freeze probes ask which sub-network must be trained; mean-ablation probes ask where the trained computation sits. Arms are synthetic Boolean degree-staircase targets and in-context induction streams. Code: MIT; result logs: CC-BY-4.0. Concept DOI: 10.5281/zenodo.21020348. Version DOI: 10.5281/zenodo.21882597.",
   "upload_type": "dataset",
   "access_right": "open",
   "license": "MIT",

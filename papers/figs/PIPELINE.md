@@ -1,19 +1,11 @@
 # Figure pipeline
 
-R → TikZ / vector-PDF → LuaLaTeX. The warehouse manuscript
-loads `\input{../figs/figpreamble.tex}` and `\figtikz{Name}` (heatmap tier:
-preamble-routed `\includegraphics{Name.pdf}` into untracked `figs/vec/`).
+R → TikZ / vector-PDF → LuaLaTeX.
 
-## Emitters in this warehouse
+Shared pieces in this directory:
 
 - `fig_pipeline.R` — shared emitter (`emit_vector`)
-- `figpreamble.tex` — `\figtikz` + `\graphicspath{{../figs/vec/}{../figs/}}`
-- `make_C_figs_r.R` — body figures including the four YAML-absent MAP names
-  (`C_case`, `C_scale`, `C_subspace`, `C_ownership_lr_sensitivity`)
-- `make_C_new_figs_r.R`
-- `make_gap20260705_C_figs_r.R`
-- `make_landscape_r.R` — `C_landscape`
-- `C_scheme` is a TikZ schematic; INDEX `tex_build` is `figs/tex/C_scheme.tex`
+- `figpreamble.tex` — `\figtikz` plus `\graphicspath` into untracked `figs/vec/`
 
-Compiled `figs/tex/` and `figs/vec/` are gitignored. Do not commit PeerJ
-`FigureN.pdf`. Portal reads `papers/FIGURE-INDEX.json` (JSON-first).
+Compiled `figs/tex/` and `figs/vec/` are gitignored. The portal reads
+`papers/FIGURE-INDEX.json`.

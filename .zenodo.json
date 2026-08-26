@@ -1,6 +1,6 @@
 {
   "title": "Train the pathway, deposit the computation: a two-probe dissociation of component ownership in transformer emergence \u2014 code and data",
-  "description": "Reproducibility archive for the two-probe dissociation study of component ownership in transformer emergence (synthetic Boolean degree-staircase + induction logs). Experiment code and per-run result logs only; manuscript sources not included. Code: MIT; result logs: CC-BY-4.0. v1.5.4 rebuilds the public tarball via git archive with hard excludes so nested process/IDE cache dirs (e.g. .omc) cannot ship; continues the v1.5.3 series-label / process-artifact scrub. Use v1.5.4 or later for review.",
+  "description": "Code and recorded result logs for a two-probe dissociation of component ownership in transformer emergence. Freeze probes ask which sub-network must be trained; mean-ablation probes ask where the trained computation sits. Arms are synthetic Boolean degree-staircase targets and in-context induction streams. Experiment code and per-run logs only; manuscript sources are not included. Code: MIT; result logs: CC-BY-4.0. Concept DOI: 10.5281/zenodo.21020348.",
   "upload_type": "dataset",
   "access_right": "open",
   "license": "MIT",
@@ -8,7 +8,7 @@
     {
       "name": "Fu, Zeyu",
       "orcid": "0009-0001-8329-0108",
-      "affiliation": "Army Medical University, Chongqing, China"
+      "affiliation": "State Key Laboratory of Trauma and Chemical Poisoning, Institute of Combined Injury, Chongqing Engineering Research Center for Nanomedicine, College of Preventive Medicine, Army Medical University, Chongqing, China"
     }
   ],
   "keywords": [

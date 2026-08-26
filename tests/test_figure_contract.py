@@ -120,22 +120,40 @@ def test_pointer_tex_does_not_include_peerj_figure_pdfs() -> None:
     assert not hits, f"F6: PeerJ FigureN.pdf includes: {hits}"
 
 
-def test_canonical_includes_survive() -> None:
+def test_pointer_tex_does_not_load_figure_pipeline() -> None:
     text = POINTER_TEX.read_text(encoding="utf-8")
-    assert r"\input{../figs/figpreamble.tex}" in text
-    assert r"\graphicspath{{./}}" not in text
-    assert r"\includegraphics[width=\linewidth]{C_arch_depth.pdf}" in text
+    assert r"\input{../figs/figpreamble.tex}" not in text
+    assert r"\graphicspath" not in text
+    assert r"\includegraphics" not in text
+    assert r"\documentclass" not in text
 
 
-def test_pointer_tex_is_full_manuscript_not_stub() -> None:
+def test_pointer_tex_is_short_public_note() -> None:
     assert POINTER_TEX.is_file(), "F6b: papers/C/main.tex must exist"
     lines = POINTER_TEX.read_text(encoding="utf-8").splitlines()
-    assert 2133 <= len(lines) <= 2357, (
-        f"F6b: expected ~2245 lines after scar strip, got {len(lines)}"
+    assert 1 <= len(lines) <= 40, (
+        f"F6b: expected a short pointer (≤40 lines), got {len(lines)}"
     )
     blob = POINTER_TEX.read_text(encoding="utf-8")
+    assert (
+        "Train the pathway, deposit the computation: a two-probe "
+        "dissociation of component ownership in transformer emergence"
+    ) in blob
+    assert "10.5281/zenodo.21020348" in blob
+    assert "10.5281/zenodo.21882597" in blob
+    assert "reproduction archive" in blob.lower()
+    assert "submitted separately" in blob.lower()
     assert "Two-probe contract" not in blob
     assert "pointer-only GitHub SSOT" not in blob
+    for forbidden in (
+        "Paper C",
+        "Bundle C",
+        "Ultragoal",
+        "PeerJ",
+        "146773",
+    ):
+        assert forbidden not in blob, forbidden
+    assert "/home/" + "zeyufu" not in blob
 
 
 def test_summaries_exist_when_index_declares_them() -> None:
